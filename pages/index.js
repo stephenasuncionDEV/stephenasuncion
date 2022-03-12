@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Box, Flex, Wrap, VStack, Text, HStack, Button, Link, IconButton, Image, Heading } from '@chakra-ui/react'
+import { Box, Flex, Wrap, VStack, Text, HStack, Button, Link, IconButton, Image, Heading, Table, TableCaption, Thead, Tr, Th, Td, Tbody, Tag } from '@chakra-ui/react'
 import { FaGithub, FaDiscord, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import { FiExternalLink } from 'react-icons/fi'
 
@@ -111,6 +111,95 @@ const Home = () => {
                                     <IconButton aria-label='Stephen Asuncion Resume' icon={<FiExternalLink />} size='sm'/>
                                 </Link>
                             </HStack>
+                        </VStack>
+                    </section>
+                    <section id='projects'>
+                        <VStack mt='2em' boxShadow='rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px' p='2em' bg='white' borderRadius='10px' alignItems='flex-start' maxW='800px' minW='800px' spacing='1em'>
+                            <header>
+                                <Heading as='h2' size='xl'>
+                                    Projects
+                                </Heading>
+                            </header>
+                            <Table variant='simple'>
+                                <TableCaption>My List of Projects</TableCaption>
+                                <Thead>
+                                    <Tr>
+                                        <Th>Name</Th>
+                                        <Th>Description</Th>
+                                        <Th>Stack</Th>
+                                        <Th>URL</Th>
+                                    </Tr>
+                                </Thead>
+                                <Tbody>
+                                    <Tr>
+                                        <Td>NFT Host</Td>
+                                        <Td>Generate and host NFT collections</Td>
+                                        <Td>
+                                            <Wrap>
+                                                <Tag>Next JS</Tag>
+                                                <Tag>Express JS</Tag>
+                                                <Tag>Chakra UI</Tag>
+                                                <Tag>MongoDB</Tag>
+                                                <Tag>SASS</Tag>
+                                            </Wrap>
+                                        </Td>
+                                        <Td>
+                                            <Link href='https://www.nfthost.app/' isExternal>
+                                                <IconButton aria-label='Stephen Asuncion Project 1' icon={<FiExternalLink />} size='sm'/>
+                                            </Link>
+                                        </Td>
+                                    </Tr>
+                                    <Tr>
+                                        <Td>Lia Auth</Td>
+                                        <Td>API for licensing softwares</Td>
+                                        <Td>
+                                            <Wrap>
+                                                <Tag>React JS</Tag>
+                                                <Tag>Express JS</Tag>
+                                                <Tag>Node JS</Tag>
+                                                <Tag>MongoDB</Tag>
+                                            </Wrap>
+                                        </Td>
+                                        <Td>
+                                            <Link href='https://github.com/stephenasuncionDEV/LiaAuth' isExternal>
+                                                <IconButton aria-label='Stephen Asuncion Project 2' icon={<FiExternalLink />} size='sm'/>
+                                            </Link>
+                                        </Td>
+                                    </Tr>
+                                    <Tr>
+                                        <Td>ClubCryptic</Td>
+                                        <Td>Web Mutliplayer Game</Td>
+                                        <Td>
+                                            <Wrap>
+                                                <Tag>React JS</Tag>
+                                                <Tag>Express JS</Tag>
+                                                <Tag>Material UI</Tag>
+                                                <Tag>Socket IO</Tag>
+                                            </Wrap>
+                                        </Td>
+                                        <Td>
+                                            <Link href='https://github.com/stephenasuncionDEV/ClubCryptic' isExternal>
+                                                <IconButton aria-label='Stephen Asuncion Project 3' icon={<FiExternalLink />} size='sm'/>
+                                            </Link>
+                                        </Td>
+                                    </Tr>
+                                    <Tr>
+                                        <Td>Showoff</Td>
+                                        <Td>Social Media for sharing song lyrics</Td>
+                                        <Td>
+                                            <Wrap>
+                                                <Tag>Javascript</Tag>
+                                                <Tag>PHP</Tag>
+                                            </Wrap>
+                                        </Td>
+                                        <Td>
+                                            <Link href='https://github.com/stephenasuncionDEV/Showoff' isExternal>
+                                                <IconButton aria-label='Stephen Asuncion Project 4' icon={<FiExternalLink />} size='sm'/>
+                                            </Link>
+                                        </Td>
+                                    </Tr>
+                                </Tbody>
+                            </Table>
                         </VStack>
                     </section>
                 </Flex>
