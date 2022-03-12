@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import { Box, Flex, Wrap, VStack, Text, HStack, Button, Link, IconButton, Image } from '@chakra-ui/react'
+import { Box, Flex, Wrap, VStack, Text, HStack, Button, Link, IconButton, Image, Heading } from '@chakra-ui/react'
 import { FaGithub, FaDiscord, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import { FiExternalLink } from 'react-icons/fi'
 
 const Home = () => {
     return (
@@ -60,6 +61,57 @@ const Home = () => {
                                 <Image src='/bitmoji.png' alt='Stephen Asuncion Avatar' />
                             </Box>
                         </Wrap>
+                    </section>
+                </Flex>
+                <Flex flexDir='column' alignItems='center' justifyContent='center' bg='rgb(52,157,255)' py='4em'>
+                    <section id='biography'>
+                        <VStack spacing='2em' boxShadow='rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px' p='2em' bg='white' borderRadius='10px' alignItems='flex-start' maxW='800px' minW='800px'>
+                            <Box>
+                                <header>
+                                    <Heading as='h2' size='xl'>
+                                        Biography
+                                    </Heading>
+                                </header>
+                                <Text mt='.5em'>
+                                    My name is Stephen Asuncion. A 20 year-old student, currently studying at Langara College. I currently live in Richmond, B.C. Canada.
+                                </Text>
+                            </Box>
+                            <Wrap spacing='2em'>
+                                <VStack alignItems='flex-start' spacing='0'>
+                                    <Text fontWeight='bold'>Education</Text>
+                                    <Text fontSize='10pt'>Diploma in Computer Studies</Text>
+                                    <Text fontSize='10pt'>Langara College - Vancouver, BC</Text>
+                                    <Text fontSize='10pt'>Cumulative GPA: 3.78/4.33</Text>
+                                    <Text fontSize='10pt'>Dean's Honour Roll, 2 Terms</Text>
+                                    <Text fontSize='10pt'>Third-year</Text>
+                                </VStack>
+                                <VStack alignItems='flex-start' spacing='0'>
+                                    <Text fontWeight='bold'>Interests</Text>
+                                    <Text fontSize='10pt'>Computer Programming</Text>
+                                    <Text fontSize='10pt'>Web3.0</Text>
+                                    <Text fontSize='10pt'>Blockchain</Text>
+                                    <Text fontSize='10pt'>RnB &amp; Rap Music</Text>
+                                    <Text fontSize='10pt'>Fashion</Text>
+                                </VStack>
+                                <VStack alignItems='flex-start' spacing='0'>
+                                    <Text fontWeight='bold'>Working On</Text>
+                                    <Text fontSize='10pt'>SwiftNFT - My personal project. A website that generate nft collections and host mint websites. It was called NFT Host but I'm planning on rebranding.</Text>
+                                    <Text fontSize='10pt'>Ambition - Project that I hopped on to. A website that generate and deploy nft collections to the blockchain</Text>
+                                </VStack>
+                                <VStack alignItems='flex-start' spacing='0'>
+                                    <Text fontWeight='bold'>Future Goals</Text>
+                                    <Text fontSize='10pt'>My main goal is to have a steady flow of income. I'd be more than happy if I could make my own startup and succeed that way. However, I also dont mind working because the amount of memories are worth it.</Text>
+                                </VStack>
+                            </Wrap>
+                            <HStack justifyContent='flex-end' w='full'>
+                                <Text>
+                                    My Resume
+                                </Text>
+                                <Link href='https://docs.google.com/document/d/1H0RL0t0inkynOyhEunfWA4xCw3RuEPXW/edit?usp=sharing&ouid=116340690712468214105&rtpof=true&sd=true' isExternal>
+                                    <IconButton aria-label='Stephen Asuncion Resume' icon={<FiExternalLink />} size='sm'/>
+                                </Link>
+                            </HStack>
+                        </VStack>
                     </section>
                 </Flex>
             </main>
