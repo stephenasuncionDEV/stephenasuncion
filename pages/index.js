@@ -35,7 +35,7 @@ const Home = () => {
                                     </Link>
                                     <Link href='#preview'>
                                         <Button size='sm'>
-                                            Preview
+                                            Projects Preview
                                         </Button>
                                     </Link>
                                 </HStack>
@@ -202,6 +202,37 @@ const Home = () => {
                             </Table>
                         </VStack>
                     </section>
+                    <section id='preview'>
+                        <VStack mt='2em' spacing='2em' boxShadow='rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px' p='2em' bg='white' borderRadius='10px' alignItems='flex-start' maxW='800px' minW='800px'>
+                            <Box>
+                                <header>
+                                    <Heading as='h2' size='xl'>
+                                        Preview
+                                    </Heading>
+                                </header>
+                                <Text mt='.5em'>
+                                    Some preview of my projects
+                                </Text>
+                            </Box>
+                            <Box p='1em'>
+                                <Text fontSize='14pt' fontWeight='bold'>
+                                    NFT Host
+                                </Text>
+                                <Image src='/mockup1.png' alt='Project Preview' />
+                            </Box>
+                            <Box p='1em'>
+                                <Text fontSize='14pt' fontWeight='bold'>
+                                    Lia Auth
+                                </Text>
+                                <Image src='/mockup2.png' alt='Project Preview' />
+                            </Box>
+                        </VStack>
+                    </section>
+                    <Link href='#introduction' mt='5em'>
+                        <Button size='sm'>
+                            Go Back To Introduction
+                        </Button>
+                    </Link>
                 </Flex>
             </main>
         </Box>
