@@ -16,12 +16,16 @@ const Home = () => {
                     <section id='introduction'>
                         <Wrap maxW='1000px' spacing='1em' p='1em' justify='center'>
                             <VStack justifyContent='center' spacing='1em'>
-                                <Text fontSize='24pt'>
-                                    Hello, I'm
-                                    <span style={{ color: 'rgb(52,157,255)' }}>
-                                        &nbsp;Stephen Asuncion 🚀
-                                    </span>
-                                </Text>
+                                <HStack>
+                                    <Text fontSize='24pt'>
+                                        Hello, I'm
+                                    </Text>
+                                    <Tag size='lg' bg='rgb(140, 200, 255)'>
+                                        <Text fontSize='16pt'>
+                                            Stephen Asuncion 🚀
+                                        </Text>
+                                    </Tag>
+                                </HStack>
                                 <HStack>    
                                     <Link href='#biography'>
                                         <Button size='sm'>
@@ -58,14 +62,14 @@ const Home = () => {
                                 </HStack>
                             </VStack>
                             <Box>
-                                <Image src='/bitmoji.png' alt='Stephen Asuncion Avatar' />
+                                <Image src='/bitmoji.webp' alt='Stephen Asuncion Avatar' w='356px' h='356px' />
                             </Box>
                         </Wrap>
                     </section>
                 </Flex>
                 <Flex flexDir='column' alignItems='center' justifyContent='center' bg='rgb(52,157,255)' py='4em'>
-                    <section id='biography'>
-                        <VStack spacing='2em' boxShadow='rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px' p='2em' bg='white' borderRadius='10px' alignItems='flex-start' maxW='800px' minW='800px'>
+                    <section id='biography' >
+                        <VStack spacing='2em' mx='1em' boxShadow='rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px' p='2em' bg='white' borderRadius='10px' alignItems='flex-start' maxW='800px'>
                             <Box>
                                 <header>
                                     <Heading as='h2' size='xl'>
@@ -113,97 +117,103 @@ const Home = () => {
                             </HStack>
                         </VStack>
                     </section>
+                </Flex>
+                <Flex flexDir='column' alignItems='center' justifyContent='center' bg='rgb(52,157,255)'>
                     <section id='projects'>
-                        <VStack mt='2em' boxShadow='rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px' p='2em' bg='white' borderRadius='10px' alignItems='flex-start' maxW='800px' minW='800px' spacing='1em'>
+                        <VStack spacing='2em' mx='1em' boxShadow='rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px' p='2em' bg='white' borderRadius='10px' alignItems='flex-start' maxW='800px'>
                             <header>
                                 <Heading as='h2' size='xl'>
                                     Projects
                                 </Heading>
                             </header>
-                            <Table variant='simple'>
-                                <TableCaption>My List of Projects</TableCaption>
-                                <Thead>
-                                    <Tr>
-                                        <Th>Name</Th>
-                                        <Th>Description</Th>
-                                        <Th>Stack</Th>
-                                        <Th>URL</Th>
-                                    </Tr>
-                                </Thead>
-                                <Tbody>
-                                    <Tr>
-                                        <Td>NFT Host</Td>
-                                        <Td>Generate and host NFT collections</Td>
-                                        <Td>
-                                            <Wrap>
-                                                <Tag>Next JS</Tag>
-                                                <Tag>Express JS</Tag>
-                                                <Tag>Chakra UI</Tag>
-                                                <Tag>MongoDB</Tag>
-                                                <Tag>SASS</Tag>
-                                            </Wrap>
-                                        </Td>
-                                        <Td>
-                                            <Link href='https://www.nfthost.app/' isExternal>
-                                                <IconButton aria-label='Stephen Asuncion Project 1' icon={<FiExternalLink />} size='sm'/>
-                                            </Link>
-                                        </Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>Lia Auth</Td>
-                                        <Td>API for licensing softwares</Td>
-                                        <Td>
-                                            <Wrap>
-                                                <Tag>React JS</Tag>
-                                                <Tag>Express JS</Tag>
-                                                <Tag>Node JS</Tag>
-                                                <Tag>MongoDB</Tag>
-                                            </Wrap>
-                                        </Td>
-                                        <Td>
-                                            <Link href='https://github.com/stephenasuncionDEV/LiaAuth' isExternal>
-                                                <IconButton aria-label='Stephen Asuncion Project 2' icon={<FiExternalLink />} size='sm'/>
-                                            </Link>
-                                        </Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>ClubCryptic</Td>
-                                        <Td>Web Mutliplayer Game</Td>
-                                        <Td>
-                                            <Wrap>
-                                                <Tag>React JS</Tag>
-                                                <Tag>Express JS</Tag>
-                                                <Tag>Material UI</Tag>
-                                                <Tag>Socket IO</Tag>
-                                            </Wrap>
-                                        </Td>
-                                        <Td>
-                                            <Link href='https://github.com/stephenasuncionDEV/ClubCryptic' isExternal>
-                                                <IconButton aria-label='Stephen Asuncion Project 3' icon={<FiExternalLink />} size='sm'/>
-                                            </Link>
-                                        </Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>Showoff</Td>
-                                        <Td>Social Media for sharing song lyrics</Td>
-                                        <Td>
-                                            <Wrap>
-                                                <Tag>Javascript</Tag>
-                                                <Tag>PHP</Tag>
-                                            </Wrap>
-                                        </Td>
-                                        <Td>
-                                            <Link href='https://github.com/stephenasuncionDEV/Showoff' isExternal>
-                                                <IconButton aria-label='Stephen Asuncion Project 4' icon={<FiExternalLink />} size='sm'/>
-                                            </Link>
-                                        </Td>
-                                    </Tr>
-                                </Tbody>
-                            </Table>
+                            <Box overflowX='auto'>
+                                <Table variant='simple'>
+                                    <TableCaption>My List of Projects</TableCaption>
+                                    <Thead>
+                                        <Tr>
+                                            <Th>Name</Th>
+                                            <Th>Description</Th>
+                                            <Th>Stack</Th>
+                                            <Th>URL</Th>
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody>
+                                        <Tr>
+                                            <Td>NFT Host</Td>
+                                            <Td>Generate and host NFT collections</Td>
+                                            <Td>
+                                                <Wrap>
+                                                    <Tag>Next JS</Tag>
+                                                    <Tag>Express JS</Tag>
+                                                    <Tag>Chakra UI</Tag>
+                                                    <Tag>MongoDB</Tag>
+                                                    <Tag>SASS</Tag>
+                                                </Wrap>
+                                            </Td>
+                                            <Td>
+                                                <Link href='https://www.nfthost.app/' isExternal>
+                                                    <IconButton aria-label='Stephen Asuncion Project 1' icon={<FiExternalLink />} size='sm'/>
+                                                </Link>
+                                            </Td>
+                                        </Tr>
+                                        <Tr>
+                                            <Td>Lia Auth</Td>
+                                            <Td>API for licensing softwares</Td>
+                                            <Td>
+                                                <Wrap>
+                                                    <Tag>React JS</Tag>
+                                                    <Tag>Express JS</Tag>
+                                                    <Tag>Node JS</Tag>
+                                                    <Tag>MongoDB</Tag>
+                                                </Wrap>
+                                            </Td>
+                                            <Td>
+                                                <Link href='https://github.com/stephenasuncionDEV/LiaAuth' isExternal>
+                                                    <IconButton aria-label='Stephen Asuncion Project 2' icon={<FiExternalLink />} size='sm'/>
+                                                </Link>
+                                            </Td>
+                                        </Tr>
+                                        <Tr>
+                                            <Td>ClubCryptic</Td>
+                                            <Td>Web Mutliplayer Game</Td>
+                                            <Td>
+                                                <Wrap>
+                                                    <Tag>React JS</Tag>
+                                                    <Tag>Express JS</Tag>
+                                                    <Tag>Material UI</Tag>
+                                                    <Tag>Socket IO</Tag>
+                                                </Wrap>
+                                            </Td>
+                                            <Td>
+                                                <Link href='https://github.com/stephenasuncionDEV/ClubCryptic' isExternal>
+                                                    <IconButton aria-label='Stephen Asuncion Project 3' icon={<FiExternalLink />} size='sm'/>
+                                                </Link>
+                                            </Td>
+                                        </Tr>
+                                        <Tr>
+                                            <Td>Showoff</Td>
+                                            <Td>Social Media for sharing song lyrics</Td>
+                                            <Td>
+                                                <Wrap>
+                                                    <Tag>Javascript</Tag>
+                                                    <Tag>PHP</Tag>
+                                                </Wrap>
+                                            </Td>
+                                            <Td>
+                                                <Link href='https://github.com/stephenasuncionDEV/Showoff' isExternal>
+                                                    <IconButton aria-label='Stephen Asuncion Project 4' icon={<FiExternalLink />} size='sm'/>
+                                                </Link>
+                                            </Td>
+                                        </Tr>
+                                    </Tbody>
+                                </Table>
+                            </Box>
                         </VStack>
                     </section>
+                </Flex>
+                <Flex flexDir='column' alignItems='center' justifyContent='center' bg='rgb(52,157,255)' py='4em'>
                     <section id='preview'>
-                        <VStack mt='2em' spacing='2em' boxShadow='rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px' p='2em' bg='white' borderRadius='10px' alignItems='flex-start' maxW='800px' minW='800px'>
+                        <VStack spacing='2em' mx='1em' boxShadow='rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px' p='2em' bg='white' borderRadius='10px' alignItems='flex-start' maxW='800px'>
                             <Box>
                                 <header>
                                     <Heading as='h2' size='xl'>
@@ -218,13 +228,13 @@ const Home = () => {
                                 <Text fontSize='14pt' fontWeight='bold'>
                                     NFT Host
                                 </Text>
-                                <Image src='/mockup1.png' alt='Project Preview' />
+                                <Image src='/mockup1.webp' alt='Project Preview' />
                             </Box>
                             <Box p='1em'>
                                 <Text fontSize='14pt' fontWeight='bold'>
                                     Lia Auth
                                 </Text>
-                                <Image src='/mockup2.png' alt='Project Preview' />
+                                <Image src='/mockup2.webp' alt='Project Preview' />
                             </Box>
                         </VStack>
                     </section>

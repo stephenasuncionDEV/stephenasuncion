@@ -10,4 +10,4 @@ Technology Stack: Next JS, Chakra UI
 
 ## Wireframe
 
-![Stephen Asuncion Portfolio Website Wireframe](public/wireframe.png)
+![Stephen Asuncion Portfolio Website Wireframe](public/wireframe.webp)
