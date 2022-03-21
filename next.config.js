@@ -9,10 +9,6 @@ const nextConfig = {
             '/': { page: '/' },
         }
     },
-    i18n: {
-        locales: ["en"],
-        defaultLocale: "en",
-    },
     async headers() { // From @FDisk https://stackoverflow.com/questions/62077589/setting-cache-control-header-for-static-file-serving-on-nextjs-default-server
         return [
             {
