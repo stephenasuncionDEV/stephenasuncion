@@ -62,7 +62,7 @@ const Home = () => {
                                 </HStack>
                             </VStack>
                             <Box>
-                                <Image src='/bitmoji.webp' alt='Stephen Asuncion Avatar' w='356px' h='356px' />
+                                <Image src='/bitmoji.webp' alt='Stephen Asuncion Avatar' />
                             </Box>
                         </Wrap>
                     </section>
