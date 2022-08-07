@@ -12,6 +12,7 @@ const nextConfig = {
     exportPathMap: async (defaultPathMap, { dev, dir, outDir, distDir, buildId }) => {
         return {
             '/': { page: '/' },
+            '/api/spotify': { page: '/api/spotify' }
         }
     },
     async headers() { // From @FDisk https://stackoverflow.com/questions/62077589/setting-cache-control-header-for-static-file-serving-on-nextjs-default-server
