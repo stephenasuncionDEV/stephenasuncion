@@ -10,7 +10,7 @@ const imageToBase64 = async (imageUrl) => {
 }
 
 const isColorHex = (color) => {
-    return !isNaN(color);
+    return /^[0-9A-F]{6}$/i.test(color);
 }
 
 export default async function handler(req, res) {
