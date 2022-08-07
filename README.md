@@ -7,7 +7,3 @@ This repository is a personal potfolio website that contains biography and proje
 Link: https://stephenasunciondev.github.io/
 
 Technology Stack: Next JS, Chakra UI
-
-## Wireframe
-
-![Stephen Asuncion Portfolio Website Wireframe](public/wireframe.webp)
