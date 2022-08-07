@@ -13,46 +13,59 @@ const isColorHex = (color) => {
     return /^[0-9A-F]{6}$/i.test(color);
 }
 
+const getAccessToken = async () => {
+    const token = Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64');
+
+    const data = qs.stringify({
+        grant_type: 'refresh_token',
+        refresh_token: process.env.SPOTIFY_REFRESH_TOKEN
+    });
+
+    const tokenRes = await axios.post('https://accounts.spotify.com/api/token', data, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': `Basic ${token}`
+        }
+    })
+
+    return tokenRes.data.access_token;
+}
+
+const getRecentlyPlayed = async (access_token) => {
+    const res = await axios.get('https://api.spotify.com/v1/me/player/recently-played?limit=5', {
+        headers: {
+            'Authorization': `Bearer ${access_token}`
+        }
+    })
+    return res;
+}
+
+const getCurrentlyPlaying = async (access_token) => {
+    const res = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+        headers: {
+            'Authorization': `Bearer ${access_token}`
+        }
+    })
+    return res;
+}
+
 export default async function handler(req, res) {
     try {
         if (req.method === 'GET') {
             const { bgColor, borderColor, borderRadius, barColor, color } = req.query;
 
-            const token = Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64');
+            // Retrieve Spotify Access Token
+            const access_token = await getAccessToken();
 
-            const data = qs.stringify({
-                grant_type: 'refresh_token',
-                refresh_token: process.env.SPOTIFY_REFRESH_TOKEN
-            });
+            // Get Spotify Data
+            const songsRes = await getRecentlyPlayed(access_token);
+            const playingRes = await getCurrentlyPlaying(access_token);
 
-            const tokenRes = await axios.post('https://accounts.spotify.com/api/token', data, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': `Basic ${token}`
-                }
-            })
-    
-            const access_token = tokenRes.data.access_token;
-
-            // Get Recently Played
-            const songsRes = await axios.get('https://api.spotify.com/v1/me/player/recently-played?limit=5', {
-                headers: {
-                    'Authorization': `Bearer ${access_token}`
-                }
-            })
-
-            // Get Now Playing
-            const playingRes = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
-                headers: {
-                    'Authorization': `Bearer ${access_token}`
-                }
-            })
-
+            // De-constructed Spotify Data
             const { items } = songsRes.data;
             const recentIndex = Math.floor(Math.random() * items.length);
             const { name: title, artists, album: { images }, external_urls: { spotify: song_uri } } = playingRes.data.item || items[recentIndex].track;
             const { name: artist_name, external_urls: { spotify: artist_uri } } = artists[0];
-
             const coverInB64 = await imageToBase64(images[0].url);
 
             const song = {
