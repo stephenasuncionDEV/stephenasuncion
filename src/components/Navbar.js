@@ -40,7 +40,7 @@ const Navbar = () => {
                             Blog
                         </Button>
                     </Link>
-                    <Link href='/' shallow passHref style={{ textDecoration: 'none' }}>
+                    <Link href='mailto:stephenasuncion@outlook.com' style={{ textDecoration: 'none' }}>
                         <Button size='sm' variant='primary'>
                             🚀 Hire Me
                         </Button>
@@ -82,7 +82,7 @@ const Navbar = () => {
                             </MenuItem>
                         </Link>
                         <MenuDivider />
-                            <Link href='/' shallow passHref>
+                            <Link href='mailto:stephenasuncion@outlook.com'>
                                 <MenuItem icon={<BsFillHeartFill color='#E53E3E' />}>
                                     Hire Me
                                 </MenuItem>
