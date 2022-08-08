@@ -17,32 +17,17 @@ const Home = () => {
                         <Wrap maxW='1000px' spacing='1em' p='1em' justify='center'>
                             <VStack justifyContent='center' spacing='1em'>
                                 <HStack>
-                                    <Text fontSize='24pt'>
-                                        Hello 👋, I'm
+                                    <Text fontSize='24pt' textAlign='center'>
+                                        Hello 👋, I'm Stephen Asuncion 🚀
                                     </Text>
-                                    <Tag size='lg'>
-                                        <Text fontSize='16pt'>
-                                            Stephen Asuncion 🚀
-                                        </Text>
-                                    </Tag>
                                 </HStack>
-                                {/* <HStack>    
-                                    <Link href='#biography'>
+                                <HStack>    
+                                    <Link href='#resume' style={{ textDecoration: 'none' }}>
                                         <Button size='sm'>
-                                            Biography
+                                            Resume
                                         </Button>
                                     </Link>
-                                    <Link href='#projects'>
-                                        <Button size='sm'>
-                                            Projects
-                                        </Button>
-                                    </Link>
-                                    <Link href='#preview'>
-                                        <Button size='sm'>
-                                            Projects Preview
-                                        </Button>
-                                    </Link>
-                                </HStack> */}
+                                </HStack>
                                 <Text fontSize='10pt'>
                                     Check out my socials!
                                 </Text>
