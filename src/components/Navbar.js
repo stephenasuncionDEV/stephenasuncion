@@ -30,17 +30,17 @@ const Navbar = () => {
                             </Button>
                         </Link>
                         <Link href='/about' shallow passHref style={{ textDecoration: 'none' }}>
-                            <Button size='sm' variant='transparent' borderBottom={route === '/about' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0'>
+                            <Button size='sm' variant='transparent' borderBottom={route === '/about' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0' disabled>
                                 About
                             </Button>
                         </Link>
                         <Link href='/projects' shallow passHref style={{ textDecoration: 'none' }}>
-                            <Button size='sm' variant='transparent' borderBottom={route === '/projects' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0'>
+                            <Button size='sm' variant='transparent' borderBottom={route === '/projects' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0' disabled>
                                 Projects
                             </Button>
                         </Link>
                         <Link href='/blog' shallow passHref style={{ textDecoration: 'none' }}>
-                            <Button size='sm' variant='transparent' borderBottom={route === '/blog' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0'>
+                            <Button size='sm' variant='transparent' borderBottom={route === '/blog' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0' disabled>
                                 Blog
                             </Button>
                         </Link>
@@ -73,7 +73,7 @@ const Navbar = () => {
                                 Home
                             </MenuItem>
                         </Link>
-                        <Link href='/about' shallow passHref>
+                        {/* <Link href='/about' shallow passHref>
                             <MenuItem icon={<BsPerson />}>
                                 About
                             </MenuItem>
@@ -87,7 +87,7 @@ const Navbar = () => {
                             <MenuItem icon={<HiOutlineDocumentText />}>
                                 Blog
                             </MenuItem>
-                        </Link>
+                        </Link> */}
                         <MenuDivider />
                             <Link href='mailto:stephenasuncion@outlook.com'>
                                 <MenuItem icon={<BsFillHeartFill color='#E53E3E' />}>

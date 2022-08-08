@@ -23,6 +23,7 @@ const components = {
                     bg: 'whiteAlpha.100',
                     _disabled: {
                         bg: 'whiteAlpha.100',
+                        opacity: '0.6'
                     }
                 },
                 color: mode('black', 'white')(props),
