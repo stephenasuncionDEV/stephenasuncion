@@ -14,36 +14,33 @@ const Navbar = () => {
     const isTouchingLogo = useMediaQuery({ query: '(max-width: 530px)' });
     
     return (
-        <Flex
-            p='1em'
-            justifyContent='space-between'
-        >
+        <Flex p='1em' justifyContent='space-between'>
             <Link href='/' passHref>
                 <Image src='/assets/bitmoji.webp' alt='Stephen Asuncion Avatar' width='50px' fallbackSrc='https://picsum.photos/50' cursor='pointer'/>
             </Link>
             {!isTouchingLogo ? (
                 <HStack>
-                    <Link href='/' style={{ textDecoration: 'none' }} passHref>
+                    <Link href='/' shallow passHref style={{ textDecoration: 'none' }}>
                         <Button size='sm' variant='transparent'>
                             Home
                         </Button>
                     </Link>
-                    <Link href='/about' style={{ textDecoration: 'none' }} passHref>
+                    <Link href='/about' shallow passHref style={{ textDecoration: 'none' }}>
                         <Button size='sm' variant='transparent'>
                             About
                         </Button>
                     </Link>
-                    <Link href='/projects' style={{ textDecoration: 'none' }} passHref>
+                    <Link href='/projects' shallow passHref style={{ textDecoration: 'none' }}>
                         <Button size='sm' variant='transparent'>
                             Projects
                         </Button>
                     </Link>
-                    <Link href='/blog' style={{ textDecoration: 'none' }} passHref>
+                    <Link href='/blog' shallow passHref style={{ textDecoration: 'none' }}>
                         <Button size='sm' variant='transparent'>
                             Blog
                         </Button>
                     </Link>
-                    <Link href='/' style={{ textDecoration: 'none' }} passHref>
+                    <Link href='/' shallow passHref style={{ textDecoration: 'none' }}>
                         <Button size='sm' variant='primary'>
                             🚀 Hire Me
                         </Button>

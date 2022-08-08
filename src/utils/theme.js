@@ -14,7 +14,7 @@ const fonts = {
 const components = {
     Button: {
         baseStyle: (props) => ({
-            fontWeight: 'normal',
+            fontWeight: 'normal'
         }),
         variants: {
             transparent: (props) => ({
