@@ -17,6 +17,16 @@ const components = {
             fontWeight: 'normal',
         }),
         variants: {
+            transparent: (props) => ({
+                bg: 'transparent',
+                _hover: {
+                    bg: 'whiteAlpha.100',
+                    _disabled: {
+                        bg: 'whiteAlpha.100',
+                    }
+                },
+                color: mode('black', 'white')(props),
+            }),
             primary: (props) => ({
                 bg: 'rgb(52,140,212)',
                 _hover: {
