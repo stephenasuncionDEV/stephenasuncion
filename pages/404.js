@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { Box, Flex, Wrap, Text, HStack, VStack, IconButton, Image, Button } from '@chakra-ui/react'
-import { FaGithub, FaDiscord, FaLinkedin, FaDev } from 'react-icons/fa'
-import { SiBuymeacoffee } from 'react-icons/si'
+import { Box, Flex, Text, Button } from '@chakra-ui/react'
 import Navbar from '@/components/Navbar'
 
 const NotFound = () => {
