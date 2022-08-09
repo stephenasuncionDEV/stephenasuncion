@@ -48,9 +48,8 @@ const Home = () => {
                                 </Flex>
                                 <VStack spacing='1em' alignItems='center'>
                                     <Box borderRadius='50%' border='8px solid rgb(52,140,212)' p='.5em'>
-                                        <Image src='/assets/bitmoji.webp' alt='Stephen Asuncion Avatar' width='250px' />
-                                    </Box>
-                                    
+                                        <Image src='/assets/bitmoji.webp' alt='Stephen Asuncion Avatar' width='250px' fallbackSrc='https://picsum.photos/250'/>
+                                    </Box>  
                                 </VStack>
                             </Wrap>
                         </section>
