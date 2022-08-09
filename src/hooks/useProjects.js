@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useCore } from '@/providers/CoreProvider';
-import { Octokit, App } from 'octokit'
+import { useCore } from '@/providers/CoreProvider'
 
 export const useProjects = () => {
     const { octokit } = useCore();
@@ -14,7 +13,6 @@ export const useProjects = () => {
                 type: 'public',
                 sort: 'updated'
             })
-            console.log(test.data)
             setRepositories(test.data);
         }
         getRepositories();
