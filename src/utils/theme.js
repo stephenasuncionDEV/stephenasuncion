@@ -11,6 +11,14 @@ const fonts = {
     body: 'Poppins, Inter, sans-serif',
 }
 
+const styles = {
+    global: (props) => ({
+        body: {
+            bg: mode('white', 'black')(props),
+        }
+    })
+}
+
 const components = {
     Button: {
         baseStyle: (props) => ({
@@ -55,6 +63,7 @@ const components = {
 const theme = extendTheme({
     config,
     fonts,
+    styles,
     components
 })
 

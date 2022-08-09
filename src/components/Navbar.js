@@ -30,7 +30,7 @@ const Navbar = () => {
                             </Button>
                         </Link>
                         <Link href='/about' shallow passHref style={{ textDecoration: 'none' }}>
-                            <Button size='sm' variant='transparent' borderBottom={route === '/about' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0' disabled>
+                            <Button size='sm' variant='transparent' borderBottom={route === '/about' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0'>
                                 About
                             </Button>
                         </Link>
@@ -73,7 +73,7 @@ const Navbar = () => {
                                 Home
                             </MenuItem>
                         </Link>
-                        {/* <Link href='/about' shallow passHref>
+                        <Link href='/about' shallow passHref>
                             <MenuItem icon={<BsPerson />}>
                                 About
                             </MenuItem>
@@ -83,7 +83,7 @@ const Navbar = () => {
                                 Projects
                             </MenuItem>
                         </Link>
-                        <Link href='/blog' shallow passHref>
+                        {/* <Link href='/blog' shallow passHref>
                             <MenuItem icon={<HiOutlineDocumentText />}>
                                 Blog
                             </MenuItem>
