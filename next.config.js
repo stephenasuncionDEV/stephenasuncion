@@ -4,7 +4,10 @@ const nextConfig = {
     env: {
         SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
         SPOTIFY_CLIENT_SECRET: process.env.SPOTIFY_CLIENT_SECRET,
-        SPOTIFY_REFRESH_TOKEN: process.env.SPOTIFY_REFRESH_TOKEN
+        SPOTIFY_REFRESH_TOKEN: process.env.SPOTIFY_REFRESH_TOKEN,
+        GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+        GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+        GITHUB_ACCESS_TOKEN: process.env.GITHUB_ACCESS_TOKEN
     },
     images: {
         path: '/',

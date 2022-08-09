@@ -35,7 +35,7 @@ const Navbar = () => {
                             </Button>
                         </Link>
                         <Link href='/projects' shallow passHref style={{ textDecoration: 'none' }}>
-                            <Button size='sm' variant='transparent' borderBottom={route === '/projects' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0' disabled>
+                            <Button size='sm' variant='transparent' borderBottom={route === '/projects' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0'>
                                 Projects
                             </Button>
                         </Link>
