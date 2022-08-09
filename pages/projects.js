@@ -15,10 +15,14 @@ const Projects = () => {
         <Box>
             <Meta />
             <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Flex maxW='1200px' w='full' flex='1' flexDir='column'>
+                <Flex maxW='1200px' w='full' flex='1' flexDir='column' px='1em'>
                     <Navbar />
                     <Text fontSize='32pt' mt='1em'>
                         Projects
+                    </Text>
+
+                    <Text fontSize='32pt' mt='1em'>
+                        Repositories
                     </Text>
                     <Wrap justify='center' spacing='1.5em' mt='2em'>
                         {repositories?.length > 0 ? (<>

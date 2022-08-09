@@ -9,7 +9,7 @@ const Home = () => {
         <Box>
             <Meta />
             <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Flex maxW='1200px' w='full' flex='1' flexDir='column'>
+                <Flex maxW='1200px' w='full' flex='1' flexDir='column' px='1em'>
                     <Navbar />
                     <Flex flexDir='column' alignItems='center' justifyContent='center' flex='1'>
                         <section id='introduction'>
