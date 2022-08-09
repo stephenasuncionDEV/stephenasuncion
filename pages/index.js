@@ -20,7 +20,7 @@ const Home = () => {
                                             Hello, I'm Stephen Asuncion 💎
                                         </Text>
                                     </HStack>
-                                    <Image src='https://readme-typing-svg.herokuapp.com?font=comfortaa&amp;color=016EEA&amp;size=24&amp;width=260&amp;center=true&amp;lines=Software+Engineer;Web+Developer;and+Technopreneur!;Nice+to+meet+you...' alt='' />
+                                    <Image src='https://readme-typing-svg.herokuapp.com?font=comfortaa&amp;color=016EEA&amp;size=24&amp;width=260&amp;center=true&amp;lines=Software+Engineer;Web+Developer;and+Technopreneur!;Nice+to+meet+you...' alt='Software Engineer' />
                                     <Text fontSize='9pt' mt='1em' textAlign='center'>
                                         Check out my socials!
                                     </Text>
@@ -43,9 +43,15 @@ const Home = () => {
                                     </HStack>
                                 </Flex>
                                 <VStack spacing='1em' alignItems='center'>
-                                    <Box borderRadius='50%' border='8px solid rgb(52,140,212)' p='.5em'>
-                                        <Image src='/assets/bitmoji.webp' alt='Stephen Asuncion Avatar' width='250px' fallbackSrc='https://picsum.photos/250'/>
-                                    </Box>  
+                                    <Image 
+                                        src='/assets/bitmoji.webp' 
+                                        alt='Stephen Asuncion Avatar'
+                                        width='250px' 
+                                        fallbackSrc='https://picsum.photos/250'
+                                        borderRadius='full'
+                                        border='8px solid rgb(52,140,212)'
+                                        p='.5em'
+                                    />
                                 </VStack>
                             </Wrap>
                         </section>
