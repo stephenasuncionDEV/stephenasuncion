@@ -1,5 +1,4 @@
-import Head from 'next/head'
-import { Flex, HStack, Link, Box, Wrap, Tag, TagLabel, Text, Spinner } from '@chakra-ui/react'
+import { Flex, HStack, Link, Box, Wrap, Tag, TagLabel, Text, Spinner, useColorModeValue } from '@chakra-ui/react'
 import Navbar from '@/components/Navbar'
 import { useProjects } from '@/hooks/useProjects'
 import { RiGitRepositoryLine } from 'react-icons/ri'
@@ -10,6 +9,7 @@ import Meta from '@/components/Meta'
 
 const Projects = () => {
     const { repositories } = useProjects();
+    const itemBorderColor = useColorModeValue('1px solid rgb(0 0 0 / 15%)', '1px solid rgb(255 255 255 / 15%)');
 
     return (
         <Box>
@@ -38,7 +38,7 @@ const Projects = () => {
                                     <Flex 
                                         flexDir='column'
                                         borderRadius='6px'
-                                        border='1px solid rgb(255 255 255 / 15%)'
+                                        border={itemBorderColor}
                                         p='1em'
                                         h='full'
                                         justifyContent='space-between'
