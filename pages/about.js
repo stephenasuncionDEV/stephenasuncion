@@ -1,13 +1,14 @@
-import { Flex, HStack, Link, Box, Wrap, Tag, TagLabel, Text, Image, VStack } from '@chakra-ui/react'
+import { Flex, HStack, Link, Box, Wrap, Tag, TagLabel, Text, Image, VStack, Center } from '@chakra-ui/react'
 import { useAbout } from '@/hooks/useAbout'
 import Navbar from '@/components/Navbar'
 import Meta from '@/components/Meta'
 import Console from '@/components/Console'
 import VSCodeEditor from '@/components/VSCodeEditor'
 import Footer from '@/components/Footer'
+import GitActivity from '@/components/GitActivity'
 
 const About = () => {
-    const { recentCommit } = useAbout();
+    const { recentCommit, contributions, totalContributions } = useAbout();
 
     return (
         <Box>
@@ -65,6 +66,9 @@ const About = () => {
                             </VStack>
                         </Wrap>
                     </Flex>
+                    <Center mt='2em'>
+                        <GitActivity contributions={contributions} totalContributions={totalContributions} />
+                    </Center>
                     <Text fontSize='24pt' mt='2em' mb='.5em'>
                         Education
                     </Text>

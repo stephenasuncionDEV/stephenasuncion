@@ -4,7 +4,7 @@ import { useCore } from '@/providers/CoreProvider'
 export const useProjects = () => {
     const { octokit } = useCore();
     const [repositories, setRepositories] = useState([]);
-    
+
     // Get Repositories
     useEffect(() => {
         if (repositories.length > 0) return;

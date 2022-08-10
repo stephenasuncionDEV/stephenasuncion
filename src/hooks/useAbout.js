@@ -4,6 +4,8 @@ import { useCore } from '@/providers/CoreProvider'
 export const useAbout = () => {
     const { octokit } = useCore();
     const [recentCommit, setRecentCommit] = useState('');
+    const [contributions, setContributions] = useState();
+    const [totalContributions, setTotalContributions] = useState();
 
     // Get Recent Commit
     useEffect(() => {
@@ -22,7 +24,45 @@ export const useAbout = () => {
         getEvents();
     }, [])
 
+    // Get Contributions
+    useEffect(() => {
+        if (contributions) return;
+        const getContributions = async () => {
+            const res = await octokit.graphql(
+                `query($owner:String!) { 
+                    user(login: $owner){
+                        contributionsCollection {
+                            contributionCalendar {
+                            totalContributions
+                            weeks {
+                                    contributionDays {
+                                        contributionCount
+                                        date
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }`,
+            {
+                owner: 'stephenasuncionDEV'
+            });
+
+            const { totalContributions, weeks } = res.user.contributionsCollection.contributionCalendar;
+
+            const newWeeks = weeks.map((week) => {
+                return week.contributionDays
+            })
+
+            setTotalContributions(totalContributions);
+            setContributions(newWeeks);
+        }
+        getContributions();
+    }, [])
+
     return {
-        recentCommit
+        recentCommit,
+        contributions,
+        totalContributions
     }
 }
