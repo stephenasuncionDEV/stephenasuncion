@@ -39,7 +39,7 @@ const About = () => {
                                         Vancouver, Canada
                                     </Text>
                                     <Text fontSize='12pt'>
-                                        20 years old
+                                        {parseInt((new Date() - new Date('2002-01-24').getTime()) / 3.15576e+10)} years old
                                     </Text>
                                     <HStack>
                                         <Link href="https://twitter.com/Steb_01" isExternal>
