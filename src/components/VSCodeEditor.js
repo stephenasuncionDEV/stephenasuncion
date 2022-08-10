@@ -35,6 +35,7 @@ const EditorLine = ({ number, line, selected, indent }) => {
 
 const VSCodeEditor = ({ folder, js, json, fileName }) => {
     const bgColor = useColorModeValue('white', 'rgb(36,41,46)');
+    const itemBorderColor = useColorModeValue('1px solid rgb(0 0 0 / 15%)', '1px solid rgb(255 255 255 / 15%)');
 
     return (
         <VStack 
@@ -43,10 +44,16 @@ const VSCodeEditor = ({ folder, js, json, fileName }) => {
             fontSize='10pt'
             bg={bgColor}
             borderRadius='5px'
-            px='.5em'
-            py='.25em'
+            border={itemBorderColor}
         >
-            <HStack alignItems='center' color='#959da5'>
+            <HStack 
+                alignItems='center' 
+                color='#959da5'
+                borderBottom={itemBorderColor} 
+                px='.5em'
+                py='.25em'
+                w='full'
+            >
                 <MdOutlineRadioButtonChecked fontSize='12pt' color='#90a4ae' />
                 <Text>
                     {folder} &gt;
@@ -68,7 +75,7 @@ const VSCodeEditor = ({ folder, js, json, fileName }) => {
                     </>
                 )}
             </HStack>
-            <VStack alignItems='flex-start' px='1.5em'>
+            <VStack alignItems='flex-start' px='1.5em' pb='1em'>
                 <Editor>
                     <EditorLine line='{' selected/>
                     <EditorLine line='"Course": "Diploma in Computer Studies"' indent={2} />
