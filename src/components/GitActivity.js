@@ -3,17 +3,23 @@ import { Flex, HStack, Box, Text, useColorModeValue, VStack, Spinner, Center } f
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const ActivityBlock = ({ level }) => {
+    const level0 = useColorModeValue('rgb(230,230,230)', '#161b22');
+    const level1 = useColorModeValue('rgb(182,240,146)', '#0e4429');
+    const level2 = useColorModeValue('rgb(82,214,121)', '#006d32');
+    const level3 = useColorModeValue('rgb(35,166,76)', '#26a641');
+    const level4 = useColorModeValue('rgb(18,105,51)', '#39d353');
+
     return (
         <Box 
             w='11px' 
             h='11px' 
             border='1px solid rgba(255, 255, 255, 0.05)'
             bgColor={{
-                0: '#161b22',
-                1: '#0e4429',
-                2: '#006d32',
-                3: '#26a641',
-                4: '#39d353'
+                0: level0,
+                1: level1,
+                2: level2,
+                3: level3,
+                4: level4
             }[level || 0]}
             borderRadius='2px'
             opacity={level === 0 ? '.5' : '1'}

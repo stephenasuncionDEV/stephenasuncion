@@ -1,4 +1,6 @@
-import { Flex, HStack, Link, Box, Wrap, Tag, TagLabel, Text, Image, VStack, Center } from '@chakra-ui/react'
+import { Flex, HStack, Link, Box, Wrap, Tag, TagLabel, 
+    Text, Image, VStack, Center, useColorModeValue 
+} from '@chakra-ui/react'
 import { useAbout } from '@/hooks/useAbout'
 import Navbar from '@/components/Navbar'
 import Meta from '@/components/Meta'
@@ -9,6 +11,7 @@ import GitActivity from '@/components/GitActivity'
 
 const About = () => {
     const { recentCommit, contributions, totalContributions } = useAbout();
+    const vscodeBgColor = useColorModeValue('white', 'black');
 
     return (
         <Box>
@@ -77,6 +80,7 @@ const About = () => {
                             folder='Portfolio Website' 
                             fileName='education.json' 
                             json
+                            bg={vscodeBgColor}
                         />
                     </Box>
                     <Text fontSize='24pt' mt='1em' mb='.5em'>
