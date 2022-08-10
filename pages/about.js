@@ -5,6 +5,7 @@ import { useAbout } from '@/hooks/useAbout'
 import Navbar from '@/components/Navbar'
 import Meta from '@/components/Meta'
 import Console from '@/components/Console'
+import VSCodeEditor from '@/components/VSCodeEditor'
 
 const About = () => {
     const { recentCommit } = useAbout();
@@ -65,6 +66,35 @@ const About = () => {
                             </VStack>
                         </Wrap>
                     </Flex>
+                    <Text fontSize='24pt' mt='2em' mb='.5em'>
+                        Education
+                    </Text>
+                    <VSCodeEditor 
+                        folder='Portfolio Website' 
+                        fileName='education.json' 
+                        json
+                    />
+                    <Text fontSize='24pt' mt='1.5em' mb='.5em'>
+                        Technical Skills
+                    </Text>
+                    <VStack alignItems='flex-start' spacing='1em'>
+                        <VStack alignItems='flex-start'>
+                            <Tag>
+                                <TagLabel>Programming Languages</TagLabel>
+                            </Tag>
+                            <Text fontSize='10pt'>
+                                Java, Javascript, TypeScript, HTML/CSS, Python, C++, C#, SQL, PHP
+                            </Text>
+                        </VStack>
+                        <VStack alignItems='flex-start'>
+                            <Tag>
+                                <TagLabel>Technologies</TagLabel>
+                            </Tag>
+                            <Text fontSize='10pt'>
+                                React JS, React Native, MongoDB, Node JS, Express JS, Firebase, Next JS, Web3, Socket.IO, Vercel, Docker, Figma, Photoshop, Adobe Premiere, Git
+                            </Text>
+                        </VStack>
+                    </VStack>
                 </Flex>
             </main>
         </Box>
