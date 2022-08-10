@@ -1,5 +1,5 @@
 import { Flex, HStack, Link, Box, Wrap, Tag, TagLabel, 
-    Text, Spinner, Image, VStack, useColorModeValue
+    Text, Image, VStack
 } from '@chakra-ui/react'
 import { useAbout } from '@/hooks/useAbout'
 import Navbar from '@/components/Navbar'

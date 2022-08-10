@@ -1,6 +1,4 @@
-import { Flex, HStack, Link, Box, Wrap, Tag, TagLabel, 
-    Text, Spinner, Image, VStack, useColorModeValue
-} from '@chakra-ui/react'
+import { Flex, HStack, Text, VStack } from '@chakra-ui/react'
 import { MdOutlineRadioButtonChecked } from 'react-icons/md'
 import { SiJavascript } from 'react-icons/si'
 import { HiCode } from 'react-icons/hi'

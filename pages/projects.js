@@ -20,10 +20,6 @@ const Projects = () => {
                     <Text fontSize='32pt' mt='1em'>
                         Projects
                     </Text>
-
-                    <Text fontSize='32pt' mt='1em'>
-                        Repositories
-                    </Text>
                     <Wrap justify='center' spacing='1.5em' mt='2em'>
                         {repositories?.length > 0 ? (<>
                             {repositories?.filter((repo) => {
