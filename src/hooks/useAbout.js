@@ -14,7 +14,7 @@ export const useAbout = () => {
             })
 
             const { payload: { commits } } = res.data[0];
-            const { message } = commits[0];
+            const { message } = commits[commits.length - 1];
 
             setRecentCommit(message);
         }
