@@ -9,13 +9,14 @@ export const useAbout = () => {
     useEffect(() => {
         if (recentCommit) return;
         const getEvents = async () => {
-            const res = await octokit.request('GET /users/{username}/events', {
-                username: 'stephenasuncionDEV'
+            const res = await octokit.request('GET /repos/{owner}/{repo}/events', {
+                owner: 'stephenasuncionDEV',
+                repo: 'stephenasuncionDEV.github.io'
             })
 
-            const { payload: { commits } } = res.data[0];
+            const { payload: { commits } } = res.data.filter((commit) => commit.payload.ref === 'refs/heads/main')[0];
             const { message } = commits[commits.length - 1];
-
+            
             setRecentCommit(message);
         }
         getEvents();
