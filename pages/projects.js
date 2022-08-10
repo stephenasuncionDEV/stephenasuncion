@@ -6,6 +6,7 @@ import { BsFillCircleFill } from 'react-icons/bs'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiGitRepoForked } from 'react-icons/bi'
 import Meta from '@/components/Meta'
+import Footer from '@/components/Footer'
 
 const Projects = () => {
     const { repositories } = useProjects();
@@ -100,6 +101,7 @@ const Projects = () => {
                     </Wrap>
                 </Flex>
             </main>
+            <Footer />
         </Box>
     )
 }

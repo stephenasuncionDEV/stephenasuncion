@@ -1,11 +1,10 @@
-import { Flex, HStack, Link, Box, Wrap, Tag, TagLabel, 
-    Text, Image, VStack
-} from '@chakra-ui/react'
+import { Flex, HStack, Link, Box, Wrap, Tag, TagLabel, Text, Image, VStack } from '@chakra-ui/react'
 import { useAbout } from '@/hooks/useAbout'
 import Navbar from '@/components/Navbar'
 import Meta from '@/components/Meta'
 import Console from '@/components/Console'
 import VSCodeEditor from '@/components/VSCodeEditor'
+import Footer from '@/components/Footer'
 
 const About = () => {
     const { recentCommit } = useAbout();
@@ -69,15 +68,17 @@ const About = () => {
                     <Text fontSize='24pt' mt='2em' mb='.5em'>
                         Education
                     </Text>
-                    <VSCodeEditor 
-                        folder='Portfolio Website' 
-                        fileName='education.json' 
-                        json
-                    />
-                    <Text fontSize='24pt' mt='1.5em' mb='.5em'>
+                    <Box p='1em'>
+                        <VSCodeEditor 
+                            folder='Portfolio Website' 
+                            fileName='education.json' 
+                            json
+                        />
+                    </Box>
+                    <Text fontSize='24pt' mt='1em' mb='.5em'>
                         Technical Skills
                     </Text>
-                    <VStack alignItems='flex-start' spacing='1em'>
+                    <VStack alignItems='flex-start' spacing='1em' p='1em'>
                         <VStack alignItems='flex-start'>
                             <Tag>
                                 <TagLabel>Programming Languages</TagLabel>
@@ -97,6 +98,7 @@ const About = () => {
                     </VStack>
                 </Flex>
             </main>
+            <Footer />
         </Box>
     )
 }

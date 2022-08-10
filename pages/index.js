@@ -3,6 +3,7 @@ import { FaGithub, FaDiscord, FaLinkedin, FaDev } from 'react-icons/fa'
 import { SiBuymeacoffee } from 'react-icons/si'
 import Navbar from '@/components/Navbar'
 import Meta from '@/components/Meta'
+import Footer from '@/components/Footer'
 
 const Home = () => {
     return (
@@ -58,6 +59,7 @@ const Home = () => {
                     </Flex>
                 </Flex>
             </main>
+            <Footer />
         </Box>
     )
 }
