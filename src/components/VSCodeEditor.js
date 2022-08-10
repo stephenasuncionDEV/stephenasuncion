@@ -33,7 +33,7 @@ const EditorLine = ({ number, line, selected, indent }) => {
     )
 }
 
-const VSCodeEditor = ({ folder, js, json, fileName }) => {
+const VSCodeEditor = ({ folder, js, json, fileName, ...styles }) => {
     const bgColor = useColorModeValue('white', 'rgb(36,41,46)');
     const itemBorderColor = useColorModeValue('1px solid rgb(0 0 0 / 15%)', '1px solid rgb(255 255 255 / 15%)');
 
@@ -45,6 +45,7 @@ const VSCodeEditor = ({ folder, js, json, fileName }) => {
             bg={bgColor}
             borderRadius='5px'
             border={itemBorderColor}
+            {...styles}
         >
             <HStack 
                 alignItems='center' 
