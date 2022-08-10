@@ -18,7 +18,7 @@ const ConsoleText = ({ text }) => {
                     (main)
                 </Text>
             </HStack>
-            <Text>
+            <Text noOfLines={1}>
                 $ {text}
             </Text>
         </VStack>
