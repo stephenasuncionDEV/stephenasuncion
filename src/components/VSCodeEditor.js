@@ -1,4 +1,4 @@
-import { Flex, HStack, Text, VStack } from '@chakra-ui/react'
+import { Flex, HStack, Text, VStack, useColorModeValue } from '@chakra-ui/react'
 import { MdOutlineRadioButtonChecked } from 'react-icons/md'
 import { SiJavascript } from 'react-icons/si'
 import { HiCode } from 'react-icons/hi'
@@ -19,12 +19,14 @@ const Editor = ({ children }) => {
 }
 
 const EditorLine = ({ number, line, selected, indent }) => {
+    const selectedColor = useColorModeValue('blackAlpha.500', '#206367');
+
     return (
         <Flex>
             <Text color='#444d56' mr='1.5em'>
                 {number}
             </Text>
-            <Text bg={selected ? '#206367' : 'transparent'} ml={`${indent?.toString() || '0'}em`}>
+            <Text bg={selected ? selectedColor: 'transparent'} ml={`${indent?.toString() || '0'}em`}>
                 {line}
             </Text>
         </Flex>
@@ -32,12 +34,14 @@ const EditorLine = ({ number, line, selected, indent }) => {
 }
 
 const VSCodeEditor = ({ folder, js, json, fileName }) => {
+    const bgColor = useColorModeValue('white', 'rgb(36,41,46)');
+
     return (
         <VStack 
             alignItems='flex-start' 
             fontFamily='Consolas' 
             fontSize='10pt'
-            bg='#24292e'
+            bg={bgColor}
             borderRadius='5px'
             px='.5em'
             py='.25em'
