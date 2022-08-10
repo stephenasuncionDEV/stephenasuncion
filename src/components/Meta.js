@@ -17,7 +17,7 @@ const Meta = () => {
             <meta property="og:title" content='Stephen Asuncion | Portfolio Website' />
             <meta property="og:description" content="I'm a Software Engineer, Full-Stack Web Developer, and Technopreneur. Visit my Portfolio Website if you are interested in seeing my work." />
             <meta property="og:image" content='https://stephenasuncion.dev/assets/meta.png' />
-            <meta property="og:site_name" content='NFT Host' />
+            <meta property="og:site_name" content='stephenasuncion' />
 
             <meta property="twitter:card" content="summary_large_image" />
             <meta property="twitter:url" content='https://stephenasuncion.dev/' />
