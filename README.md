@@ -28,7 +28,7 @@ This repository is a personal potfolio website that contains biography and proje
 
 NFTHost - [https://github.com/stephenasuncionDEV/nfthost](https://github.com/stephenasuncionDEV/nfthost)
 
-Funtime - [https://github.com/stephenasuncionDEV/funtime](https://github.com/stephenasuncionDEV/funtime)
+emoji.io - [https://github.com/stephenasuncionDEV/emoji.io](https://github.com/stephenasuncionDEV/emoji.io)
 
 [More...](https://github.com/stephenasuncionDEV?tab=repositories)
 
