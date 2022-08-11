@@ -100,7 +100,7 @@ const About = () => {
                                 <TagLabel>Technologies</TagLabel>
                             </Tag>
                             <Text fontSize='10pt'>
-                                React JS, React Native, MongoDB, Node JS, Express JS, Firebase, Next JS, Web3, Socket.IO, Vercel, Docker, Figma, Photoshop, Adobe Premiere, Git, Web3
+                                React JS, React Native, MongoDB, Node JS, Express JS, Firebase, Next JS, Web3, Socket.IO, Vercel, Heroku, Nelify, Docker, Figma, Photoshop, Adobe Premiere, Git, Web3
                             </Text>
                         </VStack>
                     </VStack>
