@@ -24,7 +24,7 @@ const Projects = () => {
                     <Wrap justify='center' spacing='1.5em' mt='2em'>
                         {repositories?.length > 0 ? (<>
                             {repositories?.filter((repo) => {
-                                return ['nfthost','funtime','showoff','stephenasunciondev.github.io','strapgui','swift-shop'].includes(repo.name.toLowerCase()) && repo.owner.login === 'stephenasuncionDEV'
+                                return ['nfthost','emoji.io','showoff','stephenasunciondev.github.io','strapgui','swift-shop'].includes(repo.name.toLowerCase()) && repo.owner.login === 'stephenasuncionDEV'
                             })?.map((repo, idx) => (
                                 <Link 
                                     href={repo.html_url} 
