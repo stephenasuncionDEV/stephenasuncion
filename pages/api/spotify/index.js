@@ -78,8 +78,6 @@ export default async function handler(req, res) {
                 cover: `data:image/png;base64, ${!images.length ? SPOTIFY_IMG_PLACEHOLDER : coverInB64}`
             }
 
-            console.log(song)
-
             res.setHeader('Content-Type', 'image/svg+xml');
             res.send(`<svg width="480" height="133" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Stephen Asuncion's Portfolio</title>
