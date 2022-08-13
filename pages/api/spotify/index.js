@@ -68,13 +68,17 @@ export default async function handler(req, res) {
             const { name: artist_name, external_urls: { spotify: artist_uri } } = artists[0];
             const coverInB64 = await imageToBase64(images[0].url);
 
+            const hasAFeature = title.indexOf('(') !== -1;
+
             const song = {
-                title: title,
+                title: !hasAFeature ? title : title.slice(0, title.indexOf('(') - 1),
                 artist: artist_name,
                 artist_uri,
                 song_uri,
                 cover: `data:image/png;base64, ${!images.length ? SPOTIFY_IMG_PLACEHOLDER : coverInB64}`
             }
+
+            console.log(song)
 
             res.setHeader('Content-Type', 'image/svg+xml');
             res.send(`<svg width="480" height="133" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
