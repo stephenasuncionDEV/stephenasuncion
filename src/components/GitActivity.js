@@ -50,12 +50,13 @@ const GitActivity = ({ contributions, totalContributions }) => {
                 {totalContributions} contributions in the last year
             </Text>
             <Flex 
+                position='relative'
                 flexDir='column'
                 border={itemBorderColor}
                 p='.5em'
                 borderRadius='5px'
                 fontSize='9pt'
-                overflow='clip'
+                overflowX='hidden'
             >
                 <HStack px='.5em' my='.5em'>
                     <VStack spacing='1em'>
