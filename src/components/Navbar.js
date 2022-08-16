@@ -1,7 +1,7 @@
-import Link from 'next/link'
+import { default as NextLink } from 'next/link'
 import { useRouter } from 'next/router'
 import { Flex, HStack, Button, IconButton, Image, useColorMode,
-    MenuButton, MenuList, Menu, MenuItem, MenuDivider
+    MenuButton, MenuList, Menu, MenuItem, MenuDivider, Link
  } from '@chakra-ui/react'
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
@@ -18,39 +18,39 @@ const Navbar = () => {
 
     return (
         <Flex p='1em' justifyContent='space-between'>
-            <Link href='/' passHref>
+            <NextLink href='/' passHref>
                 <Image src='/assets/bitmoji.webp' alt='Stephen Asuncion Avatar' width='50px' fallbackSrc='https://picsum.photos/50' cursor='pointer'/>
-            </Link>
+            </NextLink>
             {!isTouchingLogo ? (
                 <HStack spacing='2em'>
                     <HStack spacing='1em'>
-                        <Link href='/' shallow passHref style={{ textDecoration: 'none' }}>
+                        <NextLink href='/' shallow passHref style={{ textDecoration: 'none' }}>
                             <Button size='sm' variant='transparent' borderBottom={route === '/' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0'>
                                 Home
                             </Button>
-                        </Link>
-                        <Link href='/about' shallow passHref style={{ textDecoration: 'none' }}>
+                        </NextLink>
+                        <NextLink href='/about' shallow passHref style={{ textDecoration: 'none' }}>
                             <Button size='sm' variant='transparent' borderBottom={route === '/about' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0'>
                                 About
                             </Button>
-                        </Link>
-                        <Link href='/projects' shallow passHref style={{ textDecoration: 'none' }}>
+                        </NextLink>
+                        <NextLink href='/projects' shallow passHref style={{ textDecoration: 'none' }}>
                             <Button size='sm' variant='transparent' borderBottom={route === '/projects' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0'>
                                 Projects
                             </Button>
-                        </Link>
-                        <Link href='/blog' shallow passHref style={{ textDecoration: 'none' }}>
-                            <Button size='sm' variant='transparent' borderBottom={route === '/blog' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0' disabled>
+                        </NextLink>
+                        <Link href='https://stephenasuncion.hashnode.dev/' isExternal style={{ textDecoration: 'none' }}>
+                            <Button size='sm' variant='transparent' borderBottom={route === '/blog' ? '2px dashed rgb(52,140,212)' : 'initial'} borderRadius='0'>
                                 Blog
                             </Button>
                         </Link>
                     </HStack>
                     <HStack>
-                        <Link href='mailto:stephenasuncion@outlook.com' style={{ textDecoration: 'none' }}>
+                        <NextLink href='mailto:stephenasuncion@outlook.com' style={{ textDecoration: 'none' }}>
                             <Button size='sm' variant='primary'>
                                 🚀 Hire Me
                             </Button>
-                        </Link>
+                        </NextLink>
                         <IconButton 
                             aria-label='Toggle Color Mode' 
                             icon={colorMode === 'light' ? <MdOutlineDarkMode /> : <MdOutlineLightMode />} 
@@ -68,32 +68,32 @@ const Navbar = () => {
                         variant='outline'
                     />
                     <MenuList>
-                        <Link href='/' shallow passHref>
+                        <NextLink href='/' shallow passHref>
                             <MenuItem icon={<BiHome />}>
                                 Home
                             </MenuItem>
-                        </Link>
-                        <Link href='/about' shallow passHref>
+                        </NextLink>
+                        <NextLink href='/about' shallow passHref>
                             <MenuItem icon={<BsPerson />}>
                                 About
                             </MenuItem>
-                        </Link>
-                        <Link href='/projects' shallow passHref>
+                        </NextLink>
+                        <NextLink href='/projects' shallow passHref>
                             <MenuItem icon={<BsFolder />}>
                                 Projects
                             </MenuItem>
-                        </Link>
-                        {/* <Link href='/blog' shallow passHref>
+                        </NextLink>
+                        {/* <NextLink href='/blog' shallow passHref>
                             <MenuItem icon={<HiOutlineDocumentText />}>
                                 Blog
                             </MenuItem>
-                        </Link> */}
+                        </NextLink> */}
                         <MenuDivider />
-                            <Link href='mailto:stephenasuncion@outlook.com'>
+                            <NextLink href='mailto:stephenasuncion@outlook.com'>
                                 <MenuItem icon={<BsFillHeartFill color='#E53E3E' />}>
                                     Hire Me
                                 </MenuItem>
-                            </Link>
+                            </NextLink>
                         <MenuDivider />
                         <MenuItem icon={colorMode === 'light' ? <MdOutlineDarkMode /> : <MdOutlineLightMode />} onClick={toggleColorMode}>
                             {colorMode === 'light' ? 'Dark Mode' : 'Light Mode' } 
