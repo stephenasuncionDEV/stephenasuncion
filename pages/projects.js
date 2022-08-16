@@ -8,6 +8,15 @@ import { BiGitRepoForked } from 'react-icons/bi'
 import Meta from '@/components/Meta'
 import Footer from '@/components/Footer'
 
+const allowedProjects = [
+    'nfthost',
+    'emoji.io',
+    'showoff',
+    'stephenasunciondev.github.io',
+    'strapgui',
+    'swift-shop'
+]
+
 const Projects = () => {
     const { repositories } = useProjects();
     const itemBorderColor = useColorModeValue('1px solid rgb(0 0 0 / 15%)', '1px solid rgb(255 255 255 / 15%)');
@@ -24,7 +33,7 @@ const Projects = () => {
                     <Wrap justify='center' spacing='1.5em' mt='2em'>
                         {repositories?.length > 0 ? (<>
                             {repositories?.filter((repo) => {
-                                return ['nfthost','emoji.io','showoff','stephenasunciondev.github.io','strapgui','swift-shop'].includes(repo.name.toLowerCase()) && repo.owner.login === 'stephenasuncionDEV'
+                                return allowedProjects?.includes(repo.name.toLowerCase()) && repo.owner.login === 'stephenasuncionDEV'
                             })?.map((repo, idx) => (
                                 <Link 
                                     href={repo.html_url} 
@@ -64,7 +73,9 @@ const Projects = () => {
                                             <HStack alignItems='center'>
                                                 <BsFillCircleFill color={{
                                                         'JavaScript': 'rgb(241,224,90)',
-                                                        'C++': 'rgb(243,75,125)'
+                                                        'C++': 'rgb(243,75,125)',
+                                                        'TypeScript': 'rgb(49,120,198)',
+                                                        'Other': 'rgb(237,237,237)'
                                                     }[repo.language || 'JavaScript']} 
                                                     fontSize='9pt'
                                                     border='1px solid rgba(255,255,255,0.2)'
