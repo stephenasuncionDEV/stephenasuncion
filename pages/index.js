@@ -32,11 +32,8 @@ const Home = () => {
                                         <Link href='https://discordapp.com/users/746865227471257702' isExternal>
                                             <IconButton aria-label='Stephen Asuncion Discord' size='sm' icon={<FaDiscord />} />
                                         </Link>
-                                        <Link href='https://www.linkedin.com/in/stephen-allen-asuncion-3735b2176/' isExternal>
+                                        <Link href='https://www.linkedin.com/in/stephenasuncion/' isExternal>
                                             <IconButton aria-label='Stephen Asuncion LinkedIn' size='sm' icon={<FaLinkedin />} />
-                                        </Link>
-                                        <Link href='https://dev.to/stephenasuncion' isExternal>
-                                            <IconButton aria-label='Stephen Asuncion Dev' size='sm' icon={<FaDev />} />
                                         </Link>
                                         <Link href='https://www.buymeacoffee.com/' isExternal>
                                             <IconButton aria-label='Stephen Asuncion BuyMeACoffee' size='sm' icon={<SiBuymeacoffee />} />
