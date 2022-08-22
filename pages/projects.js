@@ -13,7 +13,6 @@ const allowedProjects = [
     'emoji.io',
     'showoff',
     'stephenasunciondev.github.io',
-    'strapgui',
     'swift-shop'
 ]
 

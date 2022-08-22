@@ -94,6 +94,7 @@ const GitActivity = ({ contributions, totalContributions }) => {
                                 {[...Array((contributions?.length * 7) - 4)].map((e, idx) => {
                                     const curWeek = Math.floor(idx / 7);
                                     const curDayOfWeek = idx - (7 * Math.floor(idx / 7));
+                                    if (!contributions[curWeek][curDayOfWeek]) return;
                                     const { contributionCount: cCount } = contributions[curWeek][curDayOfWeek];
 
                                     const getCurLevel = () => {
