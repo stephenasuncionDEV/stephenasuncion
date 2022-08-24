@@ -81,7 +81,7 @@ const VSCodeEditor = ({ folder, js, json, fileName, ...styles }) => {
                     <EditorLine line='{' selected/>
                     <EditorLine line='"Course": "Diploma in Computer Studies"' indent={2} />
                     <EditorLine line='"School": "Langara College - Vancouver, Canada"' indent={2} />
-                    <EditorLine line='"GPA": "3.77/4.33"' indent={2} />
+                    <EditorLine line='"GPA": "3.79/4.33"' indent={2} />
                     <EditorLine line={`"Awards": "Dean's Honour Roll, 3 Terms"`} indent={2} />
                     <EditorLine line='}' selected/>
                 </Editor>
