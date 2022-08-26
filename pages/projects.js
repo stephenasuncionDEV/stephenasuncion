@@ -13,7 +13,8 @@ const allowedProjects = [
     'emoji.io',
     'showoff',
     'stephenasunciondev.github.io',
-    'swift-shop'
+    'swift-shop',
+    'gen-rs'
 ]
 
 const Projects = () => {
