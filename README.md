@@ -13,9 +13,6 @@
     <a href="https://www.linkedin.com/in/stephen-allen-asuncion-3735b2176/" target="_blank">
         <img src='https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=flat-square&logo=linkedin&logoColor=white' alt='LinkedIn Account'>
     </a>
-    <a href="https://dev.to/stephenasuncion" target="_blank">
-        <img src='https://img.shields.io/badge/DEV-%23000000.svg?&style=flat-square&logo=dev.to&logoColor=white' alt='Dev Account'>
-    </a>
     <a href="https://www.buymeacoffee.com/stephenasuncion" target="_blank">
         <img src='https://img.shields.io/badge/BuyMeACoffee-%23FFDD00.svg?&style=flat-square&logo=buy-me-a-coffee&logoColor=black' alt='Dev Account'>
     </a>

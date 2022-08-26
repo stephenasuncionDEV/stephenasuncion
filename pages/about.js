@@ -89,7 +89,7 @@ const About = () => {
                                 <TagLabel>Programming Languages</TagLabel>
                             </Tag>
                             <Text fontSize='10pt'>
-                                Java, Javascript, TypeScript, HTML/CSS, Python, C++, C#, SQL, PHP
+                                Java, Javascript, TypeScript, HTML, CSS, SASS, Python, C++, C#, SQL, PHP, Rust
                             </Text>
                         </VStack>
                         <VStack alignItems='flex-start'>
@@ -97,7 +97,7 @@ const About = () => {
                                 <TagLabel>Technologies</TagLabel>
                             </Tag>
                             <Text fontSize='10pt'>
-                                React JS, React Native, MongoDB, Node JS, Express JS, Firebase, Next JS, Web3, Socket.IO, Vercel, Heroku, Nelify, Docker, Figma, Photoshop, Adobe Premiere, Git, Web3
+                                React JS, React Native, MongoDB, Node.js, Express.js, Firebase, Next.js, Web3, Socket.io, Vercel, Heroku, Nelify, Docker, Figma, Adobe Photoshop, Adobe Premiere, Git, Chakra UI, Material UI, GraphQL
                             </Text>
                         </VStack>
                     </VStack>

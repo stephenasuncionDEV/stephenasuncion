@@ -1,5 +1,5 @@
 import { Box, Flex, Wrap, Text, HStack, VStack, Link, IconButton, Image } from '@chakra-ui/react'
-import { FaGithub, FaDiscord, FaLinkedin, FaDev } from 'react-icons/fa'
+import { FaGithub, FaDiscord, FaLinkedin } from 'react-icons/fa'
 import { SiBuymeacoffee } from 'react-icons/si'
 import Navbar from '@/components/Navbar'
 import Meta from '@/components/Meta'
