@@ -75,6 +75,7 @@ const Projects = () => {
                                                         'JavaScript': 'rgb(241,224,90)',
                                                         'C++': 'rgb(243,75,125)',
                                                         'TypeScript': 'rgb(49,120,198)',
+                                                        'Rust': 'rgb(222,165,132)',
                                                         'Other': 'rgb(237,237,237)'
                                                     }[repo.language || 'JavaScript']} 
                                                     fontSize='9pt'
