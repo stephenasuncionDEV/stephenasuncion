@@ -12,6 +12,7 @@ import GitActivity from '@/components/GitActivity'
 const About = () => {
     const { recentCommit, contributions, totalContributions } = useAbout();
     const vscodeBgColor = useColorModeValue('white', 'black');
+    const tagBgColor = useColorModeValue('rgb(218, 224, 230)', 'rgb(36,37,39)');
 
     return (
         <Box>
@@ -85,7 +86,7 @@ const About = () => {
                     </Text>
                     <VStack alignItems='flex-start' spacing='1em' p='1em'>
                         <VStack alignItems='flex-start'>
-                            <Tag>
+                            <Tag bg={tagBgColor}>
                                 <TagLabel>Programming Languages</TagLabel>
                             </Tag>
                             <Text fontSize='10pt'>
@@ -93,7 +94,7 @@ const About = () => {
                             </Text>
                         </VStack>
                         <VStack alignItems='flex-start'>
-                            <Tag>
+                            <Tag bg={tagBgColor}>
                                 <TagLabel>Technologies</TagLabel>
                             </Tag>
                             <Text fontSize='10pt'>
