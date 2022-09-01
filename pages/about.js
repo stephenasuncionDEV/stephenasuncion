@@ -27,7 +27,7 @@ const About = () => {
                         <Wrap spacing='4em'>
                             <Wrap spacing='4em'>
                                 <Image 
-                                    src='/assets/me.jpg' 
+                                    src='/assets/me2.jpeg' 
                                     alt='Picture of Stephen Asuncion' 
                                     borderRadius='full' 
                                     boxSize='200px' 
