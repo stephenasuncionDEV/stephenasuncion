@@ -30,12 +30,17 @@ const ActivityBlock = ({ level }) => {
 
 const GitActivity = ({ contributions, totalContributions }) => {
     const itemBorderColor = useColorModeValue('1px solid rgb(0 0 0 / 15%)', '1px solid rgb(255 255 255 / 15%)');
-    const monthsEveryWeek= contributions?.map((cont) => cont[0]).map((cont) => {
+    const monthsEveryWeek = contributions?.map((cont) => cont[0]).map((cont) => {
         const curMonth = cont.date.split('-')[1];
         const curMonthOfWeek = months[parseInt(curMonth) - 1];
         return curMonthOfWeek;
     });
-    const reArrangedMonths = monthsEveryWeek?.filter((item, pos, self) => {
+
+    const repeatedMonths = monthsEveryWeek?.map((item, pos, self) => {
+        return (item === self[pos + 1] || item === self[pos - 1]) ? item : "space";
+    })
+
+    const reArrangedMonths = repeatedMonths?.filter((item, pos, self) => {
         return self.findIndex((cont) => item === cont) === pos;
     })
 
@@ -69,13 +74,14 @@ const GitActivity = ({ contributions, totalContributions }) => {
                         pt='18px'
                         flex='1'
                     >
-                        {reArrangedMonths?.map((month, idx) => {
+                        {reArrangedMonths?.filter((month) => month !== 'space')
+                        ?.map((month, idx) => {
                             return (
                                 <Text 
                                     top='-1'
                                     position='absolute'
                                     key={idx}
-                                    left={`${monthsEveryWeek?.indexOf(month) * 15}px`}
+                                    left={`${repeatedMonths?.indexOf(month) * 15}px`}
                                 >
                                     {month}
                                 </Text>
