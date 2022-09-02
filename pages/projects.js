@@ -11,10 +11,11 @@ import Footer from '@/components/Footer'
 const allowedProjects = [
     'nfthost',
     'emoji.io',
+    'kaldereta',
+    'gen-rs',
+    'swift-shop',
     'showoff',
     'stephenasunciondev.github.io',
-    'swift-shop',
-    'gen-rs'
 ]
 
 const Projects = () => {
@@ -33,7 +34,9 @@ const Projects = () => {
                     <Wrap justify='center' spacing='1.5em' mt='2em'>
                         {repositories?.length > 0 ? (<>
                             {repositories?.filter((repo) => {
-                                return allowedProjects?.includes(repo.name.toLowerCase()) && repo.owner.login === 'stephenasuncionDEV'
+                                return allowedProjects?.includes(repo.name.toLowerCase()) && repo.owner.login === 'stephenasuncionDEV';
+                            })?.sort((a, b) => {
+                                return allowedProjects.indexOf(a.name.toLowerCase()) - allowedProjects.indexOf(b.name.toLowerCase());
                             })?.map((repo, idx) => (
                                 <Link 
                                     href={repo.html_url} 
