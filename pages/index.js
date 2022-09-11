@@ -1,6 +1,5 @@
 import { Box, Flex, Wrap, Text, HStack, VStack, Link, IconButton, Image } from '@chakra-ui/react'
-import { FaGithub, FaDiscord, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa'
-import { SiBuymeacoffee } from 'react-icons/si'
+import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa'
 import Navbar from '@/components/Navbar'
 import Meta from '@/components/Meta'
 import Footer from '@/components/Footer'
@@ -37,12 +36,6 @@ const Home = () => {
                                         </Link>
                                         <Link href='https://www.youtube.com/c/StephenAsuncion' isExternal>
                                             <IconButton aria-label='Stephen Asuncion Youtube' size='sm' icon={<FaYoutube />} />
-                                        </Link>
-                                        <Link href='https://discordapp.com/users/746865227471257702' isExternal>
-                                            <IconButton aria-label='Stephen Asuncion Discord' size='sm' icon={<FaDiscord />} />
-                                        </Link>
-                                        <Link href='https://www.buymeacoffee.com/' isExternal>
-                                            <IconButton aria-label='Stephen Asuncion BuyMeACoffee' size='sm' icon={<SiBuymeacoffee />} />
                                         </Link>
                                     </HStack>
                                 </Flex>
