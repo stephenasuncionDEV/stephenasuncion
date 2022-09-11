@@ -50,11 +50,8 @@ const About = () => {
                                         <Link href="https://www.linkedin.com/in/stephenasuncion/" isExternal>
                                             <Image src='https://img.shields.io/badge/LinkedIn-%230077B5.svg?&amp;style=flat-square&amp;logo=linkedin&amp;logoColor=white' alt='LinkedIn Profile' />
                                         </Link>
-                                        <Link href="https://twitter.com/Steb_01" isExternal>
-                                            <Image src='https://img.shields.io/badge/Twitter-%231DA1F2.svg?&amp;style=flat-square&amp;logo=twitter&amp;logoColor=white' alt='Twitter Profile' />
-                                        </Link>
-                                        <Link href="https://www.youtube.com/c/StephenAsuncion" isExternal>
-                                            <Image src='https://img.shields.io/badge/YouTube-%23FF0000.svg?&amp;style=flat-square&amp;logo=youtube&amp;logoColor=white' alt='Youtube Channel' />
+                                        <Link href="https://github.com/stephenasuncionDEV" isExternal>
+                                            <Image src='https://img.shields.io/github/followers/stephenasuncionDEV?style=social' alt='GitHub Profile' />
                                         </Link>
                                     </HStack>
                                 </VStack>
