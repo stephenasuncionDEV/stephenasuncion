@@ -47,14 +47,14 @@ const About = () => {
                                         {parseInt((new Date() - new Date('2002-01-24').getTime()) / 3.15576e+10)} years old
                                     </Text>
                                     <HStack>
-                                        <Link href="https://twitter.com/Steb_01" isExternal>
-                                            <Image src='https://img.shields.io/badge/Twitter-%231DA1F2.svg?&amp;style=flat-square&amp;logo=twitter&amp;logoColor=white' alt='Twitter Account' />
-                                        </Link>
                                         <Link href="https://www.linkedin.com/in/stephenasuncion/" isExternal>
-                                            <Image src='https://img.shields.io/badge/LinkedIn-%230077B5.svg?&amp;style=flat-square&amp;logo=linkedin&amp;logoColor=white' alt='LinkedIn Account' />
+                                            <Image src='https://img.shields.io/badge/LinkedIn-%230077B5.svg?&amp;style=flat-square&amp;logo=linkedin&amp;logoColor=white' alt='LinkedIn Profile' />
                                         </Link>
-                                        <Link href="https://www.buymeacoffee.com/stephenasuncion" isExternal>
-                                            <Image src='https://img.shields.io/badge/BuyMeACoffee-%23FFDD00.svg?&amp;style=flat-square&amp;logo=buy-me-a-coffee&amp;logoColor=black' alt='Dev Account' />
+                                        <Link href="https://twitter.com/Steb_01" isExternal>
+                                            <Image src='https://img.shields.io/badge/Twitter-%231DA1F2.svg?&amp;style=flat-square&amp;logo=twitter&amp;logoColor=white' alt='Twitter Profile' />
+                                        </Link>
+                                        <Link href="https://www.youtube.com/c/StephenAsuncion" isExternal>
+                                            <Image src='https://img.shields.io/badge/YouTube-%23FF0000.svg?&amp;style=flat-square&amp;logo=youtube&amp;logoColor=white' alt='Youtube Channel' />
                                         </Link>
                                     </HStack>
                                 </VStack>
