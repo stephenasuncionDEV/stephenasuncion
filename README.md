@@ -1,6 +1,6 @@
 <p align="center">
     <a href='https://stephenasuncion.dev/' rel='nofollow'>
-        <img src='./public/assets/bitmoji.png' alt="Stephen Asuncion's Bitmoji" width='210' />
+        <img src='./public/assets/images/bitmoji.png' alt="Stephen Asuncion's Bitmoji" width='210' />
     </a>
 </p>
 
