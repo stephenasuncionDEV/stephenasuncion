@@ -1,8 +1,20 @@
+import { FC } from 'react'
 import { Flex, HStack, Box, Text, useColorModeValue, VStack, Spinner, Center } from '@chakra-ui/react'
+import { Contributions } from '@/hooks/useAbout'
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-const ActivityBlock = ({ level }) => {
+export interface ActivityBlockProps {
+    level: number;
+}
+
+export interface GitActivityProps {
+    contributions: Contributions;
+    totalContributions: number;
+    [styles: string]: any;
+}
+
+const ActivityBlock: FC<ActivityBlockProps> = ({ level }) => {
     const level0 = useColorModeValue('rgb(230,230,230)', '#161b22');
     const level1 = useColorModeValue('rgb(182,240,146)', '#0e4429');
     const level2 = useColorModeValue('rgb(82,214,121)', '#006d32');
@@ -28,8 +40,7 @@ const ActivityBlock = ({ level }) => {
     )
 }
 
-const GitActivity = ({ contributions, totalContributions }) => {
-    const itemBorderColor = useColorModeValue('1px solid rgb(0 0 0 / 15%)', '1px solid rgb(255 255 255 / 15%)');
+const GitActivity: FC<GitActivityProps> = ({ contributions, totalContributions, ...styles }) => {
     const monthsEveryWeek = contributions?.map((cont) => cont[0]).map((cont) => {
         const curMonth = cont.date.split('-')[1];
         const curMonthOfWeek = months[parseInt(curMonth) - 1];
@@ -44,12 +55,15 @@ const GitActivity = ({ contributions, totalContributions }) => {
         return self.findIndex((cont) => item === cont) === pos;
     })
 
+    const itemBorderColor = useColorModeValue('1px solid rgb(0 0 0 / 15%)', '1px solid rgb(255 255 255 / 15%)');
+
     return (
         <Flex 
             flexDir='column' 
             w='full'
             maxW='855px'
             gap='.5em'
+            {...styles}
         >
             <Text alignSelf='flex-start'>
                 {totalContributions} contributions in the last year
@@ -95,9 +109,9 @@ const GitActivity = ({ contributions, totalContributions }) => {
                             flexWrap='wrap'
                             gap='1'
                         >
-                            {contributions ? (
+                            {contributions?.length > 0 ? (
                                 <>
-                                {[...Array((contributions?.length * 7) - 4)].map((e, idx) => {
+                                {[...Array((contributions.length * 7) - 4)].map((e, idx) => {
                                     const curWeek = Math.floor(idx / 7);
                                     const curDayOfWeek = idx - (7 * Math.floor(idx / 7));
                                     if (!contributions[curWeek][curDayOfWeek]) return;

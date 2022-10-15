@@ -1,7 +1,11 @@
+import { FC } from 'react'
 import { Center, Flex, HStack, Text, Link, IconButton } from '@chakra-ui/react'
-import { FaGithub, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa'
+import { FaGithub } from '@react-icons/all-files/fa/FaGithub'
+import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
+import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin'
+import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube'
 
-const Footer = () => {
+const Footer: FC = () => {
     return (
         <footer>
             <Center mt='4em' mb='2em'>

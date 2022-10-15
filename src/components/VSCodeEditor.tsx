@@ -1,13 +1,29 @@
+import { Props } from '@/interfaces/index'
+import { FC, Children, isValidElement, cloneElement, ReactElement } from 'react'
 import { Flex, HStack, Text, VStack, useColorModeValue } from '@chakra-ui/react'
-import { MdOutlineRadioButtonChecked } from 'react-icons/md'
-import { SiJavascript } from 'react-icons/si'
-import { HiCode } from 'react-icons/hi'
-import { VscJson } from 'react-icons/vsc'
-import React from 'react'
+import { RiRadioButtonLine } from '@react-icons/all-files/ri/RiRadioButtonLine'
+import { SiJavascript } from '@react-icons/all-files/si/SiJavascript'
+import { HiCode } from '@react-icons/all-files/hi/HiCode'
+import { VscJson } from '@react-icons/all-files/vsc/VscJson'
 
-const Editor = ({ children }) => {
-    const childrenWithProps = React.Children.map(children, (child, idx) => {
-        if (React.isValidElement(child)) return React.cloneElement(child, { number: idx + 1 });
+export interface EditorLineProps {
+    number?: number;
+    line: string;
+    selected?: boolean;
+    indent?: number;
+}
+
+export interface VSCodeEditorProps {
+    folder: string;
+    js?: boolean;
+    json?: boolean;
+    fileName: string;
+    [styles: string]: any;
+}
+
+const Editor: FC<Props> = ({ children }) => {
+    const childrenWithProps = Children.map(children, (child, idx) => {
+        if (isValidElement(child)) return cloneElement(child as ReactElement<EditorLineProps>, { number: idx + 1 });
         return child;
     })
 
@@ -18,13 +34,13 @@ const Editor = ({ children }) => {
     )
 }
 
-const EditorLine = ({ number, line, selected, indent }) => {
-    const selectedColor = useColorModeValue('blackAlpha.500', '#206367');
+const EditorLine: FC<EditorLineProps> = ({ number, line, selected, indent }) => {
+    const selectedColor = useColorModeValue('blackAlpha.400', '#206367');
 
     return (
         <Flex>
             <Text color='#444d56' mr='1.5em'>
-                {number}
+                {number && number.toString()}
             </Text>
             <Text bg={selected ? selectedColor: 'transparent'} ml={`${indent?.toString() || '0'}em`}>
                 {line}
@@ -33,7 +49,7 @@ const EditorLine = ({ number, line, selected, indent }) => {
     )
 }
 
-const VSCodeEditor = ({ folder, js, json, fileName, ...styles }) => {
+const VSCodeEditor: FC<VSCodeEditorProps> = ({ folder, js, json, fileName, ...styles }) => {
     const bgColor = useColorModeValue('white', 'rgb(36,41,46)');
     const itemBorderColor = useColorModeValue('1px solid rgb(0 0 0 / 15%)', '1px solid rgb(255 255 255 / 15%)');
 
@@ -55,7 +71,7 @@ const VSCodeEditor = ({ folder, js, json, fileName, ...styles }) => {
                 py='.25em'
                 w='full'
             >
-                <MdOutlineRadioButtonChecked fontSize='12pt' color='#90a4ae' />
+                <RiRadioButtonLine fontSize='12pt' color='#90a4ae' />
                 <Text>
                     {folder} &gt;
                 </Text>

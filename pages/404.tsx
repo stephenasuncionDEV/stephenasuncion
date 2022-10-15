@@ -1,12 +1,13 @@
+import { NextPage } from 'next'
 import Link from 'next/link'
 import { Box, Flex, Text, Button } from '@chakra-ui/react'
 import Navbar from '@/components/Navbar'
 import Meta from '@/components/Meta'
 
-const NotFound = () => {
+const NotFound: NextPage = () => {
     return (
         <Box>
-            <Meta />
+            <Meta title='Stephen Asuncion'/>
             <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Flex maxW='1200px' w='full' flex='1' flexDir='column'>
                     <Navbar />

@@ -1,7 +1,17 @@
+import { FC } from 'react'
 import { Flex, HStack, Text,  VStack, useColorModeValue } from '@chakra-ui/react'
-import { BsFillCircleFill } from 'react-icons/bs'
+import { BsFillCircleFill } from '@react-icons/all-files/bs/BsFillCircleFill'
 
-const ConsoleText = ({ text }) => {
+export interface ConsoleTextProps {
+    text: string;
+}
+
+export interface ConsoleProps {
+    commit: string;
+    [styles: string]: any;
+}
+
+const ConsoleText: FC<ConsoleTextProps> = ({ text }) => {
     return (
         <VStack fontFamily='Inconsolata' fontSize='9pt' alignItems='flex-start' spacing='0'>
             <HStack>
@@ -25,7 +35,7 @@ const ConsoleText = ({ text }) => {
     )
 }
 
-const Console = ({ data }) => {
+const Console: FC<ConsoleProps> = ({ commit, ...styles }) => {
     const itemBorderColor = useColorModeValue('1px solid rgb(0 0 0 / 15%)', '1px solid rgb(255 255 255 / 15%)');
 
     return (
@@ -35,6 +45,7 @@ const Console = ({ data }) => {
             w='full'
             borderRadius='5px'
             border={itemBorderColor}
+            {...styles}
         >
             <Flex px='.5em' py='.25em' borderBottom={itemBorderColor}>
                 <HStack>
@@ -48,7 +59,7 @@ const Console = ({ data }) => {
             </Flex>
             <Flex flex='1' flexDir='column' p='.5em'>
                 <ConsoleText text='git add .'/>
-                <ConsoleText text={`git commit -m '${data || '🌻UPDATE: Updated README.md'}'`}/>
+                <ConsoleText text={`git commit -m '${commit || '🌻UPDATE: Updated README.md'}'`}/>
                 <ConsoleText text='git push origin main'/>
             </Flex>
         </Flex>
