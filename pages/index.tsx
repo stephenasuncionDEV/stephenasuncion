@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import NextImage from "next/image";
+import ImageStephen from "@/images/me.png";
 import {
   Flex,
   Text,
@@ -67,17 +68,16 @@ const Home: NextPage = () => {
               About
             </Heading>
             <Center mt="3em">
-              <Box width="230px" height="230px" pos="relative">
-                <NextImage
-                  src="/assets/images/me.png"
-                  alt="Stephen Asuncion"
-                  layout="fill"
-                  objectFit="cover"
-                  style={{
-                    borderRadius: "100%",
-                  }}
-                />
-              </Box>
+              <NextImage
+                src={ImageStephen}
+                alt="Stephen Asuncion"
+                placeholder="blur"
+                width={230}
+                height={230}
+                style={{
+                  borderRadius: "50%",
+                }}
+              />
             </Center>
             <Heading
               as="h2"
