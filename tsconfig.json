@@ -25,7 +25,7 @@
       "@/interfaces/*": ["src/interfaces/*"],
       "@/styles/*": ["src/styles/*"],
       "@/helpers/*": ["src/helpers/*"],
-      "@/libs/*": ["src/libs/*"]
+      "@/images/*": ["public/assets/images/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.json"],
