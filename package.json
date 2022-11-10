@@ -1,5 +1,5 @@
 {
-  "name": "stephenasuncion-portfolio",
+  "name": "stephenasuncion",
   "description": "Stephen Asuncion's Portfolio",
   "version": "0.0.1",
   "keywords": [
@@ -10,15 +10,15 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stephenasuncionDEV/stephenasuncionDEV.github.io.git"
+    "url": "https://github.com/stephenasuncionDEV/stephenasuncion.git"
   },
-  "homepage": "https://github.com/stephenasuncionDEV/stephenasuncionDEV.github.io#readme",
+  "homepage": "https://github.com/stephenasuncionDEV/stephenasuncion#readme",
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/stephenasuncionDEV"
   },
   "bugs": {
-    "url": "https://github.com/stephenasuncionDEV/stephenasuncionDEV.github.io/issues"
+    "url": "https://github.com/stephenasuncionDEV/stephenasuncion/issues"
   },
   "scripts": {
     "dev": "next dev",
@@ -31,6 +31,7 @@
     "format": "prettier --write .",
     "build": "next build",
     "build:analyze": "cross-env ANALYZE=true yarn build",
+    "node:switch": "for /f usebackq %i in (`type .nvmrc`) do nvm use %i",
     "start": "next start"
   },
   "dependencies": {
