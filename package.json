@@ -35,32 +35,32 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.3.6",
+    "@chakra-ui/react": "^2.3.7",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@react-icons/all-files": "^4.1.0",
     "framer-motion": "^7",
-    "next": "13.0.0",
+    "next": "13.0.2",
     "octokit": "^2.0.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-responsive": "^9.0.0",
-    "sass": "^1.55.0"
+    "react-responsive": "^9.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^13.0.0",
+    "@next/bundle-analyzer": "^13.0.2",
     "@octokit/types": "^8.0.0",
-    "@types/node": "18.11.7",
-    "@types/react": "18.0.24",
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
-    "@typescript-eslint/eslint-plugin": "^5.41.0",
-    "@typescript-eslint/parser": "^5.41.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
     "cross-env": "^7.0.3",
-    "eslint": "8.26.0",
-    "eslint-config-next": "13.0.0",
+    "eslint": "8.27.0",
+    "eslint-config-next": "13.0.2",
     "eslint-config-prettier": "^8.5.0",
-    "husky": "^8.0.1",
+    "husky": "^8.0.2",
     "prettier": "^2.7.1",
+    "sass": "^1.56.1",
     "typescript": "4.8.4"
   }
 }
