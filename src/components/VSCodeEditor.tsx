@@ -76,7 +76,6 @@ const VSCodeEditor: FC<VSCodeEditorProps> = ({
   fileName,
   ...styles
 }) => {
-  const bgColor = useColorModeValue("white", "rgb(36,41,46)");
   const itemBorderColor = useColorModeValue(
     "1px solid rgb(0 0 0 / 15%)",
     "1px solid rgb(255 255 255 / 15%)",
@@ -87,7 +86,6 @@ const VSCodeEditor: FC<VSCodeEditorProps> = ({
       alignItems="flex-start"
       fontFamily="Consolas"
       fontSize="10pt"
-      bg={bgColor}
       borderRadius="5px"
       border={itemBorderColor}
       {...styles}
