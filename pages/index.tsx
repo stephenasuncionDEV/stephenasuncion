@@ -31,7 +31,8 @@ const Home: NextPage = () => {
     <Flex flexDir="column" alignItems="center">
       <Meta title="Stephen Asuncion" />
       <Box as="main">
-        <Flex
+        <Navbar />
+        {/* <Flex
           as="section"
           id="welcome"
           flexDir="column"
@@ -39,7 +40,7 @@ const Home: NextPage = () => {
           minH="100vh"
         >
           <Navbar />
-        </Flex>
+        </Flex> */}
         <Box maxW="1200px" w="full">
           <Flex
             as="section"
@@ -51,9 +52,6 @@ const Home: NextPage = () => {
             mx="2em"
           >
             <Flex flexDir="column" maxW="896px" w="full">
-              <Heading as="h2" textAlign="center">
-                About
-              </Heading>
               <Center mt="3em">
                 <NextImage
                   src={ImageStephen}
@@ -72,7 +70,7 @@ const Home: NextPage = () => {
               >
                 Hello, I&apos;m Stephen Asuncion 👋
               </Heading>
-              <Text mt="1em" textAlign="center">
+              <Text mt="1em" textAlign="center" fontSize="10pt">
                 I am a software and full-stack web developer located in Surrey,
                 Canada. I was born in the Philipines and came to Canada when I
                 was 12. Ever since I was a kid, I&apos;ve liked taking things
