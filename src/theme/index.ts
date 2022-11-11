@@ -13,7 +13,7 @@ export type Fonts = {
 };
 
 const config: ThemeConfig = {
-  initialColorMode: "light",
+  initialColorMode: "dark",
   useSystemColorMode: false,
 };
 
@@ -25,7 +25,7 @@ const fonts: Fonts = {
 const styles: Styles = {
   global: (props: GlobalStyleProps) => ({
     body: {
-      bg: mode("white", "black")(props),
+      bg: mode("white", "rgb(13,17,23)")(props),
     },
   }),
 };
