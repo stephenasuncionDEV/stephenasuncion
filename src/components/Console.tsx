@@ -46,8 +46,8 @@ const Console: FC<ConsoleProps> = ({ commit, ...styles }) => {
   return (
     <Flex
       flexDir="column"
-      maxW="480px"
       w="full"
+      height="full"
       borderRadius="5px"
       border={itemBorderColor}
       {...styles}
@@ -68,6 +68,7 @@ const Console: FC<ConsoleProps> = ({ commit, ...styles }) => {
           text={`git commit -m '${commit || "🌻UPDATE: Updated README.md"}'`}
         />
         <ConsoleText text="git push origin main" />
+        <ConsoleText text="|" />
       </Flex>
     </Flex>
   );
