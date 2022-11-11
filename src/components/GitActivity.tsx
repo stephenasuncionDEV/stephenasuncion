@@ -64,10 +64,10 @@ const ActivityBlock: FC<ActivityBlockProps> = ({ level, colorScheme }) => {
       level4: useColorModeValue("#0D47A0", "#43C5FF"),
     },
     purple: {
-      level1: useColorModeValue("", "#2f1361"),
-      level2: useColorModeValue("", "#320285"),
-      level3: useColorModeValue("", "#5f32b8"),
-      level4: useColorModeValue("", "#753FE5"),
+      level1: useColorModeValue("#ccb2ff", "#2f1361"),
+      level2: useColorModeValue("#9763ff", "#320285"),
+      level3: useColorModeValue("#5c17e6", "#5f32b8"),
+      level4: useColorModeValue("#400ca8", "#753FE5"),
     },
   }[colorScheme];
 
