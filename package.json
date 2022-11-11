@@ -1,31 +1,66 @@
 {
-  "name": "stephen-portfolio",
-  "version": "0.1.0",
-  "private": true,
+  "name": "stephenasuncion",
+  "description": "Stephen Asuncion's Portfolio",
+  "version": "0.0.1",
+  "keywords": [
+    "stephenasuncion"
+  ],
+  "author": "StephenAsuncion",
+  "publisher": "StephenAsuncion",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stephenasuncionDEV/stephenasuncion.git"
+  },
+  "homepage": "https://github.com/stephenasuncionDEV/stephenasuncion#readme",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/stephenasuncionDEV"
+  },
+  "bugs": {
+    "url": "https://github.com/stephenasuncionDEV/stephenasuncion/issues"
+  },
   "scripts": {
     "dev": "next dev",
+    "dev:no-cache": "rm -rf .next/cache && yarn dev",
+    "lint": "next lint",
+    "lint:types": "tsc --pretty --noEmit",
+    "lint:format": "prettier --check .",
+    "lint:staged": "yarn lint && yarn lint:types && yarn lint:format",
+    "prepare": "husky install",
+    "format": "prettier --write .",
     "build": "next build",
-    "start": "next start",
-    "export": "next export",
-    "deploy": "next build && next export"
+    "build:analyze": "cross-env ANALYZE=true yarn build",
+    "node:switch": "for /f usebackq %i in (`type .nvmrc`) do nvm use %i",
+    "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.2.6",
-    "@chakra-ui/theme-tools": "^2.0.7",
-    "@emotion/react": "^11.10.0",
-    "@emotion/styled": "^11.10.0",
-    "axios": "^0.27.2",
-    "framer-motion": "^6.5.1",
-    "next": "12.2.4",
-    "octokit": "^2.0.4",
-    "qs": "^6.11.0",
+    "@chakra-ui/react": "^2.3.7",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@react-icons/all-files": "^4.1.0",
+    "framer-motion": "^7",
+    "next": "13.0.2",
+    "octokit": "^2.0.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0",
-    "react-responsive": "^9.0.0-beta.10"
+    "react-responsive": "^9.0.0"
   },
   "devDependencies": {
-    "eslint": "8.21.0",
-    "eslint-config-next": "12.2.4"
+    "@next/bundle-analyzer": "^13.0.2",
+    "@octokit/types": "^8.0.0",
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "cross-env": "^7.0.3",
+    "eslint": "8.27.0",
+    "eslint-config-next": "13.0.2",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.2",
+    "prettier": "^2.7.1",
+    "sass": "^1.56.1",
+    "typescript": "4.8.4"
   }
 }
