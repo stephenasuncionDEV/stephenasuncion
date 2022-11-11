@@ -26,23 +26,50 @@ const months = [
   "Dec",
 ];
 
+export type ColorScheme = "green" | "orange" | "blue" | "purple";
+
 export interface ActivityBlockProps {
   level: number;
+  colorScheme: ColorScheme;
 }
 
 export interface GitActivityProps {
   contributions: Contributions;
   totalContributions: number;
+  colorScheme: ColorScheme;
   /* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
   [styles: string | number | symbol]: any;
 }
 
-const ActivityBlock: FC<ActivityBlockProps> = ({ level }) => {
+const ActivityBlock: FC<ActivityBlockProps> = ({ level, colorScheme }) => {
   const level0 = useColorModeValue("rgb(230,230,230)", "#161b22");
-  const level1 = useColorModeValue("rgb(182,240,146)", "#0e4429");
-  const level2 = useColorModeValue("rgb(82,214,121)", "#006d32");
-  const level3 = useColorModeValue("rgb(35,166,76)", "#26a641");
-  const level4 = useColorModeValue("rgb(18,105,51)", "#39d353");
+
+  const colorLevels = {
+    green: {
+      level1: useColorModeValue("#D6E77F", "#0e4429"),
+      level2: useColorModeValue("#8AC760", "#006d32"),
+      level3: useColorModeValue("#40A43A", "#26a641"),
+      level4: useColorModeValue("#19691F", "#39d353"),
+    },
+    orange: {
+      level1: useColorModeValue("#FFEA43", "#5C220D"),
+      level2: useColorModeValue("#FFC401", "#AF5B2E"),
+      level3: useColorModeValue("#FF9300", "#EA7F36"),
+      level4: useColorModeValue("#080426", "#F8DF7B"),
+    },
+    blue: {
+      level1: useColorModeValue("#BBDEFB", "#164164"),
+      level2: useColorModeValue("#64B5F6", "#0160B4"),
+      level3: useColorModeValue("#1D88E5", "#3590C9"),
+      level4: useColorModeValue("#0D47A0", "#43C5FF"),
+    },
+    purple: {
+      level1: useColorModeValue("", "#2f1361"),
+      level2: useColorModeValue("", "#320285"),
+      level3: useColorModeValue("", "#5f32b8"),
+      level4: useColorModeValue("", "#753FE5"),
+    },
+  }[colorScheme];
 
   return (
     <Box
@@ -52,10 +79,10 @@ const ActivityBlock: FC<ActivityBlockProps> = ({ level }) => {
       bgColor={
         {
           0: level0,
-          1: level1,
-          2: level2,
-          3: level3,
-          4: level4,
+          1: colorLevels?.level1,
+          2: colorLevels?.level2,
+          3: colorLevels?.level3,
+          4: colorLevels?.level4,
         }[level || 0]
       }
       borderRadius="2px"
@@ -67,6 +94,7 @@ const ActivityBlock: FC<ActivityBlockProps> = ({ level }) => {
 const GitActivity: FC<GitActivityProps> = ({
   contributions,
   totalContributions,
+  colorScheme,
   ...styles
 }) => {
   const monthsEveryWeek = contributions
@@ -91,7 +119,7 @@ const GitActivity: FC<GitActivityProps> = ({
   );
 
   return (
-    <Flex flexDir="column" w="full" maxW="855px" gap=".5em" {...styles}>
+    <Flex flexDir="column" w="full" maxW="896px" gap=".5em" {...styles}>
       <Text alignSelf="flex-start">
         {totalContributions} contributions in the last year
       </Text>
@@ -153,7 +181,13 @@ const GitActivity: FC<GitActivityProps> = ({
 
                     const curLevel = getCurLevel();
 
-                    return <ActivityBlock key={idx} level={curLevel} />;
+                    return (
+                      <ActivityBlock
+                        key={idx}
+                        level={curLevel}
+                        colorScheme={colorScheme}
+                      />
+                    );
                   })}
                 </>
               ) : (
@@ -173,11 +207,11 @@ const GitActivity: FC<GitActivityProps> = ({
         <Flex justifyContent="flex-end" mt=".75em" px=".5em">
           <HStack spacing="1">
             <Text>Less</Text>
-            <ActivityBlock level={0} />
-            <ActivityBlock level={1} />
-            <ActivityBlock level={2} />
-            <ActivityBlock level={3} />
-            <ActivityBlock level={4} />
+            <ActivityBlock level={0} colorScheme={colorScheme} />
+            <ActivityBlock level={1} colorScheme={colorScheme} />
+            <ActivityBlock level={2} colorScheme={colorScheme} />
+            <ActivityBlock level={3} colorScheme={colorScheme} />
+            <ActivityBlock level={4} colorScheme={colorScheme} />
             <Text>More</Text>
           </HStack>
         </Flex>
