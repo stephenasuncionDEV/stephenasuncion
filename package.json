@@ -47,7 +47,7 @@
     "react-responsive": "^9.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^13.0.2",
+    "@next/bundle-analyzer": "^13.0.3",
     "@octokit/types": "^8.0.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
