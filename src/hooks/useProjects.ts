@@ -12,12 +12,11 @@ export interface ProjectsProps {
 
 export const allowedProjects = [
   "nfthost",
-  "kaldereta",
   "gencomp",
+  "create-typedef-app",
+  "stephenasuncion",
   "emoji.io",
-  "gen-rs",
-  "swift-shop",
-  "stephenasunciondev.github.io",
+  "govee-lite-api",
 ];
 
 export const useProjects = (): ProjectsProps => {
