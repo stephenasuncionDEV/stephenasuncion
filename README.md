@@ -6,6 +6,10 @@
 
 <h1 align="center">Stephen Asuncion's Portfolio Website 👨‍🚀</h1>
 
+<div align="center">
+  <img src='https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/codeql.yml/badge.svg' alt='CodeQl Badge'>
+</div>
+
 <p align="center">
     <a href="https://twitter.com/Steb_01" target="_blank">
         <img src='https://img.shields.io/badge/Twitter-%231DA1F2.svg?&style=flat-square&logo=twitter&logoColor=white' alt='Twitter Profile'>
