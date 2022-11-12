@@ -53,7 +53,7 @@ export const useAbout = (): AboutProps => {
         "GET /repos/{owner}/{repo}/events",
         {
           owner: "stephenasuncionDEV",
-          repo: "stephenasuncionDEV.github.io",
+          repo: "stephenasuncion",
         },
       );
 
