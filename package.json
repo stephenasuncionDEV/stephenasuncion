@@ -42,6 +42,7 @@
     "framer-motion": "^7",
     "next": "13.0.3",
     "octokit": "^2.0.10",
+    "qs": "^6.11.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-responsive": "^9.0.0"
@@ -50,6 +51,7 @@
     "@next/bundle-analyzer": "^13.0.3",
     "@octokit/types": "^8.0.0",
     "@types/node": "18.11.9",
+    "@types/qs": "^6.9.7",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
