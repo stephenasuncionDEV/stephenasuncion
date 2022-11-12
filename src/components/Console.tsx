@@ -52,13 +52,26 @@ const Console: FC<ConsoleProps> = ({ commit, ...styles }) => {
       border={itemBorderColor}
       {...styles}
     >
-      <Flex px=".5em" py=".25em" borderBottom={itemBorderColor}>
+      <Flex
+        px=".5em"
+        py=".25em"
+        borderBottom={itemBorderColor}
+        position="relative"
+      >
         <HStack>
           <BsFillCircleFill color="rgb(251,95,87)" fontSize="10pt" />
           <BsFillCircleFill color="rgb(253,191,45)" fontSize="10pt" />
           <BsFillCircleFill color="rgb(39,203,63)" fontSize="10pt" />
         </HStack>
-        <Text textAlign="center" flex="1" fontSize="10pt">
+        <Text
+          top="0.5"
+          left="0"
+          right="0"
+          flex="1"
+          textAlign="center"
+          fontSize="10pt"
+          position="absolute"
+        >
           Console
         </Text>
       </Flex>
