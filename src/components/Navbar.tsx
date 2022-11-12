@@ -26,7 +26,7 @@ import { HiOutlineDocument } from "@react-icons/all-files/hi/HiOutlineDocument";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const isTouchingLogo = useMediaQuery({ query: "(max-width: 530px)" });
+  const isTouchingLogo = useMediaQuery({ query: "(max-width: 600px)" });
 
   const itemBorderColor = useColorModeValue(
     "1px solid rgb(0 0 0 / 15%)",
