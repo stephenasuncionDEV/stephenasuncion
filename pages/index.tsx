@@ -30,8 +30,8 @@ const Home: NextPage = () => {
   return (
     <Flex flexDir="column" alignItems="center">
       <Meta title="Stephen Asuncion" />
+      <Navbar />
       <Box as="main">
-        <Navbar />
         {/* <Flex
           as="section"
           id="welcome"
@@ -52,7 +52,7 @@ const Home: NextPage = () => {
             mx="2em"
           >
             <Flex flexDir="column" maxW="896px" w="full">
-              <Center mt="3em">
+              <Center mt="4em">
                 <NextImage
                   src={ImageStephen}
                   alt="Stephen Asuncion"
