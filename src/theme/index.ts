@@ -18,8 +18,8 @@ const config: ThemeConfig = {
 };
 
 const fonts: Fonts = {
-  heading: "Poppins, Inter, sans-serif",
-  body: "Poppins, Inter, sans-serif",
+  heading: "Inter, Poppins, sans-serif",
+  body: "Inter, Poppins, sans-serif",
 };
 
 const styles: Styles = {
