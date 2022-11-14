@@ -12,6 +12,7 @@ import {
   MenuItem,
   MenuDivider,
   Link,
+  Tag,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FiSun } from "@react-icons/all-files/fi/FiSun";
@@ -26,7 +27,7 @@ import { HiOutlineDocument } from "@react-icons/all-files/hi/HiOutlineDocument";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const isTouchingLogo = useMediaQuery({ query: "(max-width: 600px)" });
+  const isTouchingLogo = useMediaQuery({ query: "(max-width: 750px)" });
 
   const itemBorderColor = useColorModeValue(
     "1px solid rgb(0 0 0 / 15%)",
@@ -40,8 +41,19 @@ const Navbar = () => {
       w="full"
       justifyContent="center"
     >
-      <Flex p="1em" justifyContent="space-between" w="full" maxW="1200px">
-        <NextLink href="/" passHref>
+      <Flex
+        p="1em"
+        justifyContent="space-between"
+        w="full"
+        maxW="1200px"
+        height="82px"
+        position="relative"
+      >
+        <NextLink
+          href="/"
+          passHref
+          style={{ position: "absolute", left: "16px" }}
+        >
           <Image
             src="/assets/images/bitmoji.png"
             alt="Stephen Asuncion Avatar"
@@ -51,21 +63,22 @@ const Navbar = () => {
           />
         </NextLink>
         {!isTouchingLogo ? (
-          <HStack spacing="2em">
-            <HStack spacing="1em">
+          <>
+            <HStack
+              spacing="1em"
+              position="absolute"
+              left="50%"
+              ml="-169.045"
+              mt="-15px"
+              top="50%"
+            >
               <NextLink
                 href="/"
                 shallow
                 passHref
                 style={{ textDecoration: "none" }}
               >
-                <Button
-                  size="sm"
-                  variant="transparent"
-                  _hover={{ color: "white" }}
-                  color="hsl(246, 6%, 55%)"
-                  fontWeight="600"
-                >
+                <Button size="sm" variant="navbar">
                   Home
                 </Button>
               </NextLink>
@@ -75,13 +88,7 @@ const Navbar = () => {
                 passHref
                 style={{ textDecoration: "none" }}
               >
-                <Button
-                  size="sm"
-                  variant="transparent"
-                  _hover={{ color: "white" }}
-                  color="hsl(246, 6%, 55%)"
-                  fontWeight="600"
-                >
+                <Button size="sm" variant="navbar">
                   About
                 </Button>
               </NextLink>
@@ -91,33 +98,25 @@ const Navbar = () => {
                 passHref
                 style={{ textDecoration: "none" }}
               >
-                <Button
-                  size="sm"
-                  variant="transparent"
-                  _hover={{ color: "white" }}
-                  color="hsl(246, 6%, 55%)"
-                  fontWeight="600"
-                >
+                <Button size="sm" variant="navbar">
                   Projects
                 </Button>
               </NextLink>
               <Link
                 href="https://stephenasuncion.hashnode.dev/"
                 isExternal
+                variant="navbar"
                 style={{ textDecoration: "none" }}
               >
-                <Button
-                  size="sm"
-                  variant="transparent"
-                  _hover={{ color: "white" }}
-                  color="hsl(246, 6%, 55%)"
-                  fontWeight="600"
-                >
+                <Button size="sm" variant="navbar">
                   Blog
                 </Button>
+                <Tag size="sm" variant="purple">
+                  New
+                </Tag>
               </Link>
             </HStack>
-            <HStack>
+            <HStack position="absolute" right="16px" mt="-20px" top="50%">
               <NextLink
                 href="mailto:stephenasuncion@outlook.com"
                 style={{ textDecoration: "none" }}
@@ -134,14 +133,16 @@ const Navbar = () => {
                 _hover={{ color: "gray.500" }}
               />
             </HStack>
-          </HStack>
+          </>
         ) : (
           <Menu>
             <MenuButton
+              position="absolute"
               as={IconButton}
               aria-label="Options"
               icon={<GiHamburgerMenu />}
               variant="outline"
+              right="16px"
             />
             <MenuList>
               <NextLink href="/" shallow passHref>
