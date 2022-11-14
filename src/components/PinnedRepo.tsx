@@ -16,10 +16,9 @@ import { listUserReposResponse } from "@/hooks/useProjects";
 
 export interface PinnedRepoProps {
   repository: listUserReposResponse["data"][0];
-  key: number;
 }
 
-const PinnedRepo: FC<PinnedRepoProps> = ({ repository, key }) => {
+const PinnedRepo: FC<PinnedRepoProps> = ({ repository }) => {
   const itemBorderColor = useColorModeValue(
     "1px solid rgb(0 0 0 / 15%)",
     "1px solid rgb(255 255 255 / 15%)",
@@ -34,7 +33,6 @@ const PinnedRepo: FC<PinnedRepoProps> = ({ repository, key }) => {
       }}
       maxW="440px"
       w="full"
-      key={key}
     >
       <Flex
         flexDir="column"
