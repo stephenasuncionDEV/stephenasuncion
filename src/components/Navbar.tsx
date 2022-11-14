@@ -62,7 +62,9 @@ const Navbar = () => {
                 <Button
                   size="sm"
                   variant="transparent"
-                  _hover={{ color: "gray.500" }}
+                  _hover={{ color: "white" }}
+                  color="hsl(246, 6%, 55%)"
+                  fontWeight="600"
                 >
                   Home
                 </Button>
@@ -76,7 +78,9 @@ const Navbar = () => {
                 <Button
                   size="sm"
                   variant="transparent"
-                  _hover={{ color: "gray.500" }}
+                  _hover={{ color: "white" }}
+                  color="hsl(246, 6%, 55%)"
+                  fontWeight="600"
                 >
                   About
                 </Button>
@@ -90,7 +94,9 @@ const Navbar = () => {
                 <Button
                   size="sm"
                   variant="transparent"
-                  _hover={{ color: "gray.500" }}
+                  _hover={{ color: "white" }}
+                  color="hsl(246, 6%, 55%)"
+                  fontWeight="600"
                 >
                   Projects
                 </Button>
@@ -103,7 +109,9 @@ const Navbar = () => {
                 <Button
                   size="sm"
                   variant="transparent"
-                  _hover={{ color: "gray.500" }}
+                  _hover={{ color: "white" }}
+                  color="hsl(246, 6%, 55%)"
+                  fontWeight="600"
                 >
                   Blog
                 </Button>
