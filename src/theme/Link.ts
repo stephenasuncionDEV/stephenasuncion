@@ -8,6 +8,10 @@ const Text: ComponentStyleConfig = {
         color: "blue.600",
       },
     }),
+    navbar: () => ({
+      display: "flex",
+      alignItems: "center",
+    }),
   },
 };
 
