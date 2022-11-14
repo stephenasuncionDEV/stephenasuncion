@@ -6,6 +6,7 @@ import Link from "./Link";
 import Text from "./Text";
 import Menu from "./Menu";
 import Modal from "./Modal";
+import Tag from "./Tag";
 
 export type Fonts = {
   heading: string;
@@ -40,6 +41,7 @@ const theme = extendTheme({
     Text,
     Menu,
     Modal,
+    Tag,
   },
 });
 
