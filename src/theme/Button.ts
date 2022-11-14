@@ -1,10 +1,21 @@
 import type { ComponentStyleConfig } from "@chakra-ui/theme";
+import type { ComponentDefaultProps } from "@chakra-ui/theme";
+import { mode } from "@chakra-ui/theme-tools";
 
 const Button: ComponentStyleConfig = {
   baseStyle: () => ({
     fontWeight: "normal",
   }),
   variants: {
+    navbar: (props: ComponentDefaultProps) => ({
+      bg: "transparent",
+      fontWeight: 500,
+      fontSize: "13px",
+      _hover: {
+        color: mode("black", "white")(props),
+      },
+      color: mode("rgba(0,0,0,.6)", "rgba(255,255,255,.6)")(props),
+    }),
     primary: () => ({
       bg: "rgb(117, 63, 229)",
       _hover: {
