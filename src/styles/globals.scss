@@ -6,7 +6,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Poppins, Inter, sans-serif, monospace, -apple-system,
+  font-family: Inter, Poppins, sans-serif, monospace, -apple-system,
     BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
     Droid Sans, Helvetica Neue;
 }
@@ -30,8 +30,13 @@ a {
   }
 }
 
-.min-height-vp {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+.blink {
+  opacity: 1;
+  animation: blinkAnimation 1.5s steps(2) infinite;
+}
+
+@keyframes blinkAnimation {
+  0% {
+    opacity: 0;
+  }
 }
