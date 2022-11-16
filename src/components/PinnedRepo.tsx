@@ -24,6 +24,8 @@ const PinnedRepo: FC<PinnedRepoProps> = ({ repository }) => {
     "1px solid rgb(255 255 255 / 15%)",
   );
 
+  const publicOpacity = useColorModeValue("1", ".5");
+
   return (
     <Link
       href={repository?.html_url}
@@ -49,7 +51,7 @@ const PinnedRepo: FC<PinnedRepoProps> = ({ repository }) => {
             <Text fontSize="10pt" fontWeight="bold" color="rgb(52,140,212)">
               {repository?.name}
             </Text>
-            <Tag variant="outline" size="sm" opacity=".5">
+            <Tag variant="outline" size="sm" opacity={publicOpacity}>
               <TagLabel lineHeight="12pt">Public</TagLabel>
             </Tag>
           </HStack>

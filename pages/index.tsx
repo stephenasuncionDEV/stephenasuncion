@@ -9,6 +9,7 @@ import {
   Heading,
   Center,
   Spinner,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useAbout } from "@/hooks/useAbout";
 import { useProjects } from "@/hooks/useProjects";
@@ -22,6 +23,11 @@ import PinnedRepo from "@/components/PinnedRepo";
 const Home: NextPage = () => {
   const { recentCommit, contributions, totalContributions } = useAbout();
   const { repositories } = useProjects();
+
+  const itemBorderColor = useColorModeValue(
+    "1px solid rgb(0 0 0 / 15%)",
+    "1px solid rgb(255 255 255 / 15%)",
+  );
 
   // const age = Math.floor(
   //   (new Date().valueOf() - new Date("2002-01-24").getTime()) / 3.15576e10,
@@ -132,13 +138,20 @@ const Home: NextPage = () => {
                       ))}
                     </>
                   ) : (
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="blue.500"
-                      size="xl"
-                    />
+                    <Center
+                      border={itemBorderColor}
+                      h="276px"
+                      w="896px"
+                      borderRadius="6px"
+                    >
+                      <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="blue.500"
+                        size="xl"
+                      />
+                    </Center>
                   )}
                 </Wrap>
               </Flex>

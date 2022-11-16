@@ -83,6 +83,8 @@ const VSCodeEditor: FC<VSCodeEditorProps> = ({
   );
   const isCollapseHeader = useMediaQuery({ query: "(max-width: 403px)" });
 
+  const headerColor = useColorModeValue("#1a202c", "#959da5");
+
   return (
     <VStack
       alignItems="flex-start"
@@ -94,7 +96,7 @@ const VSCodeEditor: FC<VSCodeEditorProps> = ({
     >
       <HStack
         alignItems="center"
-        color="#959da5"
+        color={headerColor}
         borderBottom={itemBorderColor}
         px=".5em"
         py=".25em"
