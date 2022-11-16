@@ -31,7 +31,8 @@ const PinnedRepo: FC<PinnedRepoProps> = ({ repository }) => {
       style={{
         textDecoration: "none",
       }}
-      maxW="440px"
+      minW="239px"
+      flex="1"
       w="full"
     >
       <Flex
@@ -48,8 +49,8 @@ const PinnedRepo: FC<PinnedRepoProps> = ({ repository }) => {
             <Text fontSize="10pt" fontWeight="bold" color="rgb(52,140,212)">
               {repository?.name}
             </Text>
-            <Tag variant="outline" size="sm">
-              <TagLabel>Public</TagLabel>
+            <Tag variant="outline" size="sm" opacity=".5">
+              <TagLabel lineHeight="12pt">Public</TagLabel>
             </Tag>
           </HStack>
           <Text fontSize="9pt" mt="1em">

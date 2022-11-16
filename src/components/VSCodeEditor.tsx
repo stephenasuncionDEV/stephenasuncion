@@ -17,6 +17,7 @@ import { RiRadioButtonLine } from "@react-icons/all-files/ri/RiRadioButtonLine";
 import { SiJavascript } from "@react-icons/all-files/si/SiJavascript";
 import { HiCode } from "@react-icons/all-files/hi/HiCode";
 import { VscJson } from "@react-icons/all-files/vsc/VscJson";
+import { useMediaQuery } from "react-responsive";
 
 export interface EditorLineProps {
   number?: number;
@@ -80,6 +81,7 @@ const VSCodeEditor: FC<VSCodeEditorProps> = ({
     "1px solid rgb(0 0 0 / 15%)",
     "1px solid rgb(255 255 255 / 15%)",
   );
+  const isCollapseHeader = useMediaQuery({ query: "(max-width: 403px)" });
 
   return (
     <VStack
@@ -99,17 +101,19 @@ const VSCodeEditor: FC<VSCodeEditorProps> = ({
         w="full"
       >
         <RiRadioButtonLine fontSize="12pt" color="#90a4ae" />
-        <Text>{folder} &gt;</Text>
-        <Text>src &gt;</Text>
+        {!isCollapseHeader && <Text noOfLines={1}>{folder} &gt;</Text>}
+        <Text noOfLines={1}>src &gt;</Text>
         {js && <SiJavascript color="#ffca28" />}
         {json && <VscJson color="#e0ad2d" />}
-        <Text>
+        <Text noOfLines={1}>
           {fileName} {js && ">"}
         </Text>
         {js && (
           <>
             <HiCode fontSize="12pt" color="#68b0c9" />
-            <Text>{fileName?.slice(0, fileName?.indexOf("."))}</Text>
+            <Text noOfLines={1}>
+              {fileName?.slice(0, fileName?.indexOf("."))}
+            </Text>
           </>
         )}
       </HStack>

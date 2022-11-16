@@ -1,11 +1,5 @@
 import { FC } from "react";
-import {
-  Flex,
-  HStack,
-  Text,
-  VStack,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Flex, HStack, Text, useColorModeValue } from "@chakra-ui/react";
 import { BsFillCircleFill } from "@react-icons/all-files/bs/BsFillCircleFill";
 
 export interface ConsoleTextProps {
@@ -20,20 +14,20 @@ export interface ConsoleProps {
 
 const ConsoleText: FC<ConsoleTextProps> = ({ text }) => {
   return (
-    <VStack
-      fontFamily="Inconsolata"
-      fontSize="9pt"
-      alignItems="flex-start"
-      spacing="0"
-    >
-      <HStack>
-        <Text color="rgb(0,186,0)">steph@StebX-Desk</Text>
-        <Text color="rgb(175,0,86)">MINGW64</Text>
-        <Text color="rgb(149,154,0)">~/Portfolio</Text>
-        <Text color="rgb(0,148,143)">(main)</Text>
-      </HStack>
-      <Text noOfLines={1}>$ {text}</Text>
-    </VStack>
+    <Flex fontFamily="Inconsolata" fontSize="9pt" flexDir="column">
+      <Text noOfLines={1}>
+        <span style={{ color: "rgb(0,186,0)" }}>steph@StebX-Desk</span>{" "}
+        <span style={{ color: "rgb(175,0,86)" }}>MINGW64</span>{" "}
+        <span style={{ color: "rgb(149,154,0)" }}>~/Portfolio</span>{" "}
+        <span style={{ color: "rgb(0,148,143)" }}>(main)</span>
+      </Text>
+      <Text noOfLines={1}>
+        ${" "}
+        <span className={text === "|" ? "blink" : ""}>
+          {text?.slice(0, 36)}
+        </span>
+      </Text>
+    </Flex>
   );
 };
 
@@ -47,6 +41,7 @@ const Console: FC<ConsoleProps> = ({ commit, ...styles }) => {
     <Flex
       flexDir="column"
       w="full"
+      minW="239px"
       height="full"
       borderRadius="5px"
       border={itemBorderColor}
@@ -75,10 +70,10 @@ const Console: FC<ConsoleProps> = ({ commit, ...styles }) => {
           Console
         </Text>
       </Flex>
-      <Flex flex="1" flexDir="column" p=".5em">
+      <Flex flexDir="column" p=".5em">
         <ConsoleText text="git add ." />
         <ConsoleText
-          text={`git commit -m '${commit || "🌻UPDATE: Updated README.md"}'`}
+          text={`git commit -m '${commit || "🚀 UPDATE: updated README.md"}'`}
         />
         <ConsoleText text="git push origin main" />
         <ConsoleText text="|" />
