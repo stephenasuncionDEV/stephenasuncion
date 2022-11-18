@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import NextImage from "next/image";
 import {
   Flex,
   Text,
@@ -35,8 +36,19 @@ const Home: NextPage = () => {
   // );
 
   return (
-    <Flex flexDir="column" alignItems="center">
+    <Flex flexDir="column" alignItems="center" position="relative">
       <Meta title="Stephen Asuncion" />
+      <Flex position="fixed" bottom="2" right="10">
+        <NextImage
+          src="https://stephenasuncion.dev/api/spotify?v=2&color=white"
+          alt="Current song stephen is listening to"
+          width={300}
+          height={26}
+          quality={100}
+          blurDataURL="https://via.placeholder.com/300/26"
+          placeholder="blur"
+        />
+      </Flex>
       <Navbar />
       <Box as="main">
         <Box maxW="1200px" w="full">
