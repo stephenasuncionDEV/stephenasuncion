@@ -16,7 +16,7 @@ const nextConfig = withBundleAnalyzer({
     SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
   },
   images: {
-    domains: ["via.placeholder.com"],
+    domains: ["stephenasuncion.dev", "via.placeholder.com"],
   },
 });
 
