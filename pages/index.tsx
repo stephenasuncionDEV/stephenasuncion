@@ -3,6 +3,7 @@ import {
   Flex,
   Text,
   Wrap,
+  WrapItem,
   Box,
   Heading,
   Center,
@@ -81,13 +82,8 @@ const Home: NextPage = () => {
                 </Text>
               </Flex>
               <Wrap spacing="1em" mt="4em">
-                <Flex flexDir="column" flex="1">
-                  <Heading
-                    as="h2"
-                    textAlign="center"
-                    fontSize="18pt"
-                    fontWeight="500"
-                  >
+                <WrapItem display="flex" flexDir="column" flex="1">
+                  <Heading as="h2" fontSize="18pt" fontWeight="500">
                     My Education
                   </Heading>
                   <VSCodeEditor
@@ -96,18 +92,13 @@ const Home: NextPage = () => {
                     fileName="education.json"
                     json
                   />
-                </Flex>
-                <Flex flexDir="column" flex="1">
-                  <Heading
-                    as="h2"
-                    textAlign="center"
-                    fontSize="18pt"
-                    fontWeight="500"
-                  >
+                </WrapItem>
+                <WrapItem display="flex" flexDir="column" flex="1">
+                  <Heading as="h2" fontSize="18pt" fontWeight="500">
                     Recent Commit
                   </Heading>
                   <Console mt="1em" commit={recentCommit} />
-                </Flex>
+                </WrapItem>
               </Wrap>
               <GitActivity
                 mt="2em"
