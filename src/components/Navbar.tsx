@@ -1,10 +1,11 @@
 import { default as NextLink } from "next/link";
+import NextImage from "next/image";
+import ImageStephen from "@/images/small.png";
 import {
   Flex,
   HStack,
   Button,
   IconButton,
-  Image,
   useColorMode,
   MenuButton,
   MenuList,
@@ -59,12 +60,14 @@ const Navbar = () => {
           style={{ position: "absolute", left: "16px" }}
         >
           <HStack>
-            <Image
-              src="/assets/images/small.png"
-              alt="Stephen Asuncion Avatar"
-              width="50px"
-              fallbackSrc="https://picsum.photos/50"
-              cursor="pointer"
+            <NextImage
+              src={ImageStephen}
+              alt="Stephen Asuncion's Face"
+              width={50}
+              height={47}
+              quality={100}
+              blurDataURL="https://via.placeholder.com/150"
+              placeholder="blur"
             />
             <Heading as="h1" fontSize="14pt">
               StephenA
