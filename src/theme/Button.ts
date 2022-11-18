@@ -14,7 +14,7 @@ const Button: ComponentStyleConfig = {
       _hover: {
         color: mode("black", "white")(props),
       },
-      color: mode("rgba(0,0,0,.6)", "rgba(255,255,255,.6)")(props),
+      color: mode("rgba(0,0,0,.8)", "rgba(255,255,255,.6)")(props),
     }),
     primary: () => ({
       bg: "rgb(117, 63, 229)",
