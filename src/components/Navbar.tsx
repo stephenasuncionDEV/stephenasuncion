@@ -29,9 +29,9 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const isTouchingLogo = useMediaQuery({ query: "(max-width: 750px)" });
 
-  const itemBorderColor = useColorModeValue(
-    "1px solid rgb(0 0 0 / 15%)",
-    "1px solid rgb(255 255 255 / 15%)",
+  const bgColor = useColorModeValue(
+    "rgba(255,255,255,.2)",
+    "rgba(19,17,28,.8)",
   );
 
   return (
@@ -39,7 +39,7 @@ const Navbar = () => {
       w="full"
       justifyContent="center"
       position="fixed"
-      bg="rgba(19,17,28,.8)"
+      bg={bgColor}
       backdropFilter="auto"
       backdropBlur="xl"
       backdropSaturate="1.5"
