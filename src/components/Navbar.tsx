@@ -1,6 +1,6 @@
 import { default as NextLink } from "next/link";
 import NextImage from "next/image";
-import ImageStephen from "@/images/small.png";
+import ImageStephen from "@/images/me.png";
 import {
   Flex,
   HStack,
