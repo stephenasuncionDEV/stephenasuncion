@@ -10,6 +10,7 @@ const Meta: FC<MetaProps> = ({ title }) => {
     <Head>
       <title>{title}</title>
       <link rel="manifest" href="/manifest.json" />
+      <link rel="apple-touch-icon" href="/icon-192x192.png" />
       <meta name="title" content="Stephen Asuncion | Portfolio Website" />
       <meta
         name="description"
