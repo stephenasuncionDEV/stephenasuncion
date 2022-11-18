@@ -33,7 +33,7 @@ const Navbar = () => {
 
   const bgColor = useColorModeValue(
     "rgba(255,255,255,.2)",
-    "rgba(19,17,28,.8)",
+    "rgba(19,17,28,.6)",
   );
 
   return (
