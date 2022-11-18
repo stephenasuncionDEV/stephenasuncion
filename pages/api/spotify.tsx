@@ -94,10 +94,12 @@ const Spotify = async (req: NextApiRequest, res: NextApiResponse) => {
         album: { images },
         external_urls: { spotify: song_uri },
       } = currentlyPlaying || recentPlayed[recentIndex].track;
+
       const {
         name: artist_name,
         external_urls: { spotify: artist_uri },
       } = artists[0];
+
       const spotifyLogoInB64 = await imageToBase64(
         "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png",
       );
@@ -305,7 +307,11 @@ const Spotify = async (req: NextApiRequest, res: NextApiResponse) => {
               <div class="main">
                 <img src="data:image/png;base64,${spotifyLogoInB64}" width="26" height="26"/>
                 <p>
-                  Listening to <span>${song.title}</span>
+                  ${
+                    currentlyPlaying
+                      ? `Listening to <span>${song.title}</span>`
+                      : "Not Listening"
+                  }
                 </p>
               </div>
             </div>
