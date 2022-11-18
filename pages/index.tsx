@@ -29,6 +29,8 @@ const Home: NextPage = () => {
     "1px solid rgb(255 255 255 / 15%)",
   );
 
+  const textColor = useColorModeValue("rgba(0,0,0,.8)", "rgba(255,255,255,.6)");
+
   // const age = Math.floor(
   //   (new Date().valueOf() - new Date("2002-01-24").getTime()) / 3.15576e10,
   // );
@@ -58,48 +60,49 @@ const Home: NextPage = () => {
             mx="2em"
           >
             <Flex flexDir="column" maxW="896px" w="full">
-              <Center mt="4em">
-                <NextImage
-                  src={ImageStephen}
-                  alt="Stephen Asuncion"
-                  placeholder="blur"
-                  width={230}
-                  height={230}
-                />
-              </Center>
-              <Heading
-                as="h2"
-                fontWeight="medium"
-                fontSize="18pt"
-                textAlign="center"
-                mt="2em"
-              >
-                Hello, I&apos;m Stephen Asuncion 👋
-              </Heading>
-              <Text mt="1em" textAlign="center" fontSize="10pt">
-                I am a software and full-stack web developer located in Surrey,
-                Canada. I was born in the Philipines and came to Canada when I
-                was 12. Ever since I was a kid, I&apos;ve liked taking things
-                apart and making something new. I started coding when I was ten
-                years old, I started with just making a bunch of batch scripts,
-                and then I got into software development using Visual Basic.
-                Still, I realized that C# was way more straightforward in terms
-                of syntax. I&apos;ve explored a bit more and I got into memory
-                manipulations which resulted in me learning C++, and then when I
-                was in college, I learned Full-Stack Web Development.
-              </Text>
-              <Wrap spacing="1em" mt="3em">
+              <Flex flexDir="column" mt="4em" fontFamily="IBM Plex Sans">
+                <Text color={textColor}>Hello 👋🏽</Text>
+                <Heading
+                  as="h1"
+                  fontWeight="700"
+                  fontSize="22pt"
+                  fontFamily="IBM Plex Sans"
+                >
+                  I&apos;m{" "}
+                  <span style={{ color: "#753FE5" }}>Stephen Asuncion</span>,{" "}
+                  <br></br>a Software and Full-Stack Web Developer.
+                </Heading>
+                <Text
+                  mt="1em"
+                  fontSize="13pt"
+                  fontWeight="400"
+                  color={textColor}
+                >
+                  I am located in Surrey, BC, Canada. I was born in the
+                  Philipines and came to Canada when I was 12. Ever since I was
+                  a kid, I&apos;ve liked taking things apart and making
+                  something new from it. I started coding when I was ten years
+                  old, printing messages with batch scripts was my first
+                  programming experience. I got into software development using
+                  Visual Basic. However, I realized that C# was way more
+                  straightforward in terms of syntax. I&apos;ve explored a bit
+                  more and I got into memory manipulations which resulted in me
+                  learning C++, and then in college, I learned Full-Stack Web
+                  Development.
+                </Text>
+              </Flex>
+              <Wrap spacing="1em" mt="4em">
                 <Flex flexDir="column" flex="1">
                   <Heading
-                    as="h3"
+                    as="h2"
                     textAlign="center"
-                    fontSize="16pt"
-                    fontWeight="normal"
+                    fontSize="18pt"
+                    fontWeight="500"
                   >
-                    Education
+                    My Education
                   </Heading>
                   <VSCodeEditor
-                    mt=".5em"
+                    mt="1em"
                     folder="Portfolio Website"
                     fileName="education.json"
                     json
@@ -107,14 +110,14 @@ const Home: NextPage = () => {
                 </Flex>
                 <Flex flexDir="column" flex="1">
                   <Heading
-                    as="h3"
+                    as="h2"
                     textAlign="center"
-                    fontSize="16pt"
-                    fontWeight="normal"
+                    fontSize="18pt"
+                    fontWeight="500"
                   >
                     Recent Commit
                   </Heading>
-                  <Console mt=".5em" commit={recentCommit} />
+                  <Console mt="1em" commit={recentCommit} />
                 </Flex>
               </Wrap>
               <GitActivity
