@@ -32,9 +32,9 @@ const Home: NextPage = () => {
 
   const textColor = useColorModeValue("rgba(0,0,0,.8)", "rgba(255,255,255,.6)");
 
-  // const age = Math.floor(
-  //   (new Date().valueOf() - new Date("2002-01-24").getTime()) / 3.15576e10,
-  // );
+  const age = Math.floor(
+    (new Date().valueOf() - new Date("2002-01-24").getTime()) / 3.15576e10,
+  );
 
   return (
     <Flex flexDir="column" alignItems="center" position="relative">
