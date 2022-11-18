@@ -1,6 +1,4 @@
 import type { NextPage } from "next";
-import NextImage from "next/image";
-import ImageStephen from "@/images/me.png";
 import {
   Flex,
   Text,
@@ -40,15 +38,6 @@ const Home: NextPage = () => {
       <Meta title="Stephen Asuncion" />
       <Navbar />
       <Box as="main">
-        {/* <Flex
-          as="section"
-          id="welcome"
-          flexDir="column"
-          alignItems="center"
-          minH="100vh"
-        >
-          <Navbar />
-        </Flex> */}
         <Box maxW="1200px" w="full">
           <Flex
             as="section"
