@@ -67,7 +67,7 @@ export const useAbout = (): AboutProps => {
         )
         .map((pushEvent: any) => pushEvent.payload.commits);
 
-      const { message } = events[events.length - 1][0];
+      const { message } = events[0][0];
 
       setRecentCommit(message);
     } catch (err: any) {
