@@ -1,6 +1,5 @@
 import { FC } from "react";
-import { Flex, HStack, Text, useColorModeValue } from "@chakra-ui/react";
-import { BsFillCircleFill } from "@react-icons/all-files/bs/BsFillCircleFill";
+import { Flex, HStack, Text, useColorModeValue, Box } from "@chakra-ui/react";
 
 export interface ConsoleTextProps {
   text: string;
@@ -50,10 +49,25 @@ const Console: FC<ConsoleProps> = ({ commit, ...styles }) => {
         borderBottom={itemBorderColor}
         position="relative"
       >
-        <HStack>
-          <BsFillCircleFill color="rgb(251,95,87)" fontSize="10pt" />
-          <BsFillCircleFill color="rgb(253,191,45)" fontSize="10pt" />
-          <BsFillCircleFill color="rgb(39,203,63)" fontSize="10pt" />
+        <HStack fontSize="10pt">
+          <Box
+            boxSize="13px"
+            borderRadius="50%"
+            bg="rgb(251,95,87)"
+            _hover={{ bg: "#a33e39" }}
+          />
+          <Box
+            boxSize="13px"
+            borderRadius="50%"
+            bg="rgb(253,191,45)"
+            _hover={{ bg: "#9c761c" }}
+          />
+          <Box
+            boxSize="13px"
+            borderRadius="50%"
+            bg="rgb(39,203,63)"
+            _hover={{ bg: "#13691f" }}
+          />
         </HStack>
         <Text
           top="0.5"
@@ -63,6 +77,7 @@ const Console: FC<ConsoleProps> = ({ commit, ...styles }) => {
           textAlign="center"
           fontSize="10pt"
           position="absolute"
+          pointerEvents="none"
         >
           Console
         </Text>
