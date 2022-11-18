@@ -60,7 +60,7 @@ const Home: NextPage = () => {
             mx="2em"
           >
             <Flex flexDir="column" maxW="896px" w="full">
-              <Flex flexDir="column" mt="4em" fontFamily="IBM Plex Sans">
+              <Flex flexDir="column" mt="8em" fontFamily="IBM Plex Sans">
                 <Text color={textColor}>Hello 👋🏽</Text>
                 <Heading
                   as="h1"

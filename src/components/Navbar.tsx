@@ -36,10 +36,13 @@ const Navbar = () => {
 
   return (
     <Flex
-      borderBottom={`1px solid ${itemBorderColor}`}
-      borderBottomWidth="1px"
       w="full"
       justifyContent="center"
+      position="fixed"
+      bg="rgba(19,17,28,.8)"
+      backdropFilter="auto"
+      backdropBlur="xl"
+      backdropSaturate="1.5"
     >
       <Flex
         p="1em"
