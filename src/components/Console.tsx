@@ -22,10 +22,7 @@ const ConsoleText: FC<ConsoleTextProps> = ({ text }) => {
         <span style={{ color: "rgb(0,148,143)" }}>(main)</span>
       </Text>
       <Text noOfLines={1}>
-        ${" "}
-        <span className={text === "|" ? "blink" : ""}>
-          {text?.slice(0, 36)}
-        </span>
+        $ <span className={text === "|" ? "blink" : ""}>{text}</span>
       </Text>
     </Flex>
   );
