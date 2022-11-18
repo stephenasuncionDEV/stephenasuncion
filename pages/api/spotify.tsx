@@ -309,7 +309,9 @@ const Spotify = async (req: NextApiRequest, res: NextApiResponse) => {
                 <p>
                   ${
                     currentlyPlaying
-                      ? `Listening to <span>${song.title}</span>`
+                      ? !currentlyPlaying.explicit
+                        ? `Listening to <span>${song.title}</span>`
+                        : "Hidden 🤭"
                       : "Not Listening"
                   }
                 </p>
