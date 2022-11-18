@@ -79,7 +79,8 @@ const isColorHex = (color: string) => {
 const Spotify = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (req.method === "GET") {
-      const { bgColor, borderColor, borderRadius, barColor, color } = req.query;
+      const { v, bgColor, borderColor, borderRadius, barColor, color } =
+        req.query;
 
       const spotify = new SpotifyAPI();
       await spotify.getAccessToken();
@@ -97,6 +98,9 @@ const Spotify = async (req: NextApiRequest, res: NextApiResponse) => {
         name: artist_name,
         external_urls: { spotify: artist_uri },
       } = artists[0];
+      const spotifyLogoInB64 = await imageToBase64(
+        "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png",
+      );
       const defCoverInB64 = await imageToBase64(
         "https://i.pinimg.com/736x/c9/e3/e8/c9e3e810a8066b885ca4e882460785fa.jpg",
       );
@@ -115,7 +119,9 @@ const Spotify = async (req: NextApiRequest, res: NextApiResponse) => {
       };
 
       res.setHeader("Content-Type", "image/svg+xml");
-      res.send(`<svg width="480" height="133" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+      if (v === "1") {
+        res.send(`<svg width="480" height="133" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <title>Stephen Asuncion's Portfolio</title>
           <foreignObject width="480" height="133">
               <div xmlns="http://www.w3.org/1999/xhtml" class="container">
@@ -268,7 +274,44 @@ const Spotify = async (req: NextApiRequest, res: NextApiResponse) => {
                   </div>
               </div>
           </foreignObject>
-      </svg>`);
+        </svg>`);
+      } else {
+        res.send(`<svg width="300" height="26" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <title>Stephen Asuncion's Portfolio</title>
+          <foreignObject width="300" height="26">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="container">
+              <style>
+                .main {
+                  display: flex;
+                  gap: .5em;
+                  font-family: "Inter";
+                  color: ${
+                    (isColorHex(color as string) ? `#${color}` : color) ||
+                    "black"
+                  };
+                  align-items: center;
+                }
+
+                .main p {
+                  margin: 0;
+                  font-size: 9pt;
+                }
+
+                .main p span {
+                  font-weight: bold;
+                  font-size: 10pt;
+                }
+              </style>
+              <div class="main">
+                <img src="data:image/png;base64,${spotifyLogoInB64}" width="26" height="26"/>
+                <p>
+                  Listening to <span>${song.title}</span>
+                </p>
+              </div>
+            </div>
+          </foreignObject>
+        </svg>`);
+      }
     }
   } catch (err) {
     console.error(err);
