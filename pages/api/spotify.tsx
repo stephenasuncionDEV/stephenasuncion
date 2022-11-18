@@ -38,40 +38,37 @@ class SpotifyAPI {
     this.accessToken = tokenRes2.access_token;
   };
 
-  getRecentlyPlayed: () => Promise<any> = async () => {
+  getData: (uri: string) => Promise<any> = async (uri) => {
     try {
-      const resTemp = await fetch(
-        "https://api.spotify.com/v1/me/player/recently-played?limit=5",
-        {
-          headers: {
-            Authorization: `Bearer ${this.accessToken}`,
-          },
+      const resTemp = await fetch(uri, {
+        headers: {
+          Authorization: `Bearer ${this.accessToken}`,
         },
-      );
+      });
 
       const res = await resTemp.json();
-      return res.items;
+      return res;
     } catch (err: any) {
       return null;
     }
   };
 
-  getCurrentlyPlaying: () => Promise<any> = async () => {
-    try {
-      const resTemp = await fetch(
-        "https://api.spotify.com/v1/me/player/currently-playing",
-        {
-          headers: {
-            Authorization: `Bearer ${this.accessToken}`,
-          },
-        },
-      );
+  getRecentlyPlayed: () => Promise<any> = async () => {
+    const data = await this.getData(
+      "https://api.spotify.com/v1/me/player/recently-played?limit=5",
+    );
+    if (!data) return null;
 
-      const res = await resTemp.json();
-      return res.item;
-    } catch (err: any) {
-      return null;
-    }
+    return data.items;
+  };
+
+  getCurrentlyPlaying: () => Promise<any> = async () => {
+    const data = await this.getData(
+      "https://api.spotify.com/v1/me/player/currently-playing",
+    );
+    if (!data) return null;
+
+    return data.item;
   };
 }
 
