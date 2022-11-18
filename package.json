@@ -40,7 +40,7 @@
     "@emotion/styled": "^11",
     "@react-icons/all-files": "^4.1.0",
     "framer-motion": "^7",
-    "next": "13.0.3",
+    "next": "13.0.4",
     "octokit": "^2.0.10",
     "qs": "^6.11.0",
     "react": "18.2.0",
