@@ -19,6 +19,7 @@ import Console from "@/components/Console";
 import GitActivity from "@/components/GitActivity";
 import VSCodeEditor from "@/components/VSCodeEditor";
 import PinnedRepo from "@/components/PinnedRepo";
+import config from "@/config/index";
 
 const Home: NextPage = () => {
   const { recentCommit, contributions, totalContributions } = useAbout();
@@ -38,9 +39,9 @@ const Home: NextPage = () => {
   return (
     <Flex flexDir="column" alignItems="center" position="relative">
       <Meta title="Stephen Asuncion" />
-      <Flex position="fixed" bottom="2" right="10">
+      <Flex position="fixed" bottom="3" right="10">
         <NextImage
-          src="https://stephenasuncion.dev/api/spotify?v=2&color=white"
+          src={`${config?.clientURL}/api/spotify?v=2&color=white`}
           alt="Current song stephen is listening to"
           width={300}
           height={26}
