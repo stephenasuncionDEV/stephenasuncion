@@ -14,6 +14,7 @@ import {
   Link,
   Tag,
   useColorModeValue,
+  Heading,
 } from "@chakra-ui/react";
 import { FiSun } from "@react-icons/all-files/fi/FiSun";
 import { FiMoon } from "@react-icons/all-files/fi/FiMoon";
@@ -57,13 +58,18 @@ const Navbar = () => {
           passHref
           style={{ position: "absolute", left: "16px" }}
         >
-          <Image
-            src="/assets/images/bitmoji.png"
-            alt="Stephen Asuncion Avatar"
-            width="50px"
-            fallbackSrc="https://picsum.photos/50"
-            cursor="pointer"
-          />
+          <HStack>
+            <Image
+              src="/assets/images/small.png"
+              alt="Stephen Asuncion Avatar"
+              width="50px"
+              fallbackSrc="https://picsum.photos/50"
+              cursor="pointer"
+            />
+            <Heading as="h1" fontSize="14pt">
+              StephenA
+            </Heading>
+          </HStack>
         </NextLink>
         {!isTouchingLogo ? (
           <>
