@@ -11,6 +11,7 @@ import {
   Spinner,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useMediaQuery } from "react-responsive";
 import { useAbout } from "@/hooks/useAbout";
 import { useProjects } from "@/hooks/useProjects";
 import Meta from "@/components/Meta";
@@ -36,20 +37,24 @@ const Home: NextPage = () => {
     (new Date().valueOf() - new Date("2002-01-24").getTime()) / 3.15576e10,
   );
 
+  const isHideSpotify = useMediaQuery({ query: "(max-width: 1630px)" });
+
   return (
     <Flex flexDir="column" alignItems="center" position="relative">
       <Meta title="Stephen Asuncion" />
-      <Flex position="fixed" bottom="3" right="10">
-        <NextImage
-          src={`${config?.clientURL}/api/spotify?v=2&color=white`}
-          alt="Current song stephen is listening to"
-          width={300}
-          height={26}
-          quality={100}
-          blurDataURL="https://via.placeholder.com/300/26"
-          placeholder="blur"
-        />
-      </Flex>
+      {!isHideSpotify && (
+        <Flex position="fixed" bottom="4" right="2">
+          <NextImage
+            src={`${config?.clientURL}/api/spotify?v=2&color=white`}
+            alt="Current song stephen is listening to"
+            width={300}
+            height={26}
+            quality={100}
+            blurDataURL="https://via.placeholder.com/300/26"
+            placeholder="blur"
+          />
+        </Flex>
+      )}
       <Navbar />
       <Box as="main">
         <Box maxW="1200px" w="full">
