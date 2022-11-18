@@ -13,8 +13,8 @@ export interface ProjectsProps {
 export const allowedProjects = [
   "nfthost",
   "gencomp",
-  "create-typedef-app",
   "stephenasuncion",
+  "create-typedef-app",
   "emoji.io",
   "govee-lite-api",
 ];
