@@ -9,6 +9,7 @@ const Meta: FC<MetaProps> = ({ title }) => {
   return (
     <Head>
       <title>{title}</title>
+      <link rel="manifest" href="/manifest.json" />
       <meta name="title" content="Stephen Asuncion | Portfolio Website" />
       <meta
         name="description"
@@ -18,7 +19,7 @@ const Meta: FC<MetaProps> = ({ title }) => {
       <meta name="robots" content="index, follow" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="en" />
-      <meta name="theme-color" content="#348CD4" />
+      <meta name="theme-color" content="#753FE5" />
 
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://stephenasuncion.dev/" />
