@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { useState } from "react";
 import NextImage from "next/image";
 import {
   Flex,
@@ -10,6 +11,7 @@ import {
   Center,
   Spinner,
   useColorModeValue,
+  Button,
 } from "@chakra-ui/react";
 import { useMediaQuery } from "react-responsive";
 import { useAbout } from "@/hooks/useAbout";
@@ -20,11 +22,14 @@ import Console from "@/components/Console";
 import GitActivity from "@/components/GitActivity";
 import VSCodeEditor from "@/components/VSCodeEditor";
 import PinnedRepo from "@/components/PinnedRepo";
+import Renderer from "@/components/Renderer";
+import Filler from "@/components/Filler";
 import config from "@/config/index";
 
 const Home: NextPage = () => {
   const { recentCommit, contributions, totalContributions } = useAbout();
   const { repositories } = useProjects();
+  const [isRoom, setIsRoom] = useState<boolean>(false);
 
   const itemBorderColor = useColorModeValue(
     "1px solid rgb(0 0 0 / 15%)",
@@ -38,6 +43,7 @@ const Home: NextPage = () => {
   );
 
   const isHideSpotify = useMediaQuery({ query: "(max-width: 1630px)" });
+  const isHideModel = useMediaQuery({ query: "(max-width: 1630px)" });
 
   return (
     <Flex flexDir="column" alignItems="center" position="relative">
@@ -56,8 +62,29 @@ const Home: NextPage = () => {
         </Flex>
       )}
       <Navbar />
-      <Box as="main">
-        <Box maxW="1200px" w="full">
+      <Flex as="main" flexDir="column">
+        {isRoom ? (
+          <Flex h="600px" w="full" mt="82px">
+            <Filler>
+              {({ width, height }) => (
+                <Renderer width={width} height={height} />
+              )}
+            </Filler>
+          </Flex>
+        ) : (
+          <Center mt="8em">
+            <Button
+              variant="outline"
+              maxW="236px"
+              opacity=".2"
+              _hover={{ opacity: 1 }}
+              onClick={() => setIsRoom(true)}
+            >
+              Peek my Room 👀
+            </Button>
+          </Center>
+        )}
+        <Box maxW="1200px" w="full" mt={isRoom ? "3em" : "3em"}>
           <Flex
             as="section"
             id="about"
@@ -68,7 +95,7 @@ const Home: NextPage = () => {
             mx="2em"
           >
             <Flex flexDir="column" maxW="896px" w="full">
-              <Flex flexDir="column" mt="8em" fontFamily="IBM Plex Sans">
+              <Flex flexDir="column" fontFamily="IBM Plex Sans">
                 <Text color={textColor}>Hello 👋🏽</Text>
                 <Heading
                   as="h1"
@@ -159,7 +186,7 @@ const Home: NextPage = () => {
             </Flex>
           </Flex>
         </Box>
-      </Box>
+      </Flex>
     </Flex>
   );
 };
