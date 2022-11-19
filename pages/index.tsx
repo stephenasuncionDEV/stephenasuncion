@@ -43,7 +43,7 @@ const Home: NextPage = () => {
   );
 
   const isHideSpotify = useMediaQuery({ query: "(max-width: 1630px)" });
-  const isHideModel = useMediaQuery({ query: "(max-width: 1630px)" });
+  const isHideModel = useMediaQuery({ query: "(max-width: 980px)" });
 
   return (
     <Flex flexDir="column" alignItems="center" position="relative">
@@ -63,28 +63,32 @@ const Home: NextPage = () => {
       )}
       <Navbar />
       <Flex as="main" flexDir="column">
-        {isRoom ? (
-          <Flex h="600px" w="full" mt="82px">
-            <Filler>
-              {({ width, height }) => (
-                <Renderer width={width} height={height} />
-              )}
-            </Filler>
-          </Flex>
-        ) : (
-          <Center mt="8em">
-            <Button
-              variant="outline"
-              maxW="236px"
-              opacity=".2"
-              _hover={{ opacity: 1 }}
-              onClick={() => setIsRoom(true)}
-            >
-              Peek my Room 👀
-            </Button>
-          </Center>
+        {!isHideModel && (
+          <>
+            {isRoom ? (
+              <Flex h="600px" w="full" mt="82px">
+                <Filler>
+                  {({ width, height }) => (
+                    <Renderer width={width} height={height} />
+                  )}
+                </Filler>
+              </Flex>
+            ) : (
+              <Center mt="8em">
+                <Button
+                  variant="outline"
+                  maxW="236px"
+                  opacity=".2"
+                  _hover={{ opacity: 1 }}
+                  onClick={() => setIsRoom(true)}
+                >
+                  Peep my Room 👀
+                </Button>
+              </Center>
+            )}
+          </>
         )}
-        <Box maxW="1200px" w="full" mt={isRoom ? "3em" : "3em"}>
+        <Box maxW="1200px" w="full" mt={isHideModel ? "8em" : "3em"}>
           <Flex
             as="section"
             id="about"
