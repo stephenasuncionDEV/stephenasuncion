@@ -45,6 +45,7 @@ const Navbar = () => {
       backdropFilter="auto"
       backdropBlur="xl"
       backdropSaturate="1.5"
+      zIndex="1"
     >
       <Flex
         p="1em"
