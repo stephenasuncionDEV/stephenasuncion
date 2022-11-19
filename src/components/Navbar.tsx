@@ -31,6 +31,11 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const isTouchingLogo = useMediaQuery({ query: "(max-width: 750px)" });
 
+  const itemBorderColor = useColorModeValue(
+    "1px solid rgb(0 0 0 / 15%)",
+    "1px solid rgb(255 255 255 / 15%)",
+  );
+
   const bgColor = useColorModeValue(
     "rgba(255,255,255,.2)",
     "rgba(19,17,28,.6)",
@@ -151,12 +156,14 @@ const Navbar = () => {
           <Menu>
             <MenuButton
               position="absolute"
-              as={IconButton}
-              aria-label="Options"
-              icon={<GiHamburgerMenu />}
-              variant="outline"
               right="16px"
-            />
+              aria-label="Navigations"
+              padding=".7em"
+              border={itemBorderColor}
+              borderRadius="5px"
+            >
+              <GiHamburgerMenu />
+            </MenuButton>
             <MenuList>
               <NextLink href="/" shallow passHref>
                 <MenuItem icon={<BiHome />}>Home</MenuItem>
