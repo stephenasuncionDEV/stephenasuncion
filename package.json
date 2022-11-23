@@ -39,7 +39,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@react-icons/all-files": "^4.1.0",
-    "@react-three/drei": "^9.43.2",
+    "@react-three/drei": "^9.43.3",
     "@react-three/fiber": "^8.9.1",
     "framer-motion": "^7",
     "next": "13.0.4",
