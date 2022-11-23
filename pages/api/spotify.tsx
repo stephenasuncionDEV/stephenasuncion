@@ -121,10 +121,7 @@ const Spotify = async (req: NextApiRequest, res: NextApiResponse) => {
       };
 
       res.setHeader("Content-Type", "image/svg+xml");
-      res.setHeader(
-        "cache-control",
-        "public, s-maxage=60, stale-while-revalidate=30",
-      );
+      res.setHeader("Cache-Control", "public, s-maxage=60, must-revalidate");
 
       if (v === "1") {
         res.send(`<svg width="480" height="133" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
