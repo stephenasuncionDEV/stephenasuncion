@@ -39,10 +39,10 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@react-icons/all-files": "^4.1.0",
-    "@react-three/drei": "^9.43.2",
+    "@react-three/drei": "^9.43.3",
     "@react-three/fiber": "^8.9.1",
     "framer-motion": "^7",
-    "next": "13.0.4",
+    "next": "13.0.5",
     "octokit": "^2.0.10",
     "qs": "^6.11.0",
     "react": "18.2.0",
@@ -51,7 +51,7 @@
     "three": "^0.146.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^13.0.4",
+    "@next/bundle-analyzer": "^13.0.5",
     "@octokit/types": "^8.0.0",
     "@types/node": "18.11.9",
     "@types/qs": "^6.9.7",
@@ -62,10 +62,10 @@
     "@typescript-eslint/parser": "^5.44.0",
     "cross-env": "^7.0.3",
     "eslint": "8.28.0",
-    "eslint-config-next": "13.0.4",
+    "eslint-config-next": "13.0.5",
     "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.2",
-    "prettier": "^2.7.1",
+    "prettier": "^2.8.0",
     "sass": "^1.56.1",
     "typescript": "4.9.3"
   }
