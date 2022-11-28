@@ -118,10 +118,10 @@ const Home: NextPage = () => {
                   color={textColor}
                 >
                   I am located in Surrey, BC, Canada. I was born in the
-                  Philipines and came to Canada when I was 12. Ever since I was
+                  Philippines and came to Canada when I was 12. Ever since I was
                   a kid, I&apos;ve liked taking things apart and making
-                  something new from it. I started coding when I was ten years
-                  old, printing messages with batch scripts was my first
+                  something new from them. I started coding when I was ten years
+                  old, and printing messages with batch scripts was my first
                   programming experience. I got into software development using
                   Visual Basic. However, I realized that C# was way more
                   straightforward in terms of syntax. I&apos;ve explored a bit
