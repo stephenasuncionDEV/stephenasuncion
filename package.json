@@ -39,7 +39,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@react-icons/all-files": "^4.1.0",
-    "@react-three/drei": "^9.45.1",
+    "@react-three/drei": "^9.46.0",
     "@react-three/fiber": "^8.9.1",
     "framer-motion": "^7",
     "next": "13.0.5",
@@ -48,12 +48,12 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-responsive": "^9.0.2",
-    "three": "^0.146.0"
+    "three": "^0.147.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.0.5",
     "@octokit/types": "^8.0.0",
-    "@types/node": "18.11.9",
+    "@types/node": "18.11.10",
     "@types/qs": "^6.9.7",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",

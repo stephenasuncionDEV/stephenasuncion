@@ -1463,10 +1463,10 @@
   resolved "https://registry.yarnpkg.com/@react-spring/types/-/types-9.5.5.tgz#c8e94f1b9232ca7cb9d860ea67762ec401b1de14"
   integrity sha512-7I/qY8H7Enwasxr4jU6WmtNK+RZ4Z/XvSlDvjXFVe7ii1x0MoSlkw6pD7xuac8qrHQRm9BTcbZNyeeKApYsvCg==
 
-"@react-three/drei@^9.45.1":
-  version "9.45.1"
-  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-9.45.1.tgz#db12bfa57fdc30b15554747f26f8764130e8fc02"
-  integrity sha512-/OVJZbxOywLp7I01P5wTsllTzZxHZ3IRhW3NMyTsImn8M2NjqC5WxmsndbUIYZGJy4tminqmnvYSDkfR1ExdoQ==
+"@react-three/drei@^9.46.0":
+  version "9.46.0"
+  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-9.46.0.tgz#9b6970818410fc890e99971aa290d820a17085da"
+  integrity sha512-msde3VO6HyXyFVqM1qJoGaFGUBHZy+3+sT4JTqkM4XTplmHALSglPZkcSB7z2gENoScMnHwF3a3MPl/v0AGgLA==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@react-spring/three" "^9.3.1"
@@ -1562,10 +1562,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.3.tgz#78a6d7ec962b596fc2d2ec102c4dd3ef073fea6a"
   integrity sha512-fNjDQzzOsZeKZu5NATgXUPsaFaTxeRgFXoosrHivTl8RGeV733OLawXsGfEk9a8/tySyZUyiZ6E8LcjPFZ2y1A==
 
-"@types/node@18.11.9":
-  version "18.11.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.9.tgz#02d013de7058cea16d36168ef2fc653464cfbad4"
-  integrity sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==
+"@types/node@18.11.10":
+  version "18.11.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.10.tgz#4c64759f3c2343b7e6c4b9caf761c7a3a05cee34"
+  integrity sha512-juG3RWMBOqcOuXC643OAdSA525V44cVgGV6dUDuiFtss+8Fk5x1hI93Rsld43VeJVIeqlP9I7Fn9/qaVqoEAuQ==
 
 "@types/offscreencanvas@^2019.6.4":
   version "2019.7.0"
@@ -4113,10 +4113,10 @@ three-stdlib@^2.18.1:
     potpack "^1.0.1"
     zstddec "^0.0.2"
 
-three@^0.146.0:
-  version "0.146.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.146.0.tgz#fd80f0d128ab4bb821a02191ae241e4e6326f17a"
-  integrity sha512-1lvNfLezN6OJ9NaFAhfX4sm5e9YCzHtaRgZ1+B4C+Hv6TibRMsuBAM5/wVKzxjpYIlMymvgsHEFrrigEfXnb2A==
+three@^0.147.0:
+  version "0.147.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.147.0.tgz#1974af9e8e0c1efb3a8561334d57c0b6c29a7951"
+  integrity sha512-LPTOslYQXFkmvceQjFTNnVVli2LaVF6C99Pv34fJypp8NbQLbTlu3KinZ0zURghS5zEehK+VQyvWuPZ/Sm8fzw==
 
 tiny-glob@^0.2.9:
   version "0.2.9"
