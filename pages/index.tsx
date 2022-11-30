@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 import NextImage from "next/image";
 import {
   Flex,
@@ -12,6 +12,7 @@ import {
   Spinner,
   useColorModeValue,
   Button,
+  Link,
 } from "@chakra-ui/react";
 import { useMediaQuery } from "react-responsive";
 import { useAbout } from "@/hooks/useAbout";
@@ -25,6 +26,33 @@ import PinnedRepo from "@/components/PinnedRepo";
 import Renderer from "@/components/Renderer";
 import Filler from "@/components/Filler";
 import config from "@/config/index";
+import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
+import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
+import { FaStackOverflow } from "@react-icons/all-files/fa/FaStackOverflow";
+
+export interface ExternalLink {
+  name: string;
+  href: string | undefined;
+  icon: ReactElement;
+}
+
+export const externalLinks: ExternalLink[] = [
+  {
+    name: "GitHub",
+    href: "https://github.com/stephenasuncionDEV",
+    icon: <FaGithub />,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/stephenasuncion/",
+    icon: <FaLinkedin />,
+  },
+  {
+    name: "StackOverFlow",
+    href: "https://stackoverflow.com/users/19981230/stephen-asuncion",
+    icon: <FaStackOverflow />,
+  },
+];
 
 const Home: NextPage = () => {
   const { recentCommit, contributions, totalContributions } = useAbout();
@@ -79,6 +107,7 @@ const Home: NextPage = () => {
                   variant="outline"
                   maxW="236px"
                   opacity=".2"
+                  border="2px dashed white"
                   _hover={{ opacity: 1 }}
                   onClick={() => setIsRoom(true)}
                 >
@@ -111,8 +140,22 @@ const Home: NextPage = () => {
                   <span style={{ color: "#753FE5" }}>Stephen Asuncion</span>,{" "}
                   <br></br>a Software and Full-Stack Web Developer.
                 </Heading>
+                <Wrap spacing="1em" mt="1em">
+                  {externalLinks?.map((link, idx) => (
+                    <Link
+                      key={idx}
+                      href={link.href}
+                      isExternal
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Button variant="outline" size="sm" leftIcon={link.icon}>
+                        {link.name}
+                      </Button>
+                    </Link>
+                  ))}
+                </Wrap>
                 <Text
-                  mt="1em"
+                  mt="2em"
                   fontSize="13pt"
                   fontWeight="400"
                   color={textColor}
@@ -130,7 +173,7 @@ const Home: NextPage = () => {
                   Development.
                 </Text>
               </Flex>
-              <Wrap spacing="1em" mt="4em">
+              <Wrap spacing="1em" mt="5em">
                 <WrapItem display="flex" flexDir="column" flex="1">
                   <Heading as="h2" fontSize="18pt" fontWeight="500">
                     My Education
@@ -162,7 +205,10 @@ const Home: NextPage = () => {
                 alignItems="center"
                 my="2em"
               >
-                <Wrap spacing="1em">
+                <Heading as="h2" fontSize="18pt" fontWeight="500" w="full">
+                  Projects
+                </Heading>
+                <Wrap spacing="1em" mt="1em">
                   {repositories?.length > 0 ? (
                     <>
                       {repositories?.map((repo, idx) => (
