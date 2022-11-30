@@ -27,7 +27,6 @@
     "lint:types": "tsc --pretty --noEmit",
     "lint:format": "prettier --check .",
     "lint:staged": "yarn lint && yarn lint:types && yarn lint:format",
-    "prepare": "husky install",
     "format": "prettier --write .",
     "build": "next build",
     "build:analyze": "cross-env ANALYZE=true yarn build",
