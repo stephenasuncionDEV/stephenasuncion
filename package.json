@@ -41,7 +41,7 @@
     "@react-three/drei": "^9.46.0",
     "@react-three/fiber": "^8.9.1",
     "framer-motion": "^7",
-    "next": "13.0.5",
+    "next": "13.0.6",
     "octokit": "^2.0.10",
     "qs": "^6.11.0",
     "react": "18.2.0",
