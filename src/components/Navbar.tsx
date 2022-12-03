@@ -36,10 +36,7 @@ const Navbar = () => {
     "1px solid rgb(255 255 255 / 15%)",
   );
 
-  const bgColor = useColorModeValue(
-    "rgba(255,255,255,.2)",
-    "rgba(19,17,28,.6)",
-  );
+  const bgColor = useColorModeValue("rgba(255,255,255,.2)", "rgba(5,1,13,.6)");
 
   return (
     <Flex
