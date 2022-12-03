@@ -73,13 +73,15 @@ const Home: NextPage = () => {
   const isHideSpotify = useMediaQuery({ query: "(max-width: 1630px)" });
   const isHideModel = useMediaQuery({ query: "(max-width: 980px)" });
 
+  const spotifyColor = useColorModeValue("black", "white");
+
   return (
     <Flex flexDir="column" alignItems="center" position="relative">
       <Meta title="Stephen Asuncion" />
       {!isHideSpotify && (
         <Flex position="fixed" bottom="4" right="2">
           <Image
-            src={`${config?.clientURL}/api/spotify?v=2&color=white`}
+            src={`${config?.clientURL}/api/spotify?v=2&color=${spotifyColor}`}
             alt="Current song stephen is listening to"
             width={300}
             height={26}
