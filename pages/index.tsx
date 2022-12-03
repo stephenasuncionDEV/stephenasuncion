@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import { useState, type ReactElement } from "react";
-import NextImage from "next/image";
 import {
   Flex,
   Text,
@@ -13,6 +12,7 @@ import {
   useColorModeValue,
   Button,
   Link,
+  Image,
 } from "@chakra-ui/react";
 import { useMediaQuery } from "react-responsive";
 import { useAbout } from "@/hooks/useAbout";
@@ -78,14 +78,11 @@ const Home: NextPage = () => {
       <Meta title="Stephen Asuncion" />
       {!isHideSpotify && (
         <Flex position="fixed" bottom="4" right="2">
-          <NextImage
+          <Image
             src={`${config?.clientURL}/api/spotify?v=2&color=white`}
             alt="Current song stephen is listening to"
             width={300}
             height={26}
-            quality={100}
-            blurDataURL="https://via.placeholder.com/300/26"
-            placeholder="blur"
           />
         </Flex>
       )}
@@ -135,6 +132,7 @@ const Home: NextPage = () => {
                   fontWeight="700"
                   fontSize="22pt"
                   fontFamily="IBM Plex Sans"
+                  className="backlight"
                 >
                   I&apos;m{" "}
                   <span style={{ color: "#753FE5" }}>Stephen Asuncion</span>,{" "}
