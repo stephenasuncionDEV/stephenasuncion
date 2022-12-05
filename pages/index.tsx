@@ -160,17 +160,17 @@ const Home: NextPage = () => {
                   fontWeight="400"
                   color={textColor}
                 >
-                  I am located in Surrey, BC, Canada. I was born in the
-                  Philippines and came to Canada when I was 12. Ever since I was
-                  a kid, I&apos;ve liked taking things apart and making
-                  something new from them. I started coding when I was ten years
-                  old, and printing messages with batch scripts was my first
-                  programming experience. I got into software development using
-                  Visual Basic. However, I realized that C# was way more
-                  straightforward in terms of syntax. I&apos;ve explored a bit
-                  more and I got into memory manipulations which resulted in me
-                  learning C++, and then in college, I learned Full-Stack Web
-                  Development.
+                  I have always had a passion for tinkering and creating. My
+                  love for technology began at a young age, and I started
+                  learning to code when I was just ten years old. My first
+                  experience with programming was using batch scripts to print
+                  messages, but I quickly realized the potential of languages
+                  like Visual Basic and C#. I later explored memory manipulation
+                  techniques in C++, and in college, I expanded my knowledge of
+                  software development and learned full-stack web development.
+                  Currently, I reside in Surrey, BC, Canada, where I continue to
+                  be driven by my love of problem-solving and my desire to
+                  create innovative solutions.
                 </Text>
               </Flex>
               <Wrap spacing="1em" mt="5em">
