@@ -138,7 +138,7 @@ const Home: NextPage = () => {
                 >
                   I&apos;m{" "}
                   <span style={{ color: "#753FE5" }}>Stephen Asuncion</span>,{" "}
-                  <br></br>a Software and Full-Stack Web Developer.
+                  <br></br>a Full-Stack Software Engineer.
                 </Heading>
                 <Wrap spacing="1em" mt="1em">
                   {externalLinks?.map((link, idx) => (
