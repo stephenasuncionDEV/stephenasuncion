@@ -50,7 +50,7 @@
     "three": "^0.147.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^13.0.6",
+    "@next/bundle-analyzer": "^13.0.7",
     "@octokit/types": "^8.0.0",
     "@types/node": "18.11.13",
     "@types/qs": "^6.9.7",
