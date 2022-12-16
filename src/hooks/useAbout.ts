@@ -34,7 +34,9 @@ export const useAbout = (): AboutProps => {
     isClosable: true,
   });
   const { octokit } = useCore();
-  const [recentCommit, setRecentCommit] = useState<string>("");
+  const [recentCommit, setRecentCommit] = useState<string>(
+    "🚀 UPDATE: updated README.md",
+  );
   const [contributions, setContributions] = useState<Contributions>(
     [] as Contributions,
   );
@@ -67,9 +69,10 @@ export const useAbout = (): AboutProps => {
         )
         .map((pushEvent: any) => pushEvent.payload.commits);
 
-      const { message } = events[0][events[0].length - 1];
-
-      setRecentCommit(message);
+      if (events.length > 0) {
+        const { message } = events[0][events[0].length - 1];
+        setRecentCommit(message);
+      }
     } catch (err: any) {
       const msg = errorHandler(err);
       toast({ description: msg });
