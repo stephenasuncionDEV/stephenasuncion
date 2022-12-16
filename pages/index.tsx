@@ -13,8 +13,8 @@ import {
   Button,
   Link,
   Image,
+  useMediaQuery,
 } from "@chakra-ui/react";
-import { useMediaQuery } from "react-responsive";
 import { useAbout } from "@/hooks/useAbout";
 import { useProjects } from "@/hooks/useProjects";
 import Meta from "@/components/Meta";
@@ -70,8 +70,8 @@ const Home: NextPage = () => {
     (new Date().valueOf() - new Date("2002-01-24").getTime()) / 3.15576e10,
   );
 
-  const isHideSpotify = useMediaQuery({ query: "(max-width: 1630px)" });
-  const isHideModel = useMediaQuery({ query: "(max-width: 980px)" });
+  const [isHideSpotify] = useMediaQuery("(max-width: 1630px)");
+  const [isHideModel] = useMediaQuery("(max-width: 980px)");
 
   const spotifyColor = useColorModeValue("black", "white");
 

@@ -16,10 +16,10 @@ import {
   Tag,
   useColorModeValue,
   Heading,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { FiSun } from "@react-icons/all-files/fi/FiSun";
 import { FiMoon } from "@react-icons/all-files/fi/FiMoon";
-import { useMediaQuery } from "react-responsive";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 import { BiHome } from "@react-icons/all-files/bi/BiHome";
 import { BsPerson } from "@react-icons/all-files/bs/BsPerson";
@@ -29,7 +29,7 @@ import { HiOutlineDocument } from "@react-icons/all-files/hi/HiOutlineDocument";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const isTouchingLogo = useMediaQuery({ query: "(max-width: 750px)" });
+  const [isTouchingLogo] = useMediaQuery("(max-width: 750px)");
 
   const itemBorderColor = useColorModeValue(
     "1px solid rgb(0 0 0 / 15%)",

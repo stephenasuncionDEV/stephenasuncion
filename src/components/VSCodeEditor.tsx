@@ -12,12 +12,12 @@ import {
   Text,
   VStack,
   useColorModeValue,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { RiRadioButtonLine } from "@react-icons/all-files/ri/RiRadioButtonLine";
 import { SiJavascript } from "@react-icons/all-files/si/SiJavascript";
 import { HiCode } from "@react-icons/all-files/hi/HiCode";
 import { VscJson } from "@react-icons/all-files/vsc/VscJson";
-import { useMediaQuery } from "react-responsive";
 
 export interface EditorLineProps {
   number?: number;
@@ -81,7 +81,7 @@ const VSCodeEditor: FC<VSCodeEditorProps> = ({
     "1px solid rgb(0 0 0 / 15%)",
     "1px solid rgb(255 255 255 / 15%)",
   );
-  const isCollapseHeader = useMediaQuery({ query: "(max-width: 403px)" });
+  const [isCollapseHeader] = useMediaQuery("(max-width: 403px)");
 
   const headerColor = useColorModeValue("#1a202c", "#959da5");
 
