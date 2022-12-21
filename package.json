@@ -40,7 +40,7 @@
     "@react-icons/all-files": "^4.1.0",
     "@react-three/drei": "^9.47.1",
     "@react-three/fiber": "^8.9.1",
-    "framer-motion": "^7",
+    "framer-motion": "^8",
     "next": "13.0.7",
     "octokit": "^2.0.10",
     "qs": "^6.11.0",
