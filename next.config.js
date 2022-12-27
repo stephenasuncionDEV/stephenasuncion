@@ -21,6 +21,9 @@ const nextConfig = withBundleAnalyzer({
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     domains: ["localhost", "stephenasuncion.dev", "via.placeholder.com"],
   },
+  experimental: {
+    esmExternals: false,
+  },
 });
 
 module.exports = nextConfig;
