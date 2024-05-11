@@ -16,7 +16,7 @@ const Home: NextPage = () => {
             className="h-[16px] "
           >
             <motion.button
-              whileHover={{ scale: 1.1, y: -5, color: "hsl(var(--primary))" }}
+              whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.3 }}
             >
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
             className="h-[16px]"
           >
             <motion.button
-              whileHover={{ scale: 1.1, y: -5, color: "hsl(var(--primary))" }}
+              whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.3 }}
             >
