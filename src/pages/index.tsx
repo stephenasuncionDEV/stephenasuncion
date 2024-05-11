@@ -37,17 +37,21 @@ const Home: NextPage = () => {
             </motion.button>
           </a>
         </div>
-        <Card className="mt-4 w-full">
-          <CardContent className="text-sm text-white/40">
-            Tech has been my thing since forever. I mean, I was tinkering with
-            code at ten! It all kicked off with simple batch scripts, but then I
-            hit gold with Visual Basic and C#. College took me deeper into the
-            world of software, from C++ memory hacks to full-stack web wizardry.
-            Now I&apos;m in Surrey, BC, Canada, still powered by my passion for
-            problem-solving and creating cutting-edge solutions. Let&apos;s
-            build something awesome together!
+        <p className="mt-6 text-sm text-white/40">
+          Tech has been my thing since forever. I mean, I was playing around
+          with code at ten! It all kicked off with simple batch scripts, then I
+          loved creating window forms with Visual Basic and C#. While I was in
+          highschool I was doing C++ memory manipulations, trying to hack the
+          newest/oldest game out there. College took me deeper into the world of
+          web development. Now I&apos;m in Surrey, BC, Canada, still powered by
+          my passion for problem-solving and creating cutting-edge solutions.
+          Let&apos;s build something awesome together!
+        </p>
+        {/* <Card className="mt-4 w-full">
+          <CardContent >
+            
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </div>
   );
