@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { NextSeo, ArticleJsonLd } from "next-seo";
 // import { Card, CardContent } from "@/components/ui/card";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
@@ -7,6 +8,19 @@ import { motion } from "framer-motion";
 const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background supports-[height:100cqh]:min-h-[100cqh] supports-[height:100svh]:min-h-[100svh]">
+      <NextSeo canonical="https://stephenasuncion.dev/" />
+      <ArticleJsonLd
+        type="Article"
+        url="https://stephenasuncion.dev/"
+        title="Stephen Asuncion"
+        description="Stephen Asuncion's portfolio website."
+        datePublished="2024-05-10T09:50:00Z"
+        dateModified="2024-05-10T09:50:00Z"
+        authorName="Stephen Asuncion"
+        publisherName="Stephen Asuncion"
+        publisherLogo={`${process.env.NEXT_PUBLIC_BASE_URL}/assets/images/icon-60x60.png`}
+        images={[`${process.env.NEXT_PUBLIC_BASE_URL}/assets/images/og.png`]}
+      />
       <div className="flex w-full max-w-[874px] flex-col">
         <div className="flex items-center gap-4">
           <h1 className="select-none text-xl font-bold">Stephen Asuncion</h1>

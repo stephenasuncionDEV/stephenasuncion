@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /api/
+Disallow: /404
+
+# Host
+Host: https://stephenasuncion.dev/
+
+# Sitemaps
+Sitemap: https://stephenasuncion.dev/sitemap.xml
