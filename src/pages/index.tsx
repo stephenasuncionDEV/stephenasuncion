@@ -57,9 +57,9 @@ const Home: NextPage = () => {
           loved creating windows forms with Visual Basic and C#. While I was in
           highschool I was doing C++ memory manipulations, trying to hack the
           newest/oldest game out there. College took me deeper into the world of
-          web development. Now I&apos;m in Surrey, BC, Canada, still powered by
-          my passion for problem-solving and creating cutting-edge solutions.
-          Let&apos;s build something awesome together!
+          full-stack web development. Now I&apos;m in Surrey, BC, Canada, still
+          powered by my passion for problem-solving and creating cutting-edge
+          solutions. Let&apos;s build something awesome together!
         </p>
         {/* <Card className="mt-4 w-full">
           <CardContent >
