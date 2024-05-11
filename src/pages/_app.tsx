@@ -14,7 +14,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <DefaultSeo
           title="Stephen Asuncion"
           description="Stephen Asuncion's portfolio website."
-          themeColor="#EBA300"
+          themeColor="#6D28D9"
           openGraph={{
             siteName: "Stephen Asuncion",
             type: "website",
