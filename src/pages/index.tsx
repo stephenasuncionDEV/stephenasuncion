@@ -54,7 +54,7 @@ const Home: NextPage = () => {
         <p className="mt-6 text-sm text-white/40">
           Tech has been my thing since forever. I mean, I was playing around
           with code at ten! It all kicked off with simple batch scripts, then I
-          loved creating window forms with Visual Basic and C#. While I was in
+          loved creating windows forms with Visual Basic and C#. While I was in
           highschool I was doing C++ memory manipulations, trying to hack the
           newest/oldest game out there. College took me deeper into the world of
           web development. Now I&apos;m in Surrey, BC, Canada, still powered by
