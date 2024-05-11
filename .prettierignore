@@ -1,10 +1,12 @@
 node_modules/
 build/
+dist/
 coverage/
 cache/
 .next/
-
+.turbo/
+build.profile
 next-env.d.ts
 *.yml
-*.md
-*.glb
+pnpm-lock.yaml
+.vercel/

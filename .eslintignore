@@ -1,9 +1,0 @@
-node_modules/
-build/
-coverage/
-cache/
-.next/
-
-next-env.d.ts
-*.yml
-*.glb

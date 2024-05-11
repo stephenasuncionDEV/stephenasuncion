@@ -1,41 +1,21 @@
-import { NextPage } from "next";
-import Link from "next/link";
-import { Box, Flex, Text, Button } from "@chakra-ui/react";
-import Navbar from "@/components/Navbar";
-import Meta from "@/components/Meta";
+import type { NextPage } from "next";
+import { NextSeo } from "next-seo";
+import NextLink from "next/link";
+import NextImage from "next/image";
+import IconImage from "@/assets/images/icon.png";
 
-const NotFound: NextPage = () => {
+const Error: NextPage = () => {
   return (
-    <Box>
-      <Meta title="Stephen Asuncion" />
-      <main
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Flex maxW="1200px" w="full" flex="1" flexDir="column">
-          <Navbar />
-          <Flex
-            flexDir="column"
-            alignItems="center"
-            justifyContent="center"
-            flex="1"
-          >
-            <Text fontSize="32pt">404</Text>
-            <Text fontSize="10pt">This page could not be found</Text>
-            <Link href="/" passHref shallow>
-              <Button size="sm" mt="1.5em">
-                Go Back
-              </Button>
-            </Link>
-          </Flex>
-        </Flex>
-      </main>
-    </Box>
+    <div className="flex min-h-screen flex-col items-center justify-center gap-y-8 p-8">
+      <NextSeo title="404" noindex={true} nofollow={true} />
+      <NextLink href="/">
+        <NextImage src={IconImage} alt="Icon" width={250} height={250} />
+      </NextLink>
+      <p className="text-center text-xl font-normal">
+        Cannot find the page you are looking for.
+      </p>
+    </div>
   );
 };
 
-export default NotFound;
+export default Error;
