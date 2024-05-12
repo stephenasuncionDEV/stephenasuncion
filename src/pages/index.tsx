@@ -3,6 +3,7 @@ import { NextSeo, ArticleJsonLd } from "next-seo";
 // import { Card, CardContent } from "@/components/ui/card";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
+import { FaEnvelope } from "@react-icons/all-files/fa/FaEnvelope";
 import { motion } from "framer-motion";
 
 const Home: NextPage = () => {
@@ -50,16 +51,30 @@ const Home: NextPage = () => {
               <FaLinkedin />
             </motion.button>
           </a>
+          <a
+            href="mailto:stephenasuncion@outlook.com"
+            target="_blank"
+            className="h-[16px]"
+          >
+            <motion.button
+              whileHover={{ scale: 1.1, y: -5 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+            >
+              <FaEnvelope />
+            </motion.button>
+          </a>
         </div>
         <p className="mt-6 text-sm text-white/40">
           Tech has been my thing since forever. I mean, I was playing around
-          with code at ten! It all kicked off with simple batch scripts, then I
-          loved creating windows forms with Visual Basic and C#. While I was in
-          highschool I was doing C++ memory manipulations, trying to hack the
-          newest/oldest game out there. College took me deeper into the world of
-          full-stack web development. Now I&apos;m in Vancouver, Canada, still
-          powered by my passion for problem-solving and creating cutting-edge
-          solutions. Let&apos;s build something awesome together!
+          with code at ten! It all kicked off with simple batch scripts. During
+          elementary school, I loved creating Windows forms with Visual Basic
+          and C#. While I was in high school, I was doing C++ memory
+          manipulations, trying to hack the newest or oldest game out there.
+          College took me deeper into the world of full-stack web development.
+          Now I&apos;m in Vancouver, Canada, still powered by my passion for
+          problem-solving and creating cutting-edge solutions. Let&apos;s build
+          something awesome together!
         </p>
         {/* <Card className="mt-4 w-full">
           <CardContent >
