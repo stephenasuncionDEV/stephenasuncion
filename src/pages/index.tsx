@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background supports-[height:100cqh]:min-h-[100cqh] supports-[height:100svh]:min-h-[100svh]">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-background p-6 supports-[height:100cqh]:min-h-[100cqh] supports-[height:100svh]:min-h-[100svh]">
       <NextSeo canonical="https://stephenasuncion.dev/" />
       <ArticleJsonLd
         type="Article"
