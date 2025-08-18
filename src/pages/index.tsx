@@ -1,10 +1,36 @@
+import type { SVGIcon } from "@/types/common";
+
 import type { NextPage } from "next";
-import { NextSeo, ArticleJsonLd } from "next-seo";
-// import { Card, CardContent } from "@/components/ui/card";
+import { ArticleJsonLd, NextSeo } from "next-seo";
+
+import { FaEnvelope } from "@react-icons/all-files/fa/FaEnvelope";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
-import { FaEnvelope } from "@react-icons/all-files/fa/FaEnvelope";
 import { motion } from "framer-motion";
+
+type SocialLink = {
+  id: "github" | "linkedin" | "email";
+  href: string;
+  icon: SVGIcon;
+};
+
+const socialLinkArr: SocialLink[] = [
+  {
+    id: "github",
+    href: "https://github.com/stephenasuncionDEV",
+    icon: FaGithub,
+  },
+  {
+    id: "linkedin",
+    href: "https://www.linkedin.com/in/stephenasuncion/",
+    icon: FaLinkedin,
+  },
+  {
+    id: "email",
+    href: "mailto:stephenasuncion@outlook.com",
+    icon: FaEnvelope,
+  },
+];
 
 const Home: NextPage = () => {
   return (
@@ -19,51 +45,24 @@ const Home: NextPage = () => {
         dateModified="2024-05-10T09:50:00Z"
         authorName="Stephen Asuncion"
         publisherName="Stephen Asuncion"
-        publisherLogo={`${process.env.NEXT_PUBLIC_BASE_URL}/assets/images/icon-60x60.png`}
-        images={[`${process.env.NEXT_PUBLIC_BASE_URL}/assets/images/og.png`]}
+        publisherLogo={`${process.env.NEXT_PUBLIC_HOST}/assets/images/icon-60x60.png`}
+        images={[`${process.env.NEXT_PUBLIC_HOST}/assets/images/og.png`]}
       />
       <div className="flex w-full max-w-[874px] flex-col">
         <div className="flex items-center gap-4">
           <h1 className="select-none text-xl font-bold">Stephen Asuncion</h1>
-          <a
-            href="https://github.com/stephenasuncionDEV"
-            target="_blank"
-            className="h-[16px] "
-          >
-            <motion.button
-              whileHover={{ scale: 1.1, y: -5 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-            >
-              <FaGithub />
-            </motion.button>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/stephenasuncion/"
-            target="_blank"
-            className="h-[16px]"
-          >
-            <motion.button
-              whileHover={{ scale: 1.1, y: -5 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-            >
-              <FaLinkedin />
-            </motion.button>
-          </a>
-          <a
-            href="mailto:stephenasuncion@outlook.com"
-            target="_blank"
-            className="h-[16px]"
-          >
-            <motion.button
-              whileHover={{ scale: 1.1, y: -5 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-            >
-              <FaEnvelope />
-            </motion.button>
-          </a>
+          {socialLinkArr.map((l, i) => (
+            <a key={i} href={l.href} target="_blank" className="h-[16px]">
+              <motion.button
+                className="cursor-pointer"
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+              >
+                <l.icon />
+              </motion.button>
+            </a>
+          ))}
         </div>
         <p className="mt-6 text-sm text-white/40">
           Tech has been my thing since forever. I mean, I was playing around
@@ -76,11 +75,6 @@ const Home: NextPage = () => {
           problem-solving and creating cutting-edge solutions. Let&apos;s build
           something awesome together!
         </p>
-        {/* <Card className="mt-4 w-full">
-          <CardContent >
-            
-          </CardContent>
-        </Card> */}
       </div>
     </div>
   );

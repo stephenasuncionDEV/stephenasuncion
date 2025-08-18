@@ -1,7 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+
+import { createContext } from "@/common/trpc/context";
+import { appRouter } from "@/common/trpc/routers/_app";
+
 import { createNextApiHandler } from "@trpc/server/adapters/next";
-import { appRouter } from "@/utils/trpc/routers/_app";
-import { createContext } from "@/utils/trpc/context";
+
+export const config = {
+  maxDuration: 200,
+};
 
 const nextApiHandler = createNextApiHandler({
   router: appRouter,

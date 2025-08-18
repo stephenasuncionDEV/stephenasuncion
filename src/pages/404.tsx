@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
-import NextLink from "next/link";
 import NextImage from "next/image";
+import NextLink from "next/link";
+
 import IconImage from "@/assets/images/icon.png";
 
 const Error: NextPage = () => {

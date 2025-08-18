@@ -9,10 +9,20 @@ module.exports = {
     "node_modules",
     "dist",
     ".next",
-    "build",
     "coverage",
     "cache",
     "next-env.d.ts",
     "analyze",
   ],
+  rules: {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        caughtErrorsIgnorePattern: "^_",
+      },
+    ],
+    "@next/next/no-img-element": "off",
+  },
 };

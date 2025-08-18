@@ -9,7 +9,6 @@ analyze
 build.profile
 
 # production
-build
 dist
 
 # debug

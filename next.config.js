@@ -11,11 +11,16 @@ const nextConfig = withBundleAnalyzer({
   images: {
     remotePatterns: [
       {
+        protocol: "https",
+        hostname: "stephenasuncion.dev",
+      },
+      {
         hostname: "localhost",
-        port: "3000",
+        port: "3005",
       },
     ],
   },
+  transpilePackages: ["geist"],
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

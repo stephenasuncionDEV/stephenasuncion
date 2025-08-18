@@ -7,9 +7,6 @@
     "source.fixAll.format": "explicit"
   },
   "editor.tabSize": 2,
-  "files.associations": {
-    "*.mdx": "markdown"
-  },
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
   }

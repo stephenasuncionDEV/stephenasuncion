@@ -1,7 +1,9 @@
-import { type ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
-import { PostHogProvider } from "posthog-js/react";
+
+import { type ReactNode, useEffect } from "react";
+
 import posthog from "posthog-js";
+import { PostHogProvider } from "posthog-js/react";
 
 interface PosthogProviderProps {
   children: ReactNode;

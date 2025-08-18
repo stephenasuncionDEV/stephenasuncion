@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { errorSlice } from "./error";
+
+import { coreSlice } from "./core";
 
 const store = configureStore({
   reducer: {
-    error: errorSlice.reducer,
+    core: coreSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

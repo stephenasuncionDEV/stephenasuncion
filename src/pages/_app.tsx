@@ -1,10 +1,15 @@
-import type { AppProps } from "next/app";
 import { DefaultSeo } from "next-seo";
+import type { AppProps } from "next/app";
+
+import { PosthogProvider } from "@/providers/PosthogProvider";
+
+import { queryClient, trpc } from "@/common/trpc";
+
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Provider as ReduxProvider } from "react-redux";
-import { PosthogProvider } from "@/providers/PosthogProvider";
-import { queryClient, trpc } from "@/utils/trpc";
+
 import store from "@/store/index";
+
 import "@/styles/globals.scss";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -20,10 +25,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             type: "website",
             title: "Stephen Asuncion",
             description: "Stephen Asuncion's portfolio website.",
-            url: process.env.NEXT_PUBLIC_BASE_URL,
+            url: process.env.NEXT_PUBLIC_HOST,
             images: [
               {
-                url: `${process.env.NEXT_PUBLIC_BASE_URL}/assets/images/og.png`,
+                url: `${process.env.NEXT_PUBLIC_HOST}/assets/images/og.png`,
                 width: 1200,
                 height: 630,
                 alt: "OG Image",
