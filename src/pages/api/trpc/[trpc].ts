@@ -6,7 +6,7 @@ import { appRouter } from "@/common/trpc/routers/_app";
 import { createNextApiHandler } from "@trpc/server/adapters/next";
 
 export const config = {
-  maxDuration: 200,
+  maxDuration: 60,
 };
 
 const nextApiHandler = createNextApiHandler({

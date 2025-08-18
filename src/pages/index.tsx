@@ -6,7 +6,7 @@ import { ArticleJsonLd, NextSeo } from "next-seo";
 import { FaEnvelope } from "@react-icons/all-files/fa/FaEnvelope";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 type SocialLink = {
   id: "github" | "linkedin" | "email";
