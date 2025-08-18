@@ -1,3 +1,3 @@
 # Stephen Asuncion
 
-> My personal website
+> My personal website.
