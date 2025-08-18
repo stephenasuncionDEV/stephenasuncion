@@ -21,7 +21,6 @@ export const trpc = createTRPCNext<AppRouter>({
 
     return {
       queryClient,
-      transformer: superjson,
       links: [
         loggerLink({
           enabled: (opts) =>
@@ -33,9 +32,11 @@ export const trpc = createTRPCNext<AppRouter>({
             return Boolean(op.context.skipBatch);
           },
           true: httpLink({
+            transformer: superjson,
             url,
           }),
           false: httpBatchLink({
+            transformer: superjson,
             url,
           }),
         }),
@@ -43,6 +44,7 @@ export const trpc = createTRPCNext<AppRouter>({
     };
   },
   ssr: false,
+  transformer: superjson,
 });
 
 export type RouterInputs = inferRouterInputs<AppRouter>;
