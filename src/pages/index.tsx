@@ -100,7 +100,7 @@ const timelineArr: {
     title: "Vancouver, Canada",
     description:
       "Now based in Vancouver, I continue to grow as a developer, solving real-world problems and building solutions.",
-    tags: ["Full-Stack Web Development", "Problem Solving", "Innovation"],
+    tags: ["Full-Stack Web Development"],
     icon: FaMapMarkerAlt,
   },
 ];
