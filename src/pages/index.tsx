@@ -6,8 +6,7 @@ import { ArticleJsonLd, NextSeo } from "next-seo";
 import { useMemo, useState } from "react";
 
 import cn from "@/common/cn";
-
-// import { trpc } from "@/common/trpc";
+import { trpc } from "@/common/trpc";
 
 import { FaCode } from "@react-icons/all-files/fa/FaCode";
 import { FaEnvelope } from "@react-icons/all-files/fa/FaEnvelope";
@@ -16,9 +15,10 @@ import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
 import { FaMapMarkerAlt } from "@react-icons/all-files/fa/FaMapMarkerAlt";
 import { FaPalette } from "@react-icons/all-files/fa/FaPalette";
 import { FaReact } from "@react-icons/all-files/fa/FaReact";
+import { FaSpotify } from "@react-icons/all-files/fa/FaSpotify";
 import { FaTerminal } from "@react-icons/all-files/fa/FaTerminal";
 import { FaWindows } from "@react-icons/all-files/fa/FaWindows";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
 import { Badge } from "@/components/Core/badge";
 import { Button } from "@/components/Core/button";
@@ -221,12 +221,10 @@ const colorSchemeArr: {
 const Home: NextPage = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>("blue");
 
-  // const spotifyPlayback = trpc.core.getSpotifyPlayback.useQuery(undefined, {
-  //   refetchInterval: 10000,
-  //   refetchOnWindowFocus: true,
-  // });
-
-  // console.log("Spotify Playback Data:", spotifyPlayback.data);
+  const spotifyPlayback = trpc.core.getSpotifyPlayback.useQuery(undefined, {
+    refetchInterval: 10000,
+    refetchOnWindowFocus: true,
+  });
 
   const curColorScheme = useMemo(() => {
     return (
@@ -310,6 +308,25 @@ const Home: NextPage = () => {
               </motion.a>
             ))}
           </div>
+          <AnimatePresence>
+            {spotifyPlayback.data && spotifyPlayback.data.isPlaying && (
+              <motion.div
+                className="flex items-center gap-3 justify-center"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <FaSpotify className="text-green-400 w-5 h-5 shrink-0" />
+                <p>
+                  Currently Listening to {spotifyPlayback.data.song.name} by{" "}
+                  {spotifyPlayback.data.song.artists
+                    .map((a) => a.name)
+                    .join(", ")}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         <div
           className={cn(

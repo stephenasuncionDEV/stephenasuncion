@@ -1,3 +1,4 @@
+import { PlaybackState } from "@spotify/web-api-ts-sdk";
 import axios from "axios";
 
 import { router } from "../header";
@@ -62,7 +63,32 @@ export const coreRouter = router({
       });
     }
 
-    return await ctx.spotify(spotifyData).player.getCurrentlyPlayingTrack();
+    const currentlyPlayingTrack = (await ctx
+      .spotify(spotifyData)
+      .player.getCurrentlyPlayingTrack()) as PlaybackState & {
+      item: PlaybackState["item"] & {
+        artists: { name: string; href: string }[];
+        album: { name: string; images: { url: string }[] };
+      };
+    };
+
+    return {
+      song: {
+        name: currentlyPlayingTrack.item.name,
+        artists: currentlyPlayingTrack.item.artists.map((a) => ({
+          name: a.name,
+          href: a.href,
+        })),
+        album: {
+          name: currentlyPlayingTrack.item.album.name,
+          images: currentlyPlayingTrack.item.album.images,
+        },
+        durationMs: currentlyPlayingTrack.item.duration_ms,
+        progressMs: currentlyPlayingTrack.progress_ms,
+        isExplicit: currentlyPlayingTrack.item.explicit,
+      },
+      isPlaying: currentlyPlayingTrack.is_playing,
+    };
   }),
 });
 

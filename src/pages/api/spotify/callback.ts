@@ -53,9 +53,7 @@ export default async function handler(
       },
     });
 
-    return res.status(200).json({
-      success: true,
-    });
+    return res.redirect("/");
   } catch (err) {
     const msg = errorHandler(err);
     return res.status(500).json({
