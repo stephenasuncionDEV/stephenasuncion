@@ -239,7 +239,7 @@ const Home: NextPage = () => {
   return (
     <div
       className={cn(
-        "relative flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 supports-[height:100cqh]:min-h-[100cqh] supports-[height:100svh]:min-h-[100svh]",
+        "relative flex min-h-screen flex-col overflow-hidden items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 supports-[height:100cqh]:min-h-[100cqh] supports-[height:100svh]:min-h-[100svh]",
         curColorScheme.bg,
       )}
     >
@@ -470,11 +470,32 @@ const Home: NextPage = () => {
         </div>
       </footer>
       {Object.values(cursors).map((c, i) => (
-        <FaMousePointer
+        <div
           key={i}
-          className="absolute"
-          style={{ left: c.x, top: c.y, color: c.color }}
-        />
+          className="absolute pointer-events-none"
+          style={{
+            left: Math.min(
+              c.x * document.documentElement.scrollWidth,
+              document.documentElement.scrollWidth - 10,
+            ),
+            top: Math.min(
+              c.y * document.documentElement.scrollHeight,
+              document.documentElement.scrollHeight - 10,
+            ),
+          }}
+        >
+          <div className="relative">
+            <FaMousePointer
+              className="w-5 h-5 shrink-0"
+              style={{
+                color: c.color,
+              }}
+            />
+            <span className="absolute left-6 top-0 text-xs text-slate-300">
+              {c.id.slice(0, 6)}
+            </span>
+          </div>
+        </div>
       ))}
     </div>
   );

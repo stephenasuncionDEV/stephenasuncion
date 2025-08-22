@@ -9,7 +9,10 @@ type Cursor = {
   x: number;
   y: number;
   color: string;
+  lastSeen: number;
 };
+
+const MAX_IDLE_TIME_MS = 30000;
 
 export const useLiveCursor = () => {
   const [userData, setUserData] = useState<{
@@ -41,7 +44,10 @@ export const useLiveCursor = () => {
     channel.on("broadcast", { event: "cursor" }, ({ payload }) => {
       setCursors((prev) => ({
         ...prev,
-        [payload.id]: payload,
+        [payload.id]: {
+          ...payload,
+          lastSeen: Date.now(),
+        },
       }));
     });
 
@@ -50,16 +56,21 @@ export const useLiveCursor = () => {
     const handleMove = (e: MouseEvent) => {
       const cursor = {
         id: userData.id,
-        x: e.clientX,
-        y: e.clientY,
+        x: (e.clientX + window.scrollX) / document.documentElement.scrollWidth,
+        y: (e.clientY + window.scrollY) / document.documentElement.scrollHeight,
         color: userData.color,
       };
+
       channel.send({
         type: "broadcast",
         event: "cursor",
         payload: cursor,
       });
-      setCursors((prev) => ({ ...prev, [userData.id]: cursor }));
+
+      setCursors((prev) => ({
+        ...prev,
+        [userData.id]: { ...cursor, lastSeen: Date.now() },
+      }));
     };
 
     const handleDisconnect = () => {
@@ -75,6 +86,29 @@ export const useLiveCursor = () => {
       channel.unsubscribe();
     };
   }, [userData]);
+
+  // remove cursor that is idle
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCursors((prev) => {
+        const now = Date.now();
+        return Object.fromEntries(
+          Object.entries(prev).filter(
+            ([, cursor]) => now - cursor.lastSeen < MAX_IDLE_TIME_MS,
+          ),
+        );
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // update cursor positions on window resize
+  useEffect(() => {
+    const handleResize = () => setCursors((prev) => ({ ...prev }));
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return {
     cursors: Object.fromEntries(
