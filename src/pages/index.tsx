@@ -5,6 +5,8 @@ import { ArticleJsonLd, NextSeo } from "next-seo";
 
 import { useMemo, useState } from "react";
 
+import { useLiveCursor } from "@/hooks/realtime/useLiveCursor";
+
 import cn from "@/common/cn";
 import { trpc } from "@/common/trpc";
 
@@ -13,6 +15,7 @@ import { FaEnvelope } from "@react-icons/all-files/fa/FaEnvelope";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
 import { FaMapMarkerAlt } from "@react-icons/all-files/fa/FaMapMarkerAlt";
+import { FaMousePointer } from "@react-icons/all-files/fa/FaMousePointer";
 import { FaPalette } from "@react-icons/all-files/fa/FaPalette";
 import { FaReact } from "@react-icons/all-files/fa/FaReact";
 import { FaSpotify } from "@react-icons/all-files/fa/FaSpotify";
@@ -219,6 +222,7 @@ const colorSchemeArr: {
 ];
 
 const Home: NextPage = () => {
+  const { cursors } = useLiveCursor();
   const [colorScheme, setColorScheme] = useState<ColorScheme>("blue");
 
   const spotifyPlayback = trpc.core.getSpotifyPlayback.useQuery(undefined, {
@@ -235,7 +239,7 @@ const Home: NextPage = () => {
   return (
     <div
       className={cn(
-        "flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 supports-[height:100cqh]:min-h-[100cqh] supports-[height:100svh]:min-h-[100svh]",
+        "relative flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 supports-[height:100cqh]:min-h-[100cqh] supports-[height:100svh]:min-h-[100svh]",
         curColorScheme.bg,
       )}
     >
@@ -465,6 +469,13 @@ const Home: NextPage = () => {
           </div>
         </div>
       </footer>
+      {Object.values(cursors).map((c, i) => (
+        <FaMousePointer
+          key={i}
+          className="absolute"
+          style={{ left: c.x, top: c.y, color: c.color }}
+        />
+      ))}
     </div>
   );
 };
