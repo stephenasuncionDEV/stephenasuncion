@@ -7,7 +7,7 @@ import { publicProcedure } from "../header";
 export const coreRouter = router({
   getSpotifyPlayback: publicProcedure.query(async ({ ctx }) => {
     // get spotify token data
-    const spotifyData = await ctx.prisma.spotify.findUnique({
+    let spotifyData = await ctx.prisma.spotify.findUnique({
       where: {
         id: "68a2a6ddd29a4b03ad668abb",
       },
@@ -51,7 +51,7 @@ export const coreRouter = router({
 
       const { access_token, refresh_token, expires_in } = refreshData;
 
-      await ctx.prisma.spotify.update({
+      spotifyData = await ctx.prisma.spotify.update({
         where: {
           id: "68a2a6ddd29a4b03ad668abb",
         },
