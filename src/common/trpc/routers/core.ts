@@ -65,12 +65,18 @@ export const coreRouter = router({
 
     const currentlyPlayingTrack = (await ctx
       .spotify(spotifyData)
-      .player.getCurrentlyPlayingTrack()) as PlaybackState & {
-      item: PlaybackState["item"] & {
-        artists: { name: string; href: string }[];
-        album: { name: string; images: { url: string }[] };
-      };
-    };
+      .player.getCurrentlyPlayingTrack()) as
+      | (PlaybackState & {
+          item: PlaybackState["item"] & {
+            artists: { name: string; href: string }[];
+            album: { name: string; images: { url: string }[] };
+          };
+        })
+      | null;
+
+    if (!currentlyPlayingTrack) {
+      return null;
+    }
 
     return {
       song: {

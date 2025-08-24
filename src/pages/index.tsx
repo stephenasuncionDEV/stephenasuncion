@@ -3,13 +3,14 @@ import type { SVGIcon } from "@/types/common";
 import type { NextPage } from "next";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useLiveCursor } from "@/hooks/realtime/useLiveCursor";
 
 import cn from "@/common/cn";
 import { trpc } from "@/common/trpc";
 
+import { FaArrowUp } from "@react-icons/all-files/fa/FaArrowUp";
 import { FaCode } from "@react-icons/all-files/fa/FaCode";
 import { FaEnvelope } from "@react-icons/all-files/fa/FaEnvelope";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
@@ -224,6 +225,9 @@ const colorSchemeArr: {
 const Home: NextPage = () => {
   const { cursors } = useLiveCursor();
   const [colorScheme, setColorScheme] = useState<ColorScheme>("blue");
+  const [scrollBtnBottom, setScrollBtnBottom] = useState(32);
+  const [isShowScrollTop, setIsShowScrollTop] = useState(false);
+  const footerRef = useRef<HTMLElement | null>(null);
 
   const spotifyPlayback = trpc.core.getSpotifyPlayback.useQuery(undefined, {
     refetchInterval: 10000,
@@ -235,6 +239,26 @@ const Home: NextPage = () => {
       colorSchemeArr.find((c) => c.id === colorScheme) || colorSchemeArr[0]
     );
   }, [colorScheme]);
+
+  // check if scrolled and overlap with footer
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const footerEl = footerRef.current;
+
+      setIsShowScrollTop(scrollY > 300);
+
+      if (footerEl) {
+        const footerRect = footerEl.getBoundingClientRect();
+        const overlap = windowHeight - footerRect.top;
+        setScrollBtnBottom(overlap > 0 ? overlap + 18 : 32);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div
@@ -294,6 +318,7 @@ const Home: NextPage = () => {
                 key={i}
                 href={l.href}
                 target="_blank"
+                aria-label={`Visit my ${l.label}`}
                 whileHover={{ y: -5 }}
                 whileTap={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -316,6 +341,7 @@ const Home: NextPage = () => {
             {spotifyPlayback.data && spotifyPlayback.data.isPlaying && (
               <motion.div
                 className="flex items-center gap-3 justify-center"
+                aria-live="polite"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -345,7 +371,7 @@ const Home: NextPage = () => {
           )}
         ></div>
       </section>
-      <section id="timeline" className="px-6 pt-16 pb-20">
+      <section id="timeline" className="px-6 pt-16 pb-24">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
             The Story So Far
@@ -422,6 +448,7 @@ const Home: NextPage = () => {
         </div>
       </section>
       <footer
+        ref={footerRef}
         className={cn(
           "px-6 py-8 border-t border-slate-700 w-full",
           curColorScheme.border,
@@ -436,6 +463,7 @@ const Home: NextPage = () => {
               {colorSchemeArr.map((c, i) => (
                 <motion.button
                   key={i}
+                  aria-label={`Change Color Scheme to ${c.id}`}
                   className={cn(
                     "cursor-pointer disabled:cursor-default",
                     c.accent,
@@ -457,6 +485,7 @@ const Home: NextPage = () => {
                 <a key={i} href={l.href} target="_blank">
                   <motion.button
                     className="cursor-pointer"
+                    aria-label={`Visit my ${l.label}`}
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.9 }}
                     transition={{ duration: 0.3 }}
@@ -497,6 +526,42 @@ const Home: NextPage = () => {
           </div>
         </div>
       ))}
+      <div className="fixed top-4 right-4 z-10">
+        <a
+          href="https://github.com/stephenasuncionDEV/stephenasuncion"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group/github-source"
+        >
+          <motion.button
+            className="cursor-pointer w-12 h-12 bg-[#22262A] shadow flex justify-center items-center rounded-full"
+            aria-label="View Source on GitHub"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+          >
+            <FaGithub className="text-white text-xl" />
+          </motion.button>
+          <div className="absolute top-1/2 duration-300 -translate-y-1/2 shadow right-[100%] w-max px-3 py-1 mr-4 bg-[#22262A] text-white text-xs rounded opacity-0 group-hover/github-source:opacity-100 transition-opacity">
+            View Source
+          </div>
+        </a>
+      </div>
+      <AnimatePresence>
+        {isShowScrollTop && (
+          <motion.button
+            className="fixed cursor-pointer bottom-8 left-1/2 -translate-x-1/2 w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/25 text-white rounded-full shadow-[0_4px_30px_rgba(0,0,0,0.1)] flex justify-center items-center z-50 hover:bg-white/20 hover:shadow-[0_8px_40px_rgba(0,0,0,0.15)] transition-all duration-300"
+            style={{ bottom: scrollBtnBottom }}
+            aria-label="Scroll to top"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+          >
+            <FaArrowUp />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
