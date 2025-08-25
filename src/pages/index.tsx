@@ -534,7 +534,7 @@ const Home: NextPage = () => {
           className="group/github-source"
         >
           <motion.button
-            className="cursor-pointer w-12 h-12 bg-[#22262A] shadow flex justify-center items-center rounded-full"
+            className="cursor-pointer w-12 h-12 bg-white/10 backdrop-blur-lg hover:bg-white/20 border border-white/25 shadow-[0_4px_30px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.15)] flex justify-center items-center rounded-full"
             aria-label="View Source on GitHub"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -542,7 +542,7 @@ const Home: NextPage = () => {
           >
             <FaGithub className="text-white text-xl" />
           </motion.button>
-          <div className="absolute top-1/2 duration-300 -translate-y-1/2 shadow right-[100%] w-max px-3 py-1 mr-4 bg-[#22262A] text-white text-xs rounded opacity-0 group-hover/github-source:opacity-100 transition-opacity">
+          <div className="absolute top-1/2 duration-300 -translate-y-1/2 shadow-[0_4px_30px_rgba(0,0,0,0.1)] right-[100%] hover:shadow-[0_8px_40px_rgba(0,0,0,0.15)] border border-white/25 w-max px-3 py-1 mr-4 bg-white/10 backdrop-blur-lg hover:bg-white/20 text-white text-xs rounded opacity-0 group-hover/github-source:opacity-100 transition-all duration-300">
             View Source
           </div>
         </a>
