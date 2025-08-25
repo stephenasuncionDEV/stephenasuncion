@@ -18,13 +18,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <ReduxProvider store={store}>
         <DefaultSeo
           title="Stephen Asuncion"
-          description="Stephen Asuncion's portfolio website."
+          description="Passionate about turning ideas into real-world solutions with years of experience. From grade school batch scripts to enterprise-level applications, I bring creativity and technical expertise to every project."
           themeColor="#6D28D9"
           openGraph={{
             siteName: "Stephen Asuncion",
             type: "website",
             title: "Stephen Asuncion",
-            description: "Stephen Asuncion's portfolio website.",
+            description:
+              "Passionate about turning ideas into real-world solutions with years of experience. From grade school batch scripts to enterprise-level applications, I bring creativity and technical expertise to every project.",
             url: process.env.NEXT_PUBLIC_HOST,
             images: [
               {
