@@ -298,7 +298,7 @@ const Home: NextPage = () => {
                 curColorScheme.text1,
               )}
             >
-              Full-Stack Developer & Problem Solver
+              Full-Stack Developer
             </p>
           </div>
           <p
