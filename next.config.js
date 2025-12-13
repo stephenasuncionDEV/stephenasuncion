@@ -20,6 +20,19 @@ const nextConfig = withBundleAnalyzer({
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/ph/static/:path*",
+        destination: "https://us-assets.i.posthog.com/static/:path*",
+      },
+      {
+        source: "/ph/:path*",
+        destination: "https://us.i.posthog.com/:path*",
+      },
+    ];
+  },
+  skipTrailingSlashRedirect: true,
   transpilePackages: ["geist"],
   webpack(config) {
     config.module.rules.push({
