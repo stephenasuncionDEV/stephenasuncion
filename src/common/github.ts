@@ -32,16 +32,23 @@ export type GitHubStats = {
     }[];
   } | null;
   languages: { name: string; repositories: number; percentage: number }[];
+  languageScope: "public" | "accessible";
   updatedAt: string | null;
   stale: boolean;
   source: "GitHub";
   sourceUrl: string;
 };
 
-type Repository = { stars: number; fork: boolean; language: string | null };
+type Repository = {
+  stars: number;
+  fork: boolean;
+  private: boolean;
+  language: string | null;
+};
 type ProfileResult = {
   profile: NonNullable<GitHubStats["profile"]>;
   languages: GitHubStats["languages"];
+  languageScope: GitHubStats["languageScope"];
 };
 
 const countSchema = z.number().int().nonnegative();
@@ -50,6 +57,7 @@ const graphSchema = z.object({
     user: z.object({
       createdAt: z.string().datetime(),
       followers: z.object({ totalCount: countSchema }),
+      publicRepositories: z.object({ totalCount: countSchema }),
       repositories: z.object({
         totalCount: countSchema,
         pageInfo: z.object({
@@ -89,7 +97,10 @@ const PROFILE_QUERY = `
     user(login: $login) {
       createdAt
       followers { totalCount }
-      repositories(first: 100, after: $after, privacy: PUBLIC, ownerAffiliations: [OWNER], orderBy: {field: NAME, direction: ASC}) {
+      publicRepositories: repositories(privacy: PUBLIC, ownerAffiliations: [OWNER]) {
+        totalCount
+      }
+      repositories(first: 100, after: $after, ownerAffiliations: [OWNER], orderBy: {field: NAME, direction: ASC}) {
         totalCount
         pageInfo { hasNextPage endCursor }
         nodes {
@@ -190,20 +201,18 @@ async function readGraphProfile(
       login: LOGIN,
       url: PROFILE_URL,
       joinedAt: user.createdAt,
-      publicRepositories: user.repositories.totalCount,
+      publicRepositories: user.publicRepositories.totalCount,
       followers: user.followers.totalCount,
       stars: null,
     };
     for (const repository of user.repositories.nodes) {
-      if (
-        repository.isPrivate ||
-        repository.owner.login.toLowerCase() !== LOGIN.toLowerCase()
-      ) {
+      if (repository.owner.login.toLowerCase() !== LOGIN.toLowerCase()) {
         throw new Error("GitHub returned an unexpected repository");
       }
       repositories.push({
         stars: repository.stargazerCount,
         fork: repository.isFork,
+        private: repository.isPrivate,
         language: repository.primaryLanguage?.name || null,
       });
     }
@@ -221,10 +230,15 @@ async function readGraphProfile(
     profile: {
       ...profile,
       stars: complete
-        ? repositories.reduce((sum, repository) => sum + repository.stars, 0)
+        ? repositories.reduce(
+            (sum, repository) =>
+              sum + (repository.private ? 0 : repository.stars),
+            0,
+          )
         : null,
     },
     languages: complete ? summarizeLanguages(repositories) : [],
+    languageScope: "accessible",
   };
 }
 
@@ -244,21 +258,21 @@ async function readRestProfile(
   try {
     for (let page = 1; page <= MAX_PAGES; page += 1) {
       const raw = await request(
-        `https://api.github.com/users/${LOGIN}/repos?type=owner&sort=full_name&direction=asc&per_page=100&page=${page}`,
+        token
+          ? `https://api.github.com/user/repos?visibility=all&affiliation=owner&sort=full_name&direction=asc&per_page=100&page=${page}`
+          : `https://api.github.com/users/${LOGIN}/repos?type=owner&sort=full_name&direction=asc&per_page=100&page=${page}`,
         signal,
         token,
       );
       const items = restRepositoriesSchema.parse(JSON.parse(raw));
       for (const repository of items) {
-        if (
-          repository.private ||
-          repository.owner.login.toLowerCase() !== LOGIN.toLowerCase()
-        ) {
+        if (repository.owner.login.toLowerCase() !== LOGIN.toLowerCase()) {
           throw new Error("GitHub returned an unexpected repository");
         }
         repositories.push({
           stars: repository.stargazers_count,
           fork: repository.fork,
+          private: repository.private,
           language: repository.language,
         });
       }
@@ -279,10 +293,15 @@ async function readRestProfile(
       publicRepositories: user.public_repos,
       followers: user.followers,
       stars: complete
-        ? repositories.reduce((sum, repository) => sum + repository.stars, 0)
+        ? repositories.reduce(
+            (sum, repository) =>
+              sum + (repository.private ? 0 : repository.stars),
+            0,
+          )
         : null,
     },
     languages: complete ? summarizeLanguages(repositories) : [],
+    languageScope: token ? "accessible" : "public",
   };
 }
 
@@ -398,6 +417,7 @@ async function readStats(): Promise<GitHubStats> {
       profile: profile?.profile || null,
       calendar,
       languages: profile?.languages || [],
+      languageScope: profile?.languageScope || "public",
       updatedAt: profile || calendar ? new Date().toISOString() : null,
       stale: false,
       source: "GitHub",

@@ -39,12 +39,19 @@ function repository(stars, language, fork = false, isPrivate = false) {
   };
 }
 
-function graph(nodes, hasNextPage = false, endCursor = null, totalCount = 3) {
+function graph(
+  nodes,
+  hasNextPage = false,
+  endCursor = null,
+  totalCount = 3,
+  publicTotalCount = totalCount,
+) {
   return {
     data: {
       user: {
         createdAt: "2020-11-04T17:16:20Z",
         followers: { totalCount: 41 },
+        publicRepositories: { totalCount: publicTotalCount },
         repositories: {
           totalCount,
           nodes,
@@ -91,11 +98,18 @@ function publicCalendar() {
   return response(`365 contributions in the last year${calendar}`);
 }
 
-test("paginates public repositories, isolates the token and deduplicates cached requests", async () => {
+test("paginates accessible repositories, isolates the token and deduplicates cached requests", async () => {
   const api = service((url, init) => {
     if (url.includes("/contributions")) return publicCalendar();
     const payload = JSON.parse(init.body);
-    assert.match(payload.query, /privacy: PUBLIC/);
+    assert.match(
+      payload.query,
+      /publicRepositories: repositories\(privacy: PUBLIC/,
+    );
+    assert.match(
+      payload.query,
+      /repositories\(first: 100, after: \$after, ownerAffiliations/,
+    );
     assert.match(payload.query, /ownerAffiliations: \[OWNER\]/);
     return response(
       payload.variables.after
@@ -114,6 +128,7 @@ test("paginates public repositories, isolates the token and deduplicates cached 
   assert.equal(first.calendar.totalContributions, 365);
   assert.equal(first.calendar.weeks.flatMap((week) => week.days).length, 365);
   assert.equal(first.languages.length, 2);
+  assert.equal(first.languageScope, "accessible");
   assert.equal(first.languages[0].percentage, 50);
   assert.equal(api.calls.length, 3);
   assert.equal(
@@ -175,18 +190,29 @@ test("does not publish a partial repository sum as total stars", async () => {
   assert.equal(page, 20);
 });
 
-test("rejects private repository data and preserves the public calendar", async () => {
+test("includes private repositories in language totals without changing public stars", async () => {
   const api = service((url) => {
     if (url.includes("/contributions")) return publicCalendar();
-    if (url.endsWith("/graphql"))
-      return response(graph([repository(99, "Secret", false, true)]));
-    return response({}, false);
+    return response(
+      graph(
+        [
+          repository(4, "TypeScript"),
+          repository(99, "JavaScript", false, true),
+        ],
+        false,
+        null,
+        2,
+        1,
+      ),
+    );
   });
   const result = await api.read();
-  assert.equal(result.status, "partial");
-  assert.equal(result.profile, null);
-  assert.ok(result.calendar);
-  assert.ok(!JSON.stringify(result).includes("Secret"));
+  assert.equal(result.status, "ready");
+  assert.equal(result.profile.publicRepositories, 1);
+  assert.equal(result.profile.stars, 4);
+  assert.equal(result.languages.length, 2);
+  assert.equal(result.languages[0].percentage, 50);
+  assert.equal(result.languageScope, "accessible");
 });
 
 test("hides a changed or incomplete calendar instead of fabricating activity", async () => {
