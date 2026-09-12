@@ -66,7 +66,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <PosthogProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="light"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
