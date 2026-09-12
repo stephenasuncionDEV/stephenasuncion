@@ -3,6 +3,8 @@ node_modules
 
 # nextjs/vercel
 .next
+.next-production
+.next-portrait
 analyze
 .turbo
 .vercel
@@ -29,3 +31,6 @@ next-env.d.ts
 # misc
 .DS_Store
 *.pem
+
+# Local visual verification captures
+artifacts/

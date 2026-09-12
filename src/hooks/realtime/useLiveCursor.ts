@@ -4,7 +4,7 @@ import supabase from "@/common/db/supabase";
 
 import { v4 } from "uuid";
 
-type Cursor = {
+export type Cursor = {
   id: string;
   x: number;
   y: number;
@@ -12,107 +12,211 @@ type Cursor = {
   lastSeen: number;
 };
 
+type PresenceStatus =
+  | "connecting"
+  | "connected"
+  | "offline"
+  | "paused"
+  | "unavailable";
+
 const MAX_IDLE_TIME_MS = 30000;
+const SEND_INTERVAL_MS = 80;
+const CURSOR_COLORS = ["#ac4d31", "#537358", "#7665b0", "#357b9d"];
+
+function isCursorPayload(
+  payload: unknown,
+): payload is Omit<Cursor, "lastSeen"> {
+  if (!payload || typeof payload !== "object") return false;
+  const cursor = payload as Record<string, unknown>;
+  return (
+    typeof cursor.id === "string" &&
+    /^[\w-]{1,64}$/.test(cursor.id) &&
+    typeof cursor.x === "number" &&
+    Number.isFinite(cursor.x) &&
+    cursor.x >= 0 &&
+    cursor.x <= 1 &&
+    typeof cursor.y === "number" &&
+    Number.isFinite(cursor.y) &&
+    cursor.y >= 0 &&
+    cursor.y <= 1 &&
+    typeof cursor.color === "string" &&
+    /^#[\da-f]{6}$/i.test(cursor.color)
+  );
+}
 
 export const useLiveCursor = () => {
-  const [userData, setUserData] = useState<{
-    id: string;
-    color: string;
-  } | null>(null);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
   const [cursors, setCursors] = useState<Record<string, Cursor>>({});
+  const [visitorCount, setVisitorCount] = useState(0);
+  const [status, setStatus] = useState<PresenceStatus>(
+    supabase ? "connecting" : "unavailable",
+  );
 
-  // initialize userId on first render
+  // Synchronize visitor presence and cursors while this tab is active and online.
   useEffect(() => {
-    if (isMounted) return;
+    const client = supabase;
+    if (!client) return;
 
-    setUserData({
-      id: v4(),
-      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
-    });
-    setIsMounted(true);
-  }, [isMounted]);
+    const id = v4();
+    const color =
+      CURSOR_COLORS[Math.floor(Math.random() * CURSOR_COLORS.length)];
+    let channel: ReturnType<typeof client.channel> | null = null;
+    let subscribed = false;
+    let lastSent = 0;
+    let trailingSend: ReturnType<typeof setTimeout> | undefined;
+    let pendingCursor: Omit<Cursor, "lastSeen"> | null = null;
+    let disposed = false;
 
-  // join supabase channel and handle cursor updates
-  useEffect(() => {
-    if (!userData) return;
-
-    const channel = supabase.channel("cursors", {
-      config: { broadcast: { self: true } },
-    });
-
-    channel.on("broadcast", { event: "cursor" }, ({ payload }) => {
-      setCursors((prev) => ({
-        ...prev,
-        [payload.id]: {
-          ...payload,
-          lastSeen: Date.now(),
-        },
-      }));
-    });
-
-    channel.subscribe();
-
-    const handleMove = (e: MouseEvent) => {
-      const cursor = {
-        id: userData.id,
-        x: (e.clientX + window.scrollX) / document.documentElement.scrollWidth,
-        y: (e.clientY + window.scrollY) / document.documentElement.scrollHeight,
-        color: userData.color,
-      };
-
-      channel.send({
+    const sendCursor = () => {
+      trailingSend = undefined;
+      if (!channel || !subscribed || !pendingCursor || document.hidden) return;
+      lastSent = Date.now();
+      void channel.send({
         type: "broadcast",
         event: "cursor",
-        payload: cursor,
+        payload: pendingCursor,
+      });
+      pendingCursor = null;
+    };
+
+    const handleMove = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse" || !subscribed || document.hidden)
+        return;
+      const documentElement = document.documentElement;
+      pendingCursor = {
+        id,
+        color,
+        x: Math.min(
+          1,
+          Math.max(
+            0,
+            (event.clientX + window.scrollX) / documentElement.scrollWidth,
+          ),
+        ),
+        y: Math.min(
+          1,
+          Math.max(
+            0,
+            (event.clientY + window.scrollY) / documentElement.scrollHeight,
+          ),
+        ),
+      };
+      const wait = SEND_INTERVAL_MS - (Date.now() - lastSent);
+      if (wait <= 0) sendCursor();
+      else if (!trailingSend) trailingSend = setTimeout(sendCursor, wait);
+    };
+
+    const disconnect = () => {
+      subscribed = false;
+      clearTimeout(trailingSend);
+      trailingSend = undefined;
+      pendingCursor = null;
+      const previousChannel = channel;
+      channel = null;
+      if (previousChannel) void client.removeChannel(previousChannel);
+      if (!disposed) {
+        setCursors({});
+        setVisitorCount(0);
+      }
+    };
+
+    const connect = () => {
+      if (disposed || channel || document.hidden || !navigator.onLine) return;
+      setStatus("connecting");
+      const nextChannel = client.channel("cursors", {
+        config: { broadcast: { self: false }, presence: { key: id } },
+      });
+      channel = nextChannel;
+
+      nextChannel.on("broadcast", { event: "cursor" }, ({ payload }) => {
+        if (
+          disposed ||
+          channel !== nextChannel ||
+          !isCursorPayload(payload) ||
+          payload.id === id
+        )
+          return;
+        setCursors((previous) => {
+          if (!previous[payload.id] && Object.keys(previous).length >= 24)
+            return previous;
+          return {
+            ...previous,
+            [payload.id]: { ...payload, lastSeen: Date.now() },
+          };
+        });
       });
 
-      setCursors((prev) => ({
-        ...prev,
-        [userData.id]: { ...cursor, lastSeen: Date.now() },
-      }));
+      nextChannel.on("presence", { event: "sync" }, () => {
+        if (!disposed && channel === nextChannel) {
+          setVisitorCount(Object.keys(nextChannel.presenceState()).length);
+        }
+      });
+
+      nextChannel.on("presence", { event: "leave" }, ({ key }) => {
+        if (disposed || channel !== nextChannel) return;
+        setCursors((previous) => {
+          if (!previous[key]) return previous;
+          const next = { ...previous };
+          delete next[key];
+          return next;
+        });
+      });
+
+      nextChannel.subscribe((nextStatus) => {
+        if (disposed || channel !== nextChannel) return;
+        subscribed = nextStatus === "SUBSCRIBED";
+        if (subscribed) {
+          setStatus("connected");
+          void nextChannel.track({ online_at: new Date().toISOString() });
+        } else if (
+          nextStatus === "CHANNEL_ERROR" ||
+          nextStatus === "TIMED_OUT" ||
+          nextStatus === "CLOSED"
+        ) {
+          setStatus("offline");
+          setVisitorCount(0);
+          setCursors({});
+        }
+      });
     };
 
-    const handleDisconnect = () => {
-      channel.unsubscribe();
+    const syncVisibility = () => {
+      if (document.hidden || !navigator.onLine) {
+        disconnect();
+        setStatus(document.hidden ? "paused" : "offline");
+      } else {
+        connect();
+      }
     };
 
-    window.addEventListener("mousemove", handleMove);
-    window.addEventListener("beforeunload", handleDisconnect);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMove);
-      window.removeEventListener("beforeunload", handleDisconnect);
-      channel.unsubscribe();
-    };
-  }, [userData]);
-
-  // remove cursor that is idle
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCursors((prev) => {
-        const now = Date.now();
-        return Object.fromEntries(
-          Object.entries(prev).filter(
-            ([, cursor]) => now - cursor.lastSeen < MAX_IDLE_TIME_MS,
-          ),
+    const pruneCursors = setInterval(() => {
+      if (document.hidden) return;
+      setCursors((previous) => {
+        const entries = Object.entries(previous);
+        const active = entries.filter(
+          ([, cursor]) => Date.now() - cursor.lastSeen < MAX_IDLE_TIME_MS,
         );
+        return active.length === entries.length
+          ? previous
+          : Object.fromEntries(active);
       });
     }, 5000);
 
-    return () => clearInterval(interval);
+    syncVisibility();
+    window.addEventListener("pointermove", handleMove, { passive: true });
+    window.addEventListener("online", syncVisibility);
+    window.addEventListener("offline", syncVisibility);
+    document.addEventListener("visibilitychange", syncVisibility);
+
+    return () => {
+      disposed = true;
+      disconnect();
+      clearInterval(pruneCursors);
+      window.removeEventListener("pointermove", handleMove);
+      window.removeEventListener("online", syncVisibility);
+      window.removeEventListener("offline", syncVisibility);
+      document.removeEventListener("visibilitychange", syncVisibility);
+    };
   }, []);
 
-  // update cursor positions on window resize
-  useEffect(() => {
-    const handleResize = () => setCursors((prev) => ({ ...prev }));
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return {
-    cursors: Object.fromEntries(
-      Object.entries(cursors).filter(([id]) => id !== userData?.id),
-    ),
-  };
+  return { cursors, status, visitorCount };
 };

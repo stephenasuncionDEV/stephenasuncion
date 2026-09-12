@@ -13,12 +13,22 @@ const spotify = ({
     throw new Error("Spotify client ID must be set in environment variables.");
   }
 
-  const client = SpotifyApi.withAccessToken(process.env.SPOTIFY_CLIENT_ID, {
-    access_token: accessToken,
-    refresh_token: refreshToken,
-    token_type: "Bearer",
-    expires_in: Math.floor((expiresAt.getTime() - Date.now()) / 1000),
-  });
+  const client = SpotifyApi.withAccessToken(
+    process.env.SPOTIFY_CLIENT_ID,
+    {
+      access_token: accessToken,
+      refresh_token: refreshToken,
+      token_type: "Bearer",
+      expires_in: Math.max(
+        0,
+        Math.floor((expiresAt.getTime() - Date.now()) / 1000),
+      ),
+    },
+    {
+      fetch: (input, init) =>
+        fetch(input, { ...init, signal: AbortSignal.timeout(5000) }),
+    },
+  );
 
   return client;
 };

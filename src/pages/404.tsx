@@ -1,22 +1,37 @@
-import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
-import NextImage from "next/image";
-import NextLink from "next/link";
+import Link from "next/link";
 
-import IconImage from "@/assets/images/icon.png";
+import { ArrowUpRight } from "lucide-react";
 
-const Error: NextPage = () => {
+import { LivingCode } from "@/components/Portfolio/LivingCode";
+import { SiteHeader } from "@/components/Portfolio/SiteHeader";
+
+export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-y-8 p-8">
-      <NextSeo title="404" noindex={true} nofollow={true} />
-      <NextLink href="/">
-        <NextImage src={IconImage} alt="Icon" width={250} height={250} />
-      </NextLink>
-      <p className="text-center text-xl font-normal">
-        Cannot find the page you are looking for.
-      </p>
+    <div className="portfolio">
+      <NextSeo title="Page not found — Stephen Asuncion" noindex />
+      <SiteHeader />
+      <main id="main-content" className="not-found page-shell" tabIndex={-1}>
+        <div className="not-found-copy">
+          <span className="mono">404 / A SMALL DETOUR</span>
+          <h1>
+            A little
+            <br />
+            <em>off course.</em>
+          </h1>
+          <p>
+            This page doesn’t exist. There’s still plenty
+            <br />
+            to explore back at the beginning.
+          </p>
+          <Link href="/" className="button-primary">
+            Back to my portfolio <ArrowUpRight size={18} />
+          </Link>
+        </div>
+        <div className="not-found-art">
+          <LivingCode paused={true} motifKey={0} />
+        </div>
+      </main>
     </div>
   );
-};
-
-export default Error;
+}

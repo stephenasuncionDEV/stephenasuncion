@@ -1,13 +1,13 @@
-/** @type {import('next').NextConfig} */
-
-/* eslint-disable-next-line  @typescript-eslint/no-var-requires */
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
+/** @type {import('next').NextConfig} */
 const nextConfig = withBundleAnalyzer({
   reactStrictMode: false,
   swcMinify: true,
+  devIndicators: { buildActivity: false },
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   images: {
     remotePatterns: [
       {

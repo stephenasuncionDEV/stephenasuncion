@@ -178,6 +178,7 @@ function CalendarDayButton({
   const defaultClassNames = getDefaultClassNames();
 
   const ref = React.useRef<HTMLButtonElement>(null);
+  // Move keyboard focus to the day selected by the calendar's focus state.
   React.useEffect(() => {
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);

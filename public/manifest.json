@@ -1,9 +1,9 @@
 {
   "name": "Stephen Asuncion",
-  "description": "Stephen Asuncion's portfolio website.",
+  "description": "Stephen Asuncion’s personal website. Full-stack developer in Vancouver, making things with code since age ten.",
   "short_name": "StephenAsuncion",
-  "theme_color": "#6D28D9",
-  "background_color": "#030712",
+  "theme_color": "#f3f0e8",
+  "background_color": "#f3f0e8",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
