@@ -17,7 +17,13 @@ export const queryClient = new QueryClient({
 
 export const trpc = createTRPCNext<AppRouter>({
   config() {
-    const url = `${process.env.NEXT_PUBLIC_HOST}/api/trpc`;
+    const origin =
+      typeof window !== "undefined"
+        ? ""
+        : (
+            process.env.NEXT_PUBLIC_HOST || "https://stephenasuncion.dev"
+          ).replace(/\/$/, "");
+    const url = `${origin}/api/trpc`;
 
     return {
       queryClient,

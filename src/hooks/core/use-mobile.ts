@@ -7,6 +7,7 @@ export function useIsMobile() {
     undefined,
   );
 
+  // Update the mobile state when the viewport crosses the breakpoint.
   React.useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
     const onChange = () => {

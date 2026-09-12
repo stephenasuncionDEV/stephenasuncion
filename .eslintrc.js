@@ -5,6 +5,12 @@ module.exports = {
   },
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint"],
+  overrides: [
+    {
+      files: ["*.config.js"],
+      rules: { "@typescript-eslint/no-var-requires": "off" },
+    },
+  ],
   ignorePatterns: [
     "node_modules",
     "dist",
