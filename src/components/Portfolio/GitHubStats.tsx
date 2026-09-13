@@ -189,7 +189,12 @@ export default function GitHubStats() {
       <div className="github-bottom">
         {!!stats?.languages.length && (
           <div className="github-languages">
-            <p className="mono">PRIMARY LANGUAGES · PUBLIC REPOSITORIES</p>
+            <p className="mono">
+              PRIMARY LANGUAGES ·{" "}
+              {stats.languageScope === "accessible"
+                ? "PUBLIC + PRIVATE REPOSITORIES"
+                : "PUBLIC REPOSITORIES"}
+            </p>
             <div className="github-language-bar" aria-hidden="true">
               {stats.languages.map((language, index) => (
                 <span

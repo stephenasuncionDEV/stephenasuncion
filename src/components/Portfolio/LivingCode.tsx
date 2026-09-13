@@ -5,7 +5,6 @@ import { useEffect, useId, useRef, useState } from "react";
 import {
   PORTRAIT_DESKTOP,
   PORTRAIT_HEIGHT,
-  PORTRAIT_MOBILE,
   PORTRAIT_TONES,
   PORTRAIT_WIDTH,
 } from "./portrait-data";
@@ -16,17 +15,9 @@ type LivingCodeProps = {
   className?: string;
 };
 
-type PortraitPoint = {
-  x: number;
-  y: number;
-  tone: number;
-  alpha: number;
-  seed: number;
-  edge: boolean;
-};
-
-const GLYPHS = ["·", ".", ":", "-", "=", "+", "*", "#", "%", "@"];
-const STATIC_GLYPHS = [" ", "·", ".", ":", "+", "*", "#", "%", "@", "@"];
+const GLYPHS = [" ", "·", ".", ":", "+", "*", "#", "%", "@", "@"];
+const FONT_SIZE = 5.42;
+const PORTRAIT_OPACITY = 0.84;
 const STATIC_ROWS = [false, true].map((dark) =>
   PORTRAIT_DESKTOP.map((row) =>
     Array.from(row)
@@ -34,20 +25,13 @@ const STATIC_ROWS = [false, true].map((dark) =>
         const value = PORTRAIT_TONES.indexOf(code);
         if (value < 0) return " ";
         const density = dark ? value / 63 : 1 - value / 63;
-        return STATIC_GLYPHS[
-          Math.min(STATIC_GLYPHS.length - 1, Math.floor(density ** 1.6 * 10))
+        return GLYPHS[
+          Math.min(GLYPHS.length - 1, Math.floor(density ** 1.6 * 10))
         ];
       })
       .join(""),
   ),
 );
-
-const clamp = (value: number, min = 0, max = 1) =>
-  Math.max(min, Math.min(max, value));
-const smoothstep = (value: number) => {
-  const unit = clamp(value);
-  return unit * unit * (3 - 2 * unit);
-};
 
 export function LivingCode({
   paused = false,
@@ -55,6 +39,7 @@ export function LivingCode({
   className = "",
 }: LivingCodeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const fallbackRef = useRef<SVGSVGElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pausedRef = useRef(paused);
   const lastMotifRef = useRef(motifKey);
@@ -77,11 +62,12 @@ export function LivingCode({
     }
   }, [motifKey]);
 
-  // Render the portrait and manage interaction, visibility, and motion preferences.
+  // Animate the initial SVG artwork while respecting visibility and motion preferences.
   useEffect(() => {
     const container = containerRef.current;
+    const fallback = fallbackRef.current;
     const canvas = canvasRef.current;
-    if (!container || !canvas) return;
+    if (!container || !fallback || !canvas) return;
     const context = canvas.getContext("2d", { alpha: true });
     if (!context) return;
 
@@ -96,17 +82,17 @@ export function LivingCode({
     let height = 0;
     let dpr = 1;
     let mobile = false;
-    let columns = 112;
-    let rows = 139;
     let frame = 0;
     let lastFrame = 0;
     let time = 0;
     let scroll = 0;
     let targetScroll = 0;
     let rippleStart = -10;
-    let points: PortraitPoint[] = [];
-    let sprites: HTMLCanvasElement[][] = [];
-    let dark = false;
+    let texture: HTMLCanvasElement | null = null;
+    let textureKey = "";
+    let pendingImage: HTMLImageElement | null = null;
+    let pendingUrl: string | null = null;
+    let generation = 0;
     const pointer = {
       x: 0,
       y: 0,
@@ -116,123 +102,75 @@ export function LivingCode({
       targetStrength: 0,
     };
 
-    const preparePortrait = () => {
-      const data = mobile ? PORTRAIT_MOBILE : PORTRAIT_DESKTOP;
-      columns = data[0].length;
-      rows = data.length;
-      points = [];
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < columns; x++) {
-          const value = PORTRAIT_TONES.indexOf(data[y][x]);
-          if (value < 0) continue;
-          points.push({
-            x: (x + 0.5) / columns,
-            y: (y + 0.5) / rows,
-            tone: value / 63,
-            alpha:
-              (1 - smoothstep((y / rows - 0.86) / 0.14)) *
-              smoothstep((x + 1) / (columns * 0.065)) *
-              smoothstep((columns - x) / (columns * 0.065)),
-            seed: ((x * 73 + y * 151) % 997) / 997,
-            edge: x < columns * 0.19 || x > columns * 0.83 || y > rows * 0.77,
-          });
-        }
-      }
-    };
-
-    const buildSprites = () => {
-      const styles = getComputedStyle(container);
-      const ink = styles.getPropertyValue("--ink").trim() || "#26251f";
-      const accent = styles.getPropertyValue("--signal").trim() || "#ce492d";
-      dark = document.documentElement.classList.contains("dark");
-      sprites = [ink, accent].map((color) =>
-        GLYPHS.map((glyph) => {
-          const sprite = document.createElement("canvas");
-          sprite.width = 24;
-          sprite.height = 28;
-          const ctx = sprite.getContext("2d");
-          if (ctx) {
-            ctx.scale(2, 2);
-            ctx.fillStyle = color;
-            ctx.font = "700 10px 'Courier New', monospace";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillText(glyph, 6, 7);
-          }
-          return sprite;
-        }),
-      );
-    };
-
-    const render = () => {
-      if (!width || !height || !points.length || disposed) return;
-      context.setTransform(dpr, 0, 0, dpr, 0, 0);
-      context.clearRect(0, 0, width, height);
+    const geometry = () => {
       const scale =
         Math.min(width / PORTRAIT_WIDTH, height / PORTRAIT_HEIGHT) * 0.96;
       const portraitWidth = PORTRAIT_WIDTH * scale;
       const portraitHeight = PORTRAIT_HEIGHT * scale;
-      const left = (width - portraitWidth) / 2;
-      const top = (height - portraitHeight) / 2;
-      const cellWidth = portraitWidth / columns;
-      const cellHeight = portraitHeight / rows;
-      const radius = portraitWidth * 0.2;
+      return {
+        width: portraitWidth,
+        height: portraitHeight,
+        left: (width - portraitWidth) / 2,
+        top: (height - portraitHeight) / 2,
+      };
+    };
+
+    const render = () => {
+      if (!texture || !width || !height || disposed) return;
+      context.setTransform(1, 0, 0, 1, 0, 0);
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      const portrait = geometry();
       const rippleAge = time - rippleStart;
-
-      for (const point of points) {
-        let x = left + point.x * portraitWidth;
-        let y = top + point.y * portraitHeight;
-        const depth = Math.sin(point.x * Math.PI) * Math.sin(point.y * Math.PI);
-
-        x += Math.sin(time * 0.42 + point.y * 7) * (0.4 + depth * 0.8);
-        y += Math.cos(time * 0.34 + point.x * 6) * depth * 0.8;
-        x += scroll * depth * 1.8;
-
-        const dx = x - pointer.x;
-        const dy = y - pointer.y;
-        const distance = Math.hypot(dx, dy);
-        if (pointer.strength > 0.001 && distance < radius) {
-          const influence = (1 - distance / radius) ** 2 * pointer.strength;
-          x += (dx / Math.max(1, distance)) * influence * 9;
-          y += (dy / Math.max(1, distance)) * influence * 9;
-        }
+      const rows = PORTRAIT_DESKTOP.length;
+      for (let row = 0; row < rows; row++) {
+        const position = (row + 0.5) / rows;
+        const sourceY = Math.round((row * texture.height) / rows);
+        const sourceHeight =
+          Math.round(((row + 1) * texture.height) / rows) - sourceY;
+        const y = portrait.top + position * portrait.height;
+        const depth = Math.sin(position * Math.PI);
+        let displacement =
+          (Math.sin(time * 0.42 + position * 7) - Math.sin(position * 7)) *
+          depth *
+          0.5;
+        displacement += scroll * depth * 1.2;
+        const verticalDistance = (y - pointer.y) / (portrait.height * 0.16);
+        const horizontalInfluence = Math.max(
+          0,
+          1 - Math.abs(pointer.x - width / 2) / (portrait.width * 0.65),
+        );
+        displacement +=
+          Math.exp(-verticalDistance * verticalDistance * 2) *
+          horizontalInfluence *
+          pointer.strength *
+          ((pointer.x - width / 2) / portrait.width) *
+          6;
         if (rippleAge >= 0 && rippleAge < 2.7) {
-          const fromCenter = Math.hypot(
-            (point.x - 0.53) * 0.85,
-            point.y - 0.42,
-          );
-          const wave = Math.exp(
-            -((fromCenter - rippleAge * 0.31) ** 2) / 0.004,
-          );
-          const strength = wave * Math.sin(rippleAge * 8 - fromCenter * 13) * 8;
-          x += (point.x - 0.53) * strength;
-          y += (point.y - 0.42) * strength;
+          const distance = Math.abs(position - 0.42);
+          const wave = Math.exp(-((distance - rippleAge * 0.31) ** 2) / 0.004);
+          displacement += wave * Math.sin(rippleAge * 8 - distance * 13) * 2.5;
         }
-
-        const density = dark ? point.tone : 1 - point.tone;
-        const glyph = Math.min(GLYPHS.length - 1, Math.floor(density * 10));
-        const accent = point.edge && point.seed > 0.975 ? 1 : 0;
-        context.globalAlpha = point.alpha * (0.36 + density * 0.64);
-        const glyphWidth = cellWidth * 1.85;
-        const glyphHeight = cellHeight * 1.85;
         context.drawImage(
-          sprites[accent][glyph],
-          x - glyphWidth / 2,
-          y - glyphHeight / 2,
-          glyphWidth,
-          glyphHeight,
+          texture,
+          0,
+          sourceY,
+          texture.width,
+          sourceHeight,
+          Math.round((portrait.left + displacement) * dpr),
+          Math.round(portrait.top * dpr) + sourceY,
+          texture.width,
+          sourceHeight,
         );
       }
-      context.globalAlpha = 1;
     };
 
     const canAnimate = () =>
       !disposed &&
+      !!texture &&
       !reducedMotion &&
       !pausedRef.current &&
       visible &&
       !document.hidden;
-
     const tick = (now: number) => {
       frame = 0;
       if (!canAnimate()) return;
@@ -250,7 +188,6 @@ export function LivingCode({
       }
       frame = requestAnimationFrame(tick);
     };
-
     const sync = () => {
       if (canAnimate()) {
         if (!frame) {
@@ -264,21 +201,84 @@ export function LivingCode({
       }
     };
 
+    const releaseImage = () => {
+      if (pendingImage) {
+        pendingImage.onload = null;
+        pendingImage.onerror = null;
+      }
+      if (pendingUrl) URL.revokeObjectURL(pendingUrl);
+      pendingImage = null;
+      pendingUrl = null;
+    };
+    const buildTexture = () => {
+      if (disposed || !width || !height) return;
+      const portrait = geometry();
+      const pixelWidth = Math.max(1, Math.round(portrait.width * dpr));
+      const pixelHeight = Math.max(1, Math.round(portrait.height * dpr));
+      const ink =
+        getComputedStyle(container).getPropertyValue("--ink").trim() ||
+        "#26251f";
+      const dark = document.documentElement.classList.contains("dark");
+      const key = `${pixelWidth}:${pixelHeight}:${ink}:${dark}`;
+      if (textureKey === key) return;
+      textureKey = key;
+      generation += 1;
+      const version = generation;
+      releaseImage();
+      texture = null;
+      setReady(false);
+      sync();
+      const artwork = fallback.cloneNode(true) as SVGSVGElement;
+      artwork.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      artwork.setAttribute("width", String(pixelWidth));
+      artwork.setAttribute("height", String(pixelHeight));
+      artwork.style.cssText = `color: ${ink};`;
+      artwork
+        .querySelector(
+          dark ? ".living-code__static-light" : ".living-code__static-dark",
+        )
+        ?.remove();
+      const source = new XMLSerializer().serializeToString(artwork);
+      const url = URL.createObjectURL(
+        new Blob([source], { type: "image/svg+xml;charset=utf-8" }),
+      );
+      const image = new window.Image();
+      pendingUrl = url;
+      pendingImage = image;
+      image.onload = () => {
+        if (disposed || version !== generation) return;
+        const nextTexture = document.createElement("canvas");
+        nextTexture.width = pixelWidth;
+        nextTexture.height = pixelHeight;
+        const ctx = nextTexture.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(image, 0, 0, pixelWidth, pixelHeight);
+          texture = nextTexture;
+          render();
+          setReady(true);
+          sync();
+        }
+        releaseImage();
+      };
+      image.onerror = () => {
+        if (version === generation) {
+          textureKey = "";
+          releaseImage();
+        }
+      };
+      image.src = url;
+    };
     const resize = () => {
       const rect = container.getBoundingClientRect();
       width = rect.width;
       height = rect.height;
-      const nextMobile = width < 500;
-      if (nextMobile !== mobile || !points.length) {
-        mobile = nextMobile;
-        preparePortrait();
-      }
+      mobile = width < 500;
       dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
       canvas.width = Math.max(1, Math.round(width * dpr));
       canvas.height = Math.max(1, Math.round(height * dpr));
+      buildTexture();
       render();
     };
-
     const onPointerMove = (event: PointerEvent) => {
       if (!finePointer.matches || reducedMotion || pausedRef.current) return;
       const rect = container.getBoundingClientRect();
@@ -291,35 +291,35 @@ export function LivingCode({
     };
     const onScroll = () => {
       if (!visible || reducedMotion) return;
-      const rect = container.getBoundingClientRect();
-      targetScroll = clamp(-rect.top / window.innerHeight, -1, 1);
+      targetScroll = Math.max(
+        -1,
+        Math.min(
+          1,
+          -container.getBoundingClientRect().top / window.innerHeight,
+        ),
+      );
     };
     const onMotionChange = () => {
       reducedMotion = motionPreference.matches;
       if (reducedMotion) {
-        pointer.strength = pointer.targetStrength = scroll = targetScroll = 0;
-        time = 0;
+        pointer.strength =
+          pointer.targetStrength =
+          scroll =
+          targetScroll =
+          time =
+            0;
         rippleStart = -10;
         render();
       }
       sync();
     };
-    const onThemeChange = () => {
-      buildSprites();
-      render();
-    };
-
     syncRef.current = sync;
     rippleRef.current = () => {
       if (reducedMotion || pausedRef.current) return;
       rippleStart = time;
       sync();
     };
-
-    buildSprites();
     resize();
-    setReady(true);
-    sync();
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
     const intersectionObserver = new IntersectionObserver(
@@ -330,18 +330,12 @@ export function LivingCode({
       { threshold: 0.01 },
     );
     intersectionObserver.observe(container);
-    const themeObserver = new MutationObserver(onThemeChange);
+    const themeObserver = new MutationObserver(buildTexture);
     let ancestor: HTMLElement | null = container;
     while (ancestor) {
       themeObserver.observe(ancestor, {
         attributes: true,
-        attributeFilter: [
-          "class",
-          "style",
-          "data-theme",
-          "data-color",
-          "data-accent",
-        ],
+        attributeFilter: ["class", "style", "data-theme", "data-accent"],
       });
       ancestor = ancestor.parentElement;
     }
@@ -350,9 +344,10 @@ export function LivingCode({
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", sync);
     motionPreference.addEventListener("change", onMotionChange);
-
     return () => {
       disposed = true;
+      generation += 1;
+      releaseImage();
       cancelAnimationFrame(frame);
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
@@ -366,7 +361,6 @@ export function LivingCode({
       rippleRef.current = undefined;
     };
   }, []);
-
   return (
     <div
       ref={containerRef}
@@ -376,6 +370,7 @@ export function LivingCode({
       style={{ position: "relative", width: "100%", height: "100%" }}
     >
       <svg
+        ref={fallbackRef}
         className="living-code__fallback"
         viewBox={`0 0 ${PORTRAIT_WIDTH} ${PORTRAIT_HEIGHT}`}
         aria-hidden="true"
@@ -387,7 +382,6 @@ export function LivingCode({
           height: "96%",
           opacity: ready ? 0 : 1,
           color: "var(--ink, #26251f)",
-          transition: "opacity 200ms ease",
         }}
       >
         <defs>
@@ -408,8 +402,8 @@ export function LivingCode({
           fill="currentColor"
           fontFamily="Courier New, monospace"
           fontWeight="700"
-          fontSize="5.42"
-          opacity="0.84"
+          fontSize={FONT_SIZE}
+          opacity={PORTRAIT_OPACITY}
         >
           {[false, true].map((dark) => (
             <g
@@ -447,7 +441,6 @@ export function LivingCode({
           width: "100%",
           height: "100%",
           opacity: ready ? 1 : 0,
-          transition: "opacity 200ms ease",
         }}
       />
     </div>

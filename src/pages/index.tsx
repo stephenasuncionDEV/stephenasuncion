@@ -14,6 +14,8 @@ import {
   RotateCcw,
 } from "lucide-react";
 
+import EspPlayground from "@/components/Portfolio/EspPlayground";
+import FirstProgram from "@/components/Portfolio/FirstProgram";
 import GitHubStats from "@/components/Portfolio/GitHubStats";
 import LivePresence from "@/components/Portfolio/LivePresence";
 import { LivingCode } from "@/components/Portfolio/LivingCode";
@@ -24,7 +26,7 @@ const journey = [
   {
     period: "AGE 10",
     title: "A little mischief. A lot of curiosity.",
-    text: "My first code was a batch script: a fake computer virus to prank family and friends. Making a computer do something I imagined was all it took.",
+    text: "At ten, I disguised a prank program with a Mozilla icon on our Windows 7 desktop. My cousins double-clicked it, expecting the browser. Instead: a message box saying there was a virus. Making a computer do something I imagined was all it took.",
     tools: "Batch scripts",
   },
   {
@@ -36,7 +38,7 @@ const journey = [
   {
     period: "HIGH SCHOOL",
     title: "Taking things apart.",
-    text: "Games made me want to understand what was happening underneath. C++, memory manipulation, and reverse engineering became my way of learning how software really works.",
+    text: "In high school, I made ESP hacks for Fortnite: boxes, lines, and health bars that showed what the game knew about each player. It pulled me into C++, memory manipulation, and reverse engineering.",
     tools: "C++ / Memory / Reverse engineering",
   },
   {
@@ -217,6 +219,11 @@ const Home: NextPage = () => {
               <ol className="journey">
                 {journey.map((chapter, index) => (
                   <li
+                    id={
+                      chapter.period === "HIGH SCHOOL"
+                        ? "high-school"
+                        : undefined
+                    }
                     className={
                       chapter.current
                         ? "journey-chapter is-current"
@@ -236,6 +243,8 @@ const Home: NextPage = () => {
                       <span className="journey-tools mono">
                         {chapter.tools}
                       </span>
+                      {chapter.period === "AGE 10" && <FirstProgram />}
+                      {chapter.period === "HIGH SCHOOL" && <EspPlayground />}
                     </div>
                   </li>
                 ))}
