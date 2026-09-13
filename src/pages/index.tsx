@@ -14,6 +14,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 
+import EspPlayground from "@/components/Portfolio/EspPlayground";
 import FirstProgram from "@/components/Portfolio/FirstProgram";
 import GitHubStats from "@/components/Portfolio/GitHubStats";
 import LivePresence from "@/components/Portfolio/LivePresence";
@@ -37,7 +38,7 @@ const journey = [
   {
     period: "HIGH SCHOOL",
     title: "Taking things apart.",
-    text: "Games made me want to understand what was happening underneath. C++, memory manipulation, and reverse engineering became my way of learning how software really works.",
+    text: "In high school, I made ESP hacks for Fortnite: boxes, lines, and health bars that showed what the game knew about each player. It pulled me into C++, memory manipulation, and reverse engineering.",
     tools: "C++ / Memory / Reverse engineering",
   },
   {
@@ -218,6 +219,11 @@ const Home: NextPage = () => {
               <ol className="journey">
                 {journey.map((chapter, index) => (
                   <li
+                    id={
+                      chapter.period === "HIGH SCHOOL"
+                        ? "high-school"
+                        : undefined
+                    }
                     className={
                       chapter.current
                         ? "journey-chapter is-current"
@@ -238,6 +244,7 @@ const Home: NextPage = () => {
                         {chapter.tools}
                       </span>
                       {chapter.period === "AGE 10" && <FirstProgram />}
+                      {chapter.period === "HIGH SCHOOL" && <EspPlayground />}
                     </div>
                   </li>
                 ))}

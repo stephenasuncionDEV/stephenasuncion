@@ -14,6 +14,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import store from "@/store/index";
 
 import "@/styles/childhood-desktop.scss";
+import "@/styles/esp-playground.scss";
 import "@/styles/first-program.scss";
 import "@/styles/globals.scss";
 import "@/styles/portfolio.scss";
